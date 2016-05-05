@@ -41,9 +41,7 @@ public class GraphPanel extends JPanel {
 	 */
 	public void paint(Graphics g){
 		super.paint(g);
-		System.out.println("vor here");
 		if(model != null){
-			System.out.println("here");
 			model.paintGraph(g, this.getSize(dimension));
 		}
 	}

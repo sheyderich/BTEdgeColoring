@@ -25,6 +25,7 @@ public class GraphPanelView extends JPanel implements Observer{
 	private GraphInfoPanel graphInfoPanel;
 	private JButton startButton; 
 	private JButton importButton;
+	private JButton lastButton;
 	private Dimension dimension;
 	// TO DO: SwitchBox for algorithms
 	
@@ -52,8 +53,10 @@ public class GraphPanelView extends JPanel implements Observer{
 		this.add(menu, BorderLayout.SOUTH);
 		startButton = new JButton("Start Algorithm");
 		importButton = new JButton("Import Graph");
+		lastButton = new JButton("Last Step");
 		menu.add(importButton);
 		menu.add(startButton);
+		menu.add(lastButton);
 	}
 	
 	/**
@@ -70,6 +73,16 @@ public class GraphPanelView extends JPanel implements Observer{
 	 */
 	public JButton getImportButton(){
 		return importButton;
+	}
+	
+
+	
+	/**
+	 * Returns the last button
+	 * @return
+	 */
+	public JButton getLastButton(){
+		return lastButton;
 	}
 	
 	/**
@@ -90,7 +103,6 @@ public class GraphPanelView extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		graphPanel.repaint();
-		System.out.println("hi");
 	}
 	
 }
