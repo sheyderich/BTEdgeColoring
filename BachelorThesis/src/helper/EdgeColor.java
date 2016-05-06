@@ -2,33 +2,36 @@ package helper;
 
 import java.awt.Color;
 
+import exceptions.NotEnoughColorsException;
+
 public class EdgeColor {
 	private static final Color[] EDGE_COLORS = {
-		    Color.decode("0xd11141"),    
-		    Color.decode("0x00b159"),    
-		    Color.decode("0x00aedb"),    
-		    Color.decode("0xf37735"),    
-		    Color.decode("0xffc425"),  
-		    
-		    Color.decode("0x373854"),    
-		    Color.decode("0x493267"),    
-		    Color.decode("0x9e379f"),    
-		    Color.decode("0xe86af0"),    
-		    Color.decode("0x7bb3ff"),
-		    
-		    Color.decode("0xFF7A5C"),
-		    Color.decode("0x53377A"),  
-		    Color.decode("0xFF8E00"),  
-		    Color.decode("0xB32851"), 
-		    Color.decode("0xF4C800"),    
-		    Color.decode("0x7F180D"),    
-		    Color.decode("0x93AA00"),   
-		    Color.decode("0x593315"),   
-		    Color.decode("0xF13A13"),   
-		    Color.decode("0x232C16"),    
+		    Color.decode("0xb62020"),    // dark red
+		    Color.decode("0x3366ff"),    // darker blue
+		    Color.decode("0xffbf00"),    // yellow
+		    Color.decode("0x028900"),    // dark green
+		    Color.decode("0x660066"),    // dark purple
+		    Color.decode("0xff0097"),    // bright pink
+		    Color.decode("0x55ccff"),	 // light blue
+		    Color.decode("0xfe2e2e"),    // bright red
+		    Color.decode("0xadff00"),    // light green
+		    Color.decode("0xbe29ec"),    // bright purple
+		    Color.decode("0xf09609"),	 // orange
+		    Color.decode("0xab3832"),    // brown
+		    Color.decode("0x0000FF"), 	 // totally blue
+		    Color.decode("0xffdc73"),    // light brown
+		    Color.decode("0xaaaaaa"),    // gray
+		    Color.decode("0x24a191"),    // bluish green
+		    Color.decode("0xe1f7d5"),    // pastel green
+		    Color.decode("0xc9c9ff"),    // pastel blue
+		    Color.decode("0xffbdbd"),    // pastel red
+		    Color.decode("0x00ff00"),    // toxic green
 		};
 	
-	public static Color[] getColors(){
-		return EDGE_COLORS;
+	public static Color getColor(int i){
+		if(i > EDGE_COLORS.length){
+			throw new NotEnoughColorsException("There are only 20 colors in the set.");
+		}
+		return EDGE_COLORS[i];
 	}
 }
