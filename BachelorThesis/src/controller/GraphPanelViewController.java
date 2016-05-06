@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import algorithms.AlgorithmKoenig;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
@@ -19,6 +21,7 @@ public class GraphPanelViewController {
 	private GraphPanelView graphPanelView;
 	private DrawableGraph model;
 	private boolean started = false; 
+	private List<Object> nextStep; 
 	
 	public GraphPanelViewController(){
 		
@@ -30,8 +33,10 @@ public class GraphPanelViewController {
 				if(!started){
 					started = true; 
 					graphPanelView.getStartButton().setText("Next Step");
-				}else{
+					// get steps for koenig algorithm
 					AlgorithmKoenig.applyKoenigAlgorithm((BipartiteGraph)model);
+				}else{
+					// do next step
 				}
 			}
 		};

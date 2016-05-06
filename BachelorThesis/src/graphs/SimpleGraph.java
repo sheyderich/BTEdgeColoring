@@ -257,7 +257,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	
 	
 	@Override
-	public void paintGraph(Graphics g, Dimension d) {
+	public void paintGraph(Graphics g, boolean thickness, Dimension d) {
 		
 		List<Point> coordinates = calculateNodeCoordinates(d);
 		
@@ -270,11 +270,16 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 					if(graph[i][j] == UNCOLORED){
 						paintEdgeBlack(coordinates.get(i), coordinates.get(j), g);
 					}else{
-						paintEdgeColor(coordinates.get(i), coordinates.get(j), EdgeColor.getColor(graph[i][j]-1), g);
+						paintEdgeColor(coordinates.get(i), coordinates.get(j), thickness, EdgeColor.getColor(graph[i][j]-1), g);
 					}
 				}
 			}
 		}
+	}
+	
+	@Override
+	public void paintThickPath(Graphics g, Dimension d){
+		paintGraph(g, true, d);
 	}
 	
 	/**

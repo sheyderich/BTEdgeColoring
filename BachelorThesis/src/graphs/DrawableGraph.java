@@ -19,7 +19,15 @@ public abstract class DrawableGraph extends Observable{
 	 * Draws a given Graph on the graphics context g
 	 * @param g
 	 */
-	public abstract void paintGraph(Graphics g, Dimension d);
+	public abstract void paintGraph(Graphics g, boolean thickness, Dimension d);
+	
+	/**
+	 * Paints a thick line under the colors to see where an augmented path
+	 * is calculated
+	 * @param g
+	 * @param d
+	 */
+	public abstract void paintThickPath(Graphics g, Dimension d);
 	
 	/**
 	 * Returns a List of points that represent the nodes of a 
@@ -46,7 +54,7 @@ public abstract class DrawableGraph extends Observable{
 	 * @param g
 	 */
 	public void paintEdgeBlack(Point start, Point end, Graphics g){
-		paintEdgeColor(start, end, Color.BLACK,g);
+		paintEdgeColor(start, end, false, Color.BLACK,g);
 	}
 	
 	/**
@@ -57,11 +65,11 @@ public abstract class DrawableGraph extends Observable{
 	 * @param color
 	 * @param g
 	 */
-	public void paintEdgeColor(Point start, Point end, Color color, Graphics g){
+	public void paintEdgeColor(Point start, Point end, boolean thick, Color color, Graphics g){
 //		this.setChanged();
 		Color oldColor = g.getColor();
 		g.setColor(color);
-		drawAntiAliasedColoredLine(new Point((int)(start.getX()+5), (int)(start.getY()+5)),new Point((int)(end.getX()+5),(int)(end.getY()+5)), g);
+		drawAntiAliasedColoredLine(new Point((int)(start.getX()+5), (int)(start.getY()+5)),new Point((int)(end.getX()+5),(int)(end.getY()+5)),thick, g);
 		g.setColor(oldColor);
 //		this.notifyObservers();
 //		this.clearChanged();
@@ -84,7 +92,7 @@ public abstract class DrawableGraph extends Observable{
 	 * @param b
 	 * @param g
 	 */
-	private static void drawAntiAliasedColoredLine(Point a, Point b, Graphics g){
+	private static void drawAntiAliasedColoredLine(Point a, Point b, boolean thick, Graphics g){
 		Point p = new Point(a);
 		Color c = g.getColor();
 		float error, delta, dx, dy;
@@ -107,9 +115,22 @@ public abstract class DrawableGraph extends Observable{
 	            error = 0.0f;
 	            delta = Math.abs(dy / dx);
 	            while (p.x != b.x) {
-	                setPixelColor(p.x, p.y, c, g);
-	                if (error > 0.0f) setPixelColor(p.x, p.y+inc_y, c,g);
-	                else setPixelColor(p.x, p.y-inc_y, c, g);
+	                if(thick){
+	                	setBiggerPixel(p.x, p.y, g);
+	                }else{
+	                	setPixelColor(p.x, p.y, c, g);
+	                }
+	                if (error > 0.0f){
+	                	 if(thick){
+	 	                	setBiggerPixel(p.x, p.y, g);
+	 	                }else
+	 	                	setPixelColor(p.x, p.y+inc_y, c,g);
+	                } else{ 
+	                	 if(thick){
+	 	                	setBiggerPixel(p.x, p.y, g);
+	 	                }else
+	                	setPixelColor(p.x, p.y-inc_y, c, g);
+	                }
 	                p.x += inc_x;
 	                error = error + delta;
 	                if (error > 0.5f) {
@@ -122,9 +143,21 @@ public abstract class DrawableGraph extends Observable{
 	            error = 0.0f;
 	            delta = Math.abs(dx / dy);
 	            while (p.y != b.y) {
-	                setPixelColor(p.x, p.y, c, g);
-	                if (error > 0.0f) setPixelColor(p.x+inc_x, p.y, c, g);
-	                else setPixelColor(p.x-inc_x, p.y, c, g);
+	            	 if(thick){
+		                	setBiggerPixel(p.x, p.y, g);
+		                }else
+		                	setPixelColor(p.x, p.y, c, g);
+	                if (error > 0.0f){
+	                	 if(thick){
+	 	                	setBiggerPixel(p.x, p.y, g);
+	 	                }else
+	 	                	setPixelColor(p.x+inc_x, p.y, c, g);
+	                } else {
+	                	 if(thick){
+	 	                	setBiggerPixel(p.x, p.y, g);
+	 	                }else
+	 	                	setPixelColor(p.x-inc_x, p.y, c, g);
+	                }
 	                p.y += inc_y;
 	                error = error + delta;
 	                if (error > 0.5f) {
@@ -133,6 +166,9 @@ public abstract class DrawableGraph extends Observable{
 	                }
 	            }
 	        }
+		  if(thick){
+          	setBiggerPixel(p.x, p.y, g);
+          }else
 	        setPixelColor(b.x, b.y, c, g);
 	}
 	
@@ -147,6 +183,13 @@ public abstract class DrawableGraph extends Observable{
 	private static void setPixelColor(int x, int y, Color color, Graphics g) {
 		g.setColor(color);
 		g.fillRect(x, y, 1, 1);
+	}
+	
+	private static void setBiggerPixel(int x, int y, Graphics g){
+		Color c = g.getColor();
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(x-1, y-1, 3, 3);
+		g.setColor(c);
 	}
 	
 }
