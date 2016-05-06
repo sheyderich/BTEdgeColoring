@@ -40,8 +40,7 @@ public class GraphReader {
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(filename));
-			
-//			graphType = getGraphType(reader.readLine().trim());
+
 			String firstLine = reader.readLine().trim();
 			if(firstLine.matches("[1-9]\\d*,[1-9]\\d*")){
 				graphType = 1;

@@ -58,13 +58,10 @@ public abstract class DrawableGraph extends Observable{
 	 * @param g
 	 */
 	public void paintEdgeColor(Point start, Point end, boolean thick, Color color, Graphics g){
-//		this.setChanged();
 		Color oldColor = g.getColor();
 		g.setColor(color);
-		drawAntiAliasedColoredLine(new Point((int)(start.getX()+5), (int)(start.getY()+5)),new Point((int)(end.getX()+5),(int)(end.getY()+5)),thick, g);
+		drawColoredLine(new Point((int)(start.getX()+5), (int)(start.getY()+5)),new Point((int)(end.getX()+5),(int)(end.getY()+5)),thick, g);
 		g.setColor(oldColor);
-//		this.notifyObservers();
-//		this.clearChanged();
 	}
 	
 	/**
@@ -76,7 +73,6 @@ public abstract class DrawableGraph extends Observable{
 		g.fillOval((int)(node.getX() + 0.5), (int)(node.getY() + 0.5), 10, 10);
 	}
 	
-	
 	/**
 	 * Draws an anti aliased line between two nodes that represents the 
 	 * edge of the graph.
@@ -84,7 +80,7 @@ public abstract class DrawableGraph extends Observable{
 	 * @param b
 	 * @param g
 	 */
-	private static void drawAntiAliasedColoredLine(Point a, Point b, boolean thick, Graphics g){
+	private static void drawColoredLine(Point a, Point b, boolean thick, Graphics g){
 		Point p = new Point(a);
 		Color c = g.getColor();
 		float error, delta, dx, dy;
@@ -177,6 +173,13 @@ public abstract class DrawableGraph extends Observable{
 		g.fillRect(x, y, 1, 1);
 	}
 	
+	/**
+	 * Sets a lightgray bigger pixel that can be used to highlight aspects of 
+	 * the drawn graph. 
+	 * @param x
+	 * @param y
+	 * @param g
+	 */
 	private static void setBiggerPixel(int x, int y, Graphics g){
 		Color c = g.getColor();
 		g.setColor(Color.LIGHT_GRAY);

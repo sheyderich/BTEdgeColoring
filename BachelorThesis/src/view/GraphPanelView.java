@@ -75,8 +75,6 @@ public class GraphPanelView extends JPanel implements Observer{
 		return importButton;
 	}
 	
-
-	
 	/**
 	 * Returns the last button
 	 * @return

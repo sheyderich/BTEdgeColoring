@@ -63,9 +63,9 @@ public class GraphInfoPanel extends JPanel {
 			vertexNumber = model.getVertexNumber();
 		}
 		
-		JLabel typeLabel = new JLabel("Type: " + type);
+		JLabel typeLabel = new JLabel("  Type: " + type);
 		this.add(typeLabel);
-		JLabel nodes = new JLabel("Number of Nodes: " + vertexNumber);
+		JLabel nodes = new JLabel("  Number of Nodes: " + vertexNumber);
 		this.add(nodes);
 	}
 	
@@ -73,7 +73,7 @@ public class GraphInfoPanel extends JPanel {
 	 * Provides an optical seperation between different layers of information
 	 */
 	private void setUpSeperation(){
-		String seperation = new String("---------");
+		String seperation = new String("  ---------");
 		JLabel sep = new JLabel(seperation);
 		sep.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(sep);
@@ -94,11 +94,11 @@ public class GraphInfoPanel extends JPanel {
 			upperBound = ((SimpleGraph)model).calculateUBChromaticIndex();
 		}
 		
-		JLabel maxVertexLabel = new JLabel("Max. Vertex Degree: " + maxVertexDegree);
+		JLabel maxVertexLabel = new JLabel("  Max. Vertex Degree: " + maxVertexDegree);
 		this.add(maxVertexLabel);
-		JLabel lowerBoundLabel = new JLabel("Chromatic Index Lower Bound: " + lowerBound);
+		JLabel lowerBoundLabel = new JLabel("  Chromatic Index Lower Bound: " + lowerBound);
 		this.add(lowerBoundLabel);
-		JLabel upperBoundLabel = new JLabel("Chromatic Index Upper Bound: " + upperBound);
+		JLabel upperBoundLabel = new JLabel("  Chromatic Index Upper Bound: " + upperBound);
 		this.add(upperBoundLabel);
 	}
 	
@@ -119,6 +119,6 @@ public class GraphInfoPanel extends JPanel {
 			break;
 		default: algorithm = "No Algorithm implemented";
 		}
-		this.add(new JLabel("Used " + algorithm));
+		this.add(new JLabel("  Used " + algorithm));
 	}
 }

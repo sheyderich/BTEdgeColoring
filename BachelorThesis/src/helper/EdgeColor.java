@@ -1,9 +1,14 @@
 package helper;
 
 import java.awt.Color;
-
 import exceptions.NotEnoughColorsException;
 
+/**
+ * A Collection of different looking colors that can be
+ * used to create the edge colorization 
+ * @author Stephanie Heyderich
+ * @version 06.05.2016
+ */
 public class EdgeColor {
 	private static final Color[] EDGE_COLORS = {
 		    Color.decode("0xb62020"),    // dark red
@@ -28,6 +33,12 @@ public class EdgeColor {
 		    Color.decode("0x00ff00"),    // toxic green
 		};
 	
+	/**
+	 * Returns a color based on its position in the list. 
+	 * There are only 20 colors to choose from
+	 * @param i
+	 * @return
+	 */
 	public static Color getColor(int i){
 		if(i > EDGE_COLORS.length){
 			throw new NotEnoughColorsException("There are only 20 colors in the set.");

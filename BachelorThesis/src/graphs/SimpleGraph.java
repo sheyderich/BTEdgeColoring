@@ -331,11 +331,14 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		return true;
 	}
 	
+	/**
+	 * Checks whether the graph is completely uncolored
+	 * @return
+	 */
 	public boolean isUncolored(){
 		for(int i = 0; i < graph.length; i++){
 			for(int j = 0; j < graph.length; j++){
 				if(!(graph[i][j] == UNCOLORED || graph[i][j] == NOTEXISTENT)){
-//				if(graph[i][j] != UNCOLORED && graph[i][j] != NOTEXISTENT){
 					return false;
 				}
 			}

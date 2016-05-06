@@ -1,5 +1,6 @@
 package graphs;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -87,6 +88,10 @@ public class BipartiteGraph extends SimpleGraph{
 		this.augmentedPath = path;
 	}
 	
+	/**
+	 * Returns the currently set augmented path
+	 * @return
+	 */
 	public List<Integer> getAugmentedPath(){
 		return augmentedPath;
 	}
@@ -98,6 +103,10 @@ public class BipartiteGraph extends SimpleGraph{
 		this.augmentedPath = null;
 	}
 	
+	/**
+	 * Paints the graph in the given colors. If an augmented path exists, it is
+	 * underlined with a lightgray thicker edge to highlight it
+	 */
 	@Override
 	public void paintGraph(Graphics g, Dimension d) {
 		
@@ -114,7 +123,7 @@ public class BipartiteGraph extends SimpleGraph{
 					if(graph[i][j] == UNCOLORED){
 						paintEdgeBlack(coordinates.get(i), coordinates.get(j), g);
 					}else{
-						
+						Color color = EdgeColor.getColor(graph[i][j]-1);
 						if(augmentedPath != null){	
 							if(augmentedPath.contains(i)){
 								int position = augmentedPath.indexOf(i);
@@ -128,13 +137,12 @@ public class BipartiteGraph extends SimpleGraph{
 								}
 								if(j == augmentedPath.get(before) || 
 										j == augmentedPath.get(after)){
-									paintEdgeColor(coordinates.get(i), coordinates.get(j), true, 
-											EdgeColor.getColor(graph[i][j]-1), g);
+									paintEdgeColor(coordinates.get(i), coordinates.get(j), true,color, g);
 								}
 							}
 						}
 						
-						paintEdgeColor(coordinates.get(i), coordinates.get(j), false, EdgeColor.getColor(graph[i][j]-1), g);
+						paintEdgeColor(coordinates.get(i), coordinates.get(j), false, color, g);
 					}
 				}
 			}

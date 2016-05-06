@@ -10,7 +10,7 @@ import view.GraphPanelView;
 
 /**
  * Controlls the Graph Panels by checking for mouse clicks on the import
- * and the start button and proceeds with the chosen algorithm when 
+ * and the start/next/last button and proceeds with the chosen algorithm when 
  * the button is pressed.  
  * @author Stephanie Heyderich
  * @version 29.04.2016

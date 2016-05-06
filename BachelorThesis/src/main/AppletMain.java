@@ -8,11 +8,18 @@ import graphReader.GraphReader;
 import graphs.DrawableGraph;
 import graphs.Graph;
 
+/**
+ * The starting point of the Applet. The applet can be used to comprehend
+ * a number of edge coloring algorithms step by step. 
+ * 
+ * @author Stephanie Heyderich
+ * @version 06.05.2016
+ */
 public class AppletMain {
 	public static void main(String[] args) {
 
 		JFrame frame = new JFrame("Edge Coloring Algorithms");
-		GraphReader gr = new GraphReader("bigraph2.txt");
+		GraphReader gr = new GraphReader("bigraph1.txt");
 		Graph g = gr.buildGraphFromFile();
 		GraphPanelViewController controller = new GraphPanelViewController();
 		controller.setGraph((DrawableGraph)g);

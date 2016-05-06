@@ -33,6 +33,7 @@ public class AlgorithmKoenig {
 	
 	/**
 	 * Proceeds step by step through the edge coloring algorithm. 
+	 * Does not set u, v to a new value if graph is completely colored already
 	 * @param graph
 	 */
 	public static void applyKoenigAlgorithmStepwise(BipartiteGraph graph){
@@ -55,6 +56,11 @@ public class AlgorithmKoenig {
 		}
 	}
 	
+	/**
+	 * Removes the last coloring that was conducted by the algorithm
+	 * Does not set u, v when the graph is completely uncolored
+	 * @param graph
+	 */
 	public static void undoLastColoring(BipartiteGraph graph){
 		if(!graph.isUncolored()){
 			for(int i = u; i >= 0; i --){
@@ -69,14 +75,6 @@ public class AlgorithmKoenig {
 				}
 			}
 		}
-	}
-	
-	/**
-	 * resets the nodes u and v that are tested for coloring
-	 */
-	public static void resetStepwiseAlgorithm(){
-		u = 0; 
-		v = 0; 
 	}
 	
 	/**
@@ -142,7 +140,6 @@ public class AlgorithmKoenig {
 	private static boolean tryColorEdge(Graph graph, int u, int v){
 		for(int color = 1; color <= graph.getChromaticIndex(); color++){
 			graph.setEdgeColor(u, v, color);
-//			System.out.println("Edge (" + u + "," + v + ") colored in "+ color);
 			
 			if(graph.isEdgeColoringValid(u, v)){
 				break;
@@ -238,10 +235,8 @@ public class AlgorithmKoenig {
 			int color = graph.getEdgeColor(active, path.get(next));
 			if(color == cv){
 				graph.setEdgeColor(active, path.get(next), cu);
-//				System.out.println("Switched color on (" + active + "," + path.get(next) + ") to " + cu);
 			}else{
 				graph.setEdgeColor(active, path.get(next), cv);
-//				System.out.println("Switched color on (" + active + "," + path.get(next) + ") to " + cv);
 			}
 			active = path.get(next);
 		}
