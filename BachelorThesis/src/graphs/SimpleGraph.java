@@ -66,13 +66,16 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	
 	@Override
 	public boolean isEdgeExistent(int u, int v) {
+		if(u < 0 || u >= graph.length || v < 0 || v >= graph.length){
+			return false; 
+		}
 		return graph[u][v] != NOTEXISTENT;
 	}
 	
 	@Override
 	public boolean isEdgeColored(int u, int v){
 		if(graph[u][v] == NOTEXISTENT) throw new InvalidEdgeException("This edge does not exist.");
-		if(graph[u][v] == -2){
+		if(graph[u][v] == UNCOLORED){
 			return false;
 		}else{
 			return true;
@@ -99,6 +102,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		}
 		graph[u][v] = UNCOLORED;
 		graph[v][u] = UNCOLORED;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	@Override

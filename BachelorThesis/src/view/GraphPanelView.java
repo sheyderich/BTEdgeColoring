@@ -53,7 +53,7 @@ public class GraphPanelView extends JPanel implements Observer{
 		this.add(menu, BorderLayout.SOUTH);
 		startButton = new JButton("Start Algorithm");
 		importButton = new JButton("Import Graph");
-		lastButton = new JButton("Last Step");
+		lastButton = new JButton("Undo Last Coloring");
 		menu.add(importButton);
 		menu.add(startButton);
 		menu.add(lastButton);

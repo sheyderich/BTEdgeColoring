@@ -53,6 +53,20 @@ public class AlgorithmKoenig {
 		u = 0; 
 	}
 	
+	public static void undoLastColoring(BipartiteGraph graph){
+		for(int i = u; i >= 0; i --){
+			for(int j = v; j >= 0; j--){
+				if(graph.isEdgeExistent(i, j) && graph.isEdgeColored(i, j)){
+					graph.removeEdgeColor(i, j);
+					u = i; 
+					v = j; 
+					return;
+				}
+				v = graph.getEdgeNumber();
+			}
+		}
+	}
+	
 	/**
 	 * resets the nodes u and v that are tested for coloring
 	 */

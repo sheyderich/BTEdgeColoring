@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import algorithms.AlgorithmKoenig;
 import graphs.BipartiteGraph;
@@ -21,7 +20,6 @@ public class GraphPanelViewController {
 	private GraphPanelView graphPanelView;
 	private DrawableGraph model;
 	private boolean started = false; 
-	private List<Object> nextStep; 
 	
 	public GraphPanelViewController(){
 		
@@ -44,7 +42,7 @@ public class GraphPanelViewController {
 		
 		ActionListener lastStep = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				// last step
+				AlgorithmKoenig.undoLastColoring((BipartiteGraph)model);
 			}
 		};
 		
