@@ -19,15 +19,7 @@ public abstract class DrawableGraph extends Observable{
 	 * Draws a given Graph on the graphics context g
 	 * @param g
 	 */
-	public abstract void paintGraph(Graphics g, boolean thickness, Dimension d);
-	
-	/**
-	 * Paints a thick line under the colors to see where an augmented path
-	 * is calculated
-	 * @param g
-	 * @param d
-	 */
-	public abstract void paintThickPath(Graphics g, Dimension d);
+	public abstract void paintGraph(Graphics g,Dimension d);
 	
 	/**
 	 * Returns a List of points that represent the nodes of a 
@@ -188,7 +180,7 @@ public abstract class DrawableGraph extends Observable{
 	private static void setBiggerPixel(int x, int y, Graphics g){
 		Color c = g.getColor();
 		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(x-1, y-1, 3, 3);
+		g.fillRect(x-2, y-2, 5, 5);
 		g.setColor(c);
 	}
 	

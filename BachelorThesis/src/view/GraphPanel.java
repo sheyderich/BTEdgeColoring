@@ -42,7 +42,7 @@ public class GraphPanel extends JPanel {
 	public void paint(Graphics g){
 		super.paint(g);
 		if(model != null){
-			model.paintGraph(g, false, this.getSize(dimension));
+			model.paintGraph(g, this.getSize(dimension));
 		}
 	}
 	

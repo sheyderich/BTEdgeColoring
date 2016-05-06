@@ -33,10 +33,9 @@ public class GraphPanelViewController {
 				if(!started){
 					started = true; 
 					graphPanelView.getStartButton().setText("Next Step");
-					// get steps for koenig algorithm
-					AlgorithmKoenig.applyKoenigAlgorithm((BipartiteGraph)model);
+					AlgorithmKoenig.applyKoenigAlgorithmStepwise((BipartiteGraph)model);
 				}else{
-					// do next step
+					AlgorithmKoenig.applyKoenigAlgorithmStepwise((BipartiteGraph)model);
 				}
 			}
 		};

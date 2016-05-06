@@ -14,6 +14,13 @@ public interface Graph {
 	 * @return
 	 */
 	public int getVertexNumber();
+	
+	/**
+	 * Returns number of edges
+	 * @return
+	 */
+	public int getEdgeNumber();
+	
 	/**
 	 * Adds an edge to the graph by providing
 	 * @param u one vertex of the edge

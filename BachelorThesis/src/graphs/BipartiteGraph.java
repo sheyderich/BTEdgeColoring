@@ -1,13 +1,17 @@
 package graphs;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
+
+import helper.EdgeColor;
 
 public class BipartiteGraph extends SimpleGraph{
 	
 	private int vertexCount1;
 	private int vertexCount2;
+	protected List <Integer> augmentedPath;
 	
 	/**
 	 * Create empty adjacency matrix for the bipartite graph
@@ -73,5 +77,67 @@ public class BipartiteGraph extends SimpleGraph{
 			
 		}
 		return coordinates;
+	}
+	
+	/**
+	 * Sets an augmented Path at which lines the colors are switched
+	 * @param path
+	 */
+	public void setAugmentedPath(List<Integer> path){
+		this.augmentedPath = path;
+	}
+	
+	public List<Integer> getAugmentedPath(){
+		return augmentedPath;
+	}
+	
+	/**
+	 * Deletes the augmented Path
+	 */
+	public void deleteAugmentedPath(){
+		this.augmentedPath = null;
+	}
+	
+	@Override
+	public void paintGraph(Graphics g, Dimension d) {
+		
+		List<Point> coordinates = calculateNodeCoordinates(d);
+		
+		for(Point p: coordinates){
+			paintNode(p, g);
+		}
+		
+		for(int i = 0; i < graph.length; i++){
+			for(int j = i+1; j < graph.length; j++){
+				
+				if(graph[i][j] != NOTEXISTENT){
+					if(graph[i][j] == UNCOLORED){
+						paintEdgeBlack(coordinates.get(i), coordinates.get(j), g);
+					}else{
+						
+						if(augmentedPath != null){	
+							if(augmentedPath.contains(i)){
+								int position = augmentedPath.indexOf(i);
+								int before = position; 
+								int after = position; 
+								if(position > 0){
+									before--;
+								}
+								if(position < augmentedPath.size()-1){
+									after++;
+								}
+								if(j == augmentedPath.get(before) || 
+										j == augmentedPath.get(after)){
+									paintEdgeColor(coordinates.get(i), coordinates.get(j), true, 
+											EdgeColor.getColor(graph[i][j]-1), g);
+								}
+							}
+						}
+						
+						paintEdgeColor(coordinates.get(i), coordinates.get(j), false, EdgeColor.getColor(graph[i][j]-1), g);
+					}
+				}
+			}
+		}
 	}
 }

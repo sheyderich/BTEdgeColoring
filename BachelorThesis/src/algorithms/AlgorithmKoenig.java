@@ -11,28 +11,107 @@ import graphs.Graph;
 
 public class AlgorithmKoenig {
 	
+	private static int u = 0; 
+	private static int v = 0;
+	private static int command = 0; 
+	
 	/**
 	 * Uses Koenig's Algorithm to color a bipartite graph 
 	 * @param graph
 	 * @throws EdgeNotColoredException 
 	 * @throws EdgeNotFoundException 
 	 */
-	public static void applyKoenigAlgorithm(BipartiteGraph graph) throws EdgeNotFoundException, EdgeNotColoredException{
+	public static void applyKoenigAlgorithmComplete(BipartiteGraph graph){
 		for(int u = 0; u < graph.getVertexNumber(); u++){
 			for(int v = u+1; v < graph.getVertexNumber(); v++){
 				if(graph.isEdgeExistent(u, v)){
-					boolean colored = tryColorEdge(graph,u,v);
-					if(!colored){
-						int cv = getFreeColor(graph,u);
-						int cu = getFreeColor(graph,v);
-						List<Integer> path = findAlternatingPath(graph, v, cv, cu);
-						switchColorOnPath(graph, path, cv, cu);
-						tryColorEdge(graph, u, v);
-					}
+					applyColoringForEdge(graph,u,v);
 				}
 			}
 		}
 	}
+	
+	/**
+	 * Proceeds step by step through the edge coloring algorithm. 
+	 * @param graph
+	 */
+	public static void applyKoenigAlgorithmStepwise(BipartiteGraph graph){
+		for(; u < graph.getVertexNumber(); u++){
+			for(; v < graph.getVertexNumber(); v++){
+				if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
+					applyColoringForEdge(graph,u,v, command);
+					if(!graph.isEdgeColored(u, v)){
+						command++;
+					}else{
+						command = 0; 
+					}
+					return;
+				}
+			}
+			v = 0; 
+		}
+		u = 0; 
+	}
+	
+	/**
+	 * resets the nodes u and v that are tested for coloring
+	 */
+	public static void resetStepwiseAlgorithm(){
+		u = 0; 
+		v = 0; 
+	}
+	
+	/**
+	 * Sets the color for a specific Edge based on a command to 
+	 * be able to sequentially run thorugh the programm
+	 * @param graph
+	 * @param u
+	 * @param v
+	 */
+	private static void applyColoringForEdge(BipartiteGraph graph, int u, int v, int command){
+		switch(command){
+		case 0: 
+			boolean colored = tryColorEdge(graph,u,v);
+			if(!colored){
+				int cv = getFreeColor(graph,u);
+				int cu = getFreeColor(graph,v);
+				List<Integer> path = findAlternatingPath(graph, v, cv, cu);
+				graph.setAugmentedPath(path);
+			}
+			break; 
+		case 1: 
+			int cv = getFreeColor(graph,u);
+			int cu = getFreeColor(graph,v);
+			switchColorOnPath(graph, graph.getAugmentedPath(), cv, cu);
+			break;
+		case 2: 
+			graph.deleteAugmentedPath();
+			tryColorEdge(graph, u, v);
+		default: 
+			break;
+		}
+	}
+	
+	/**
+	 * Applies the edge coloring algorithm on a specific edge
+	 * @param graph
+	 * @param u
+	 * @param v
+	 */
+	private static void applyColoringForEdge(BipartiteGraph graph, int u, int v){
+		boolean colored = tryColorEdge(graph,u,v);
+		if(!colored){
+			int cv = getFreeColor(graph,u);
+			int cu = getFreeColor(graph,v);
+			List<Integer> path = findAlternatingPath(graph, v, cv, cu);
+			graph.setAugmentedPath(path);
+			switchColorOnPath(graph, graph.getAugmentedPath(), cv, cu);
+			graph.deleteAugmentedPath();
+			tryColorEdge(graph, u, v);
+		}
+	}
+	
+
 	
 	/**
 	 * Tries to color the given edge of the graph in a color from [1 ... chromaticIndex]
@@ -45,7 +124,7 @@ public class AlgorithmKoenig {
 	private static boolean tryColorEdge(Graph graph, int u, int v){
 		for(int color = 1; color <= graph.getChromaticIndex(); color++){
 			graph.setEdgeColor(u, v, color);
-			System.out.println("Edge (" + u + "," + v + ") colored in "+ color);
+//			System.out.println("Edge (" + u + "," + v + ") colored in "+ color);
 			
 			if(graph.isEdgeColoringValid(u, v)){
 				break;
@@ -141,10 +220,10 @@ public class AlgorithmKoenig {
 			int color = graph.getEdgeColor(active, path.get(next));
 			if(color == cv){
 				graph.setEdgeColor(active, path.get(next), cu);
-				System.out.println("Switched color on (" + active + "," + path.get(next) + ") to " + cu);
+//				System.out.println("Switched color on (" + active + "," + path.get(next) + ") to " + cu);
 			}else{
 				graph.setEdgeColor(active, path.get(next), cv);
-				System.out.println("Switched color on (" + active + "," + path.get(next) + ") to " + cv);
+//				System.out.println("Switched color on (" + active + "," + path.get(next) + ") to " + cv);
 			}
 			active = path.get(next);
 		}

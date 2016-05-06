@@ -30,12 +30,14 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	public final static int NOTEXISTENT = 0;
 	
 	protected int[][] graph; 
+	protected int numberEdges;
 	protected int colors; 
 	protected int maxVertexDegree 	= 	UNDEFINED; 
 	protected int lbChromaticIndex	= 	UNDEFINED;
 	protected int ubChromaticIndex 	= 	UNDEFINED;
 	protected int chromaticIndex 	= 	UNDEFINED; 
 	protected List <Point> coordinates = new ArrayList<Point>();
+	
 	
 	/**
 	 * Constructs a graph by creating an empty adjacency matrix
@@ -55,8 +57,11 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		if(u > graph.length || v > graph.length){
 			throw new InvalidEdgeException("The edge you tried to access is not valid: (" + (u+1) + "," +(v+1)+")");
 		}
-		graph[u][v] = UNCOLORED;
-		graph[v][u] = UNCOLORED;
+		if(graph[u][v] == NOTEXISTENT || graph[v][u] == NOTEXISTENT){
+			numberEdges += 1;
+			graph[u][v] = UNCOLORED;
+			graph[v][u] = UNCOLORED;
+		}
 	}
 	
 	@Override
@@ -257,7 +262,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	
 	
 	@Override
-	public void paintGraph(Graphics g, boolean thickness, Dimension d) {
+	public void paintGraph(Graphics g, Dimension d) {
 		
 		List<Point> coordinates = calculateNodeCoordinates(d);
 		
@@ -270,16 +275,11 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 					if(graph[i][j] == UNCOLORED){
 						paintEdgeBlack(coordinates.get(i), coordinates.get(j), g);
 					}else{
-						paintEdgeColor(coordinates.get(i), coordinates.get(j), thickness, EdgeColor.getColor(graph[i][j]-1), g);
+						paintEdgeColor(coordinates.get(i), coordinates.get(j), false, EdgeColor.getColor(graph[i][j]-1), g);
 					}
 				}
 			}
 		}
-	}
-	
-	@Override
-	public void paintThickPath(Graphics g, Dimension d){
-		paintGraph(g, true, d);
 	}
 	
 	/**
@@ -304,5 +304,10 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 			}
 		}
 		return coordinates;
+	}
+
+	@Override
+	public int getEdgeNumber() {
+		return numberEdges;
 	}
 }
