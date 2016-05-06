@@ -15,7 +15,8 @@ public class GraphReader {
 	
 	private String filename;
 	private int graphType; 
-	private int vertexCount;
+	private int vertexCount1;
+	private int vertexCount2;
 	private String edges;
 	private String usage;
 	
@@ -31,18 +32,6 @@ public class GraphReader {
 	}
 	
 	/**
-	 * Creates a new Graph from the given File with the type 
-	 * corresponding to the type given in the file
-	 * @return
-	 */
-	public Graph buildGraphFromFile(){
-		Graph g = null;
-		g = getNewGraph(graphType);
-		fillEdges(g);
-		return g;
-	}
-	
-	/**
 	 * Tries to open the file that was given to the GraphReader, 
 	 * parses VertexCount and GraphType, reads the edges into a String 
 	 * and closes the File.
@@ -52,8 +41,21 @@ public class GraphReader {
 		try {
 			reader = new BufferedReader(new FileReader(filename));
 			
-			graphType = getGraphType(reader.readLine().trim());
-			vertexCount = Integer.parseInt(reader.readLine().trim());
+//			graphType = getGraphType(reader.readLine().trim());
+			String firstLine = reader.readLine().trim();
+			if(firstLine.matches("[1-9]\\d*,[1-9]\\d*")){
+				graphType = 1;
+				String[] split_type = firstLine.split(",");
+				vertexCount1 = Integer.parseInt(split_type[0]);
+				vertexCount2 = Integer.parseInt(split_type[1]);
+			}else if (firstLine.matches("[1-9]\\d*")){
+				graphType = 2;
+				vertexCount1 = Integer.parseInt(firstLine);
+			} else {
+				reader.close();
+				throw new IllegalGraphTypeException("Not a supported format for a graph type " + usage);
+			}
+
 			
 			String actualLine = reader.readLine().trim();
 			edges = new String();
@@ -77,24 +79,15 @@ public class GraphReader {
 	}
 	
 	/**
-	 * Returns the GraphType as a coded integer
-	 * @param type
+	 * Creates a new Graph from the given File with the type 
+	 * corresponding to the type given in the file
 	 * @return
-	 *  	1 for bipartite graphs
-	 * 		2 for simple graphs
-	 * 		3 for multigraphs
-	 * @throws IllegalGraphTypeException
-	 * 		if undetermined GraphType
 	 */
-	private int getGraphType(String type){
-		switch(type){
-			case "bipartite": return 1;
-			case "simple": return 2;
-			case "multigraph": return 3;
-			default:
-				System.out.println(usage);
-				throw new IllegalGraphTypeException ("Graph type " + type + " not implemented\n");
-		}
+	public Graph buildGraphFromFile(){
+		Graph g = null;
+		g = getNewGraph(graphType);
+		fillEdges(g);
+		return g;
 	}
 	
 	/**
@@ -105,9 +98,8 @@ public class GraphReader {
 	 */
 	private Graph getNewGraph(int type){
 		switch(graphType){
-			case 1: return new BipartiteGraph(vertexCount);
-			case 2: return new SimpleGraph(vertexCount);
-//			case 3: g = new Multigraph(vertexCount);
+			case 1: return new BipartiteGraph(vertexCount1, vertexCount2);
+			case 2: return new SimpleGraph(vertexCount1);
 			default:
 				System.out.println(usage);
 				throw new IllegalGraphTypeException ("Graph type " + type + " not implemented\n");
@@ -141,9 +133,8 @@ public class GraphReader {
 	private void fillUsage(){
 		usage = new String();
 		usage = "How to represent the graph in a file: \n";
-		usage += "  1. line: Graph Type (simple = simple graph; bipartite = bipartite graph)\n";
-		usage += "  2. line: Number of vertices in the graph\n";
-		usage += "  3. line ff: a tuple of vertices that are connected by an edge, eg: 1 2\n";
+		usage += "  1. line: Number of vertices of the graph (bipartite: 2,2 for a B(2,2))";
+		usage += "  2. line ff: a tuple of vertices that are connected by an edge, eg: 1 2\n";
 		usage += "              it is important to note, that the first vertex has the number 1, not 0";
 		
 	}

@@ -25,7 +25,7 @@ public class KoenigTest {
 	 */
 	@Before
 	public void setUp(){
-		bg = new BipartiteGraph(6);
+		bg = new BipartiteGraph(3,3);
 		fillGraph();
 	}
 	

@@ -18,6 +18,7 @@ public class GraphPanelViewController {
 	
 	private GraphPanelView graphPanelView;
 	private DrawableGraph model;
+	private boolean started = false; 
 	
 	public GraphPanelViewController(){
 		
@@ -26,11 +27,24 @@ public class GraphPanelViewController {
 		
 		ActionListener startAlgorithm = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AlgorithmKoenig.applyKoenigAlgorithm((BipartiteGraph)model);
+				if(!started){
+					started = true; 
+					graphPanelView.getStartButton().setText("Next Step");
+				}else{
+					AlgorithmKoenig.applyKoenigAlgorithm((BipartiteGraph)model);
+				}
 			}
 		};
 		
 		graphPanelView.getStartButton().addActionListener(startAlgorithm);
+		
+		ActionListener lastStep = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				// last step
+			}
+		};
+		
+		graphPanelView.getLastButton().addActionListener(lastStep);
 	}
 	
 	/**
