@@ -128,8 +128,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 				return false;  
 		}
 		
-		//neighbors.addAll(getNeighbors(v) ;; zum addieren der listen, später testen!
-		
 		neighbors = getNeighbors(v);
 		neighbors.remove(new Integer(u));
 		for(Integer i : neighbors){
@@ -314,5 +312,34 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	@Override
 	public int getEdgeNumber() {
 		return numberEdges;
+	}
+	
+	/**
+	 * Checks whether there is an uncolored edge in the 
+	 * graph. Does not tell anything about the validity
+	 * of the coloring
+	 * @return
+	 */
+	public boolean isColorizationFinished(){
+		for(int i = 0; i < graph.length; i++){
+			for(int j = 0; j < graph.length; j++){
+				if(graph[i][j] == UNCOLORED){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public boolean isUncolored(){
+		for(int i = 0; i < graph.length; i++){
+			for(int j = 0; j < graph.length; j++){
+				if(!(graph[i][j] == UNCOLORED || graph[i][j] == NOTEXISTENT)){
+//				if(graph[i][j] != UNCOLORED && graph[i][j] != NOTEXISTENT){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

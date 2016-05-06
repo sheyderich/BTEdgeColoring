@@ -36,33 +36,37 @@ public class AlgorithmKoenig {
 	 * @param graph
 	 */
 	public static void applyKoenigAlgorithmStepwise(BipartiteGraph graph){
-		for(; u < graph.getVertexNumber(); u++){
-			for(; v < graph.getVertexNumber(); v++){
-				if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
-					applyColoringForEdge(graph,u,v, command);
-					if(!graph.isEdgeColored(u, v)){
-						command++;
-					}else{
-						command = 0; 
+		if(!graph.isColorizationFinished()){
+			for(; u < graph.getVertexNumber(); u++){
+				for(; v < graph.getVertexNumber(); v++){
+					if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
+						applyColoringForEdge(graph,u,v, command);
+						if(!graph.isEdgeColored(u, v)){
+							command++;
+						}else{
+							command = 0; 
+						}
+						return;
 					}
-					return;
 				}
+				v = 0; 
 			}
-			v = 0; 
+			u = 0; 
 		}
-		u = 0; 
 	}
 	
 	public static void undoLastColoring(BipartiteGraph graph){
-		for(int i = u; i >= 0; i --){
-			for(int j = v; j >= 0; j--){
-				if(graph.isEdgeExistent(i, j) && graph.isEdgeColored(i, j)){
-					graph.removeEdgeColor(i, j);
-					u = i; 
-					v = j; 
-					return;
+		if(!graph.isUncolored()){
+			for(int i = u; i >= 0; i --){
+				for(int j = v; j >= 0; j--){
+					if(graph.isEdgeExistent(i, j) && graph.isEdgeColored(i, j)){
+						graph.removeEdgeColor(i, j);
+						u = i; 
+						v = j; 
+						return;
+					}
+					v = graph.getEdgeNumber();
 				}
-				v = graph.getEdgeNumber();
 			}
 		}
 	}
