@@ -2,15 +2,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
 import graphs.DrawableGraph;
 
 /**
@@ -27,7 +24,6 @@ public class GraphPanelView extends JPanel implements Observer{
 	private JButton startButton; 
 	private JButton importButton;
 	private JButton lastButton;
-	private Dimension dimension;
 	// TO DO: SwitchBox for algorithms
 	
 	/**
@@ -44,7 +40,6 @@ public class GraphPanelView extends JPanel implements Observer{
 		}
 		
 		this.setLayout(new BorderLayout());
-		dimension = new Dimension(width, height);
 		graphPanel = new GraphPanel(width, height, model);
 		graphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		graphInfoPanel = new GraphInfoPanel(width/3, height, model);
@@ -92,16 +87,8 @@ public class GraphPanelView extends JPanel implements Observer{
 	public void setModel(DrawableGraph newModel) {
 		graphPanel.setModel(newModel);
 		graphInfoPanel.setModel(newModel);
-//		this.remove(graphInfoPanel);
-//		graphInfoPanel = new GraphInfoPanel((int)(dimension.getWidth()/3), ((int) dimension.getHeight()), newModel);
-//		this.add(graphInfoPanel, BorderLayout.WEST);
 		this.repaint();
 	}
-	
-//	public void paint(Graphics g){
-//		super.paint(g);
-//		graphInfoPanel.paint(g);
-//	}
 	
 	/**
 	 * Repaints the graphPanel when the model notifies it and  updates the 
