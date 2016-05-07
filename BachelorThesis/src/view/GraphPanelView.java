@@ -97,6 +97,7 @@ public class GraphPanelView extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		graphPanel.repaint();
+		graphInfoPanel.repaint();
 	}
 	
 }

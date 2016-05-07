@@ -3,9 +3,12 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import exceptions.IllegalGraphTypeException;
 import graphs.DrawableGraph;
 import graphs.SimpleGraph;
 
@@ -26,6 +29,9 @@ public class GraphInfoPanel extends JPanel {
 	private JLabel vertexDegree;
 	private JLabel lBound;
 	private JLabel uBound;
+	private JLabel usedAlgorithm;
+	private JLabel numberOfColors;
+	private JLabel lastStep;
 	
 	/**
 	 * Sets up a panel where information about the graph is shown. 
@@ -52,7 +58,12 @@ public class GraphInfoPanel extends JPanel {
 	 */
 	private void setUpBlanks(){
 		Font font = new Font("Times New Roman", Font.ITALIC, 14);
-		JLabel typeLabel = new JLabel("  Type:");
+		JLabel desc = new JLabel("  Description");
+		desc.setFont(new Font("Times New Roman", Font.BOLD , 14));
+		this.add(desc);
+		JLabel empty1 = new JLabel("");
+		this.add(empty1);
+		JLabel typeLabel = new JLabel("  Graph Type:");
 		typeLabel.setFont(font);
 		this.add(typeLabel);
 		type = new JLabel("--");
@@ -73,8 +84,8 @@ public class GraphInfoPanel extends JPanel {
 		JLabel chromIn = new JLabel("  Chromatic Index");
 		chromIn.setFont(new Font("Times New Roman", Font.BOLD , 14));
 		this.add(chromIn);
-		JLabel empty = new JLabel("");
-		this.add(empty);
+		JLabel empty2 = new JLabel("");
+		this.add(empty2);
 		JLabel lowerBoundLabel = new JLabel("  Lower Bound:" );
 		lowerBoundLabel.setFont(font);
 		this.add(lowerBoundLabel);
@@ -87,7 +98,32 @@ public class GraphInfoPanel extends JPanel {
 		uBound = new JLabel("--");
 		uBound.setFont(font);
 		this.add(uBound);
+		JLabel algorithm = new JLabel("  Algorithm");
+		algorithm.setFont(new Font("Times New Roman", Font.BOLD , 14));
+		this.add(algorithm);
+		JLabel empty3 = new JLabel("");
+		this.add(empty3);
+		JLabel algo = new JLabel("  Used:");
+		algo.setFont(font);
+		this.add(algo);
+		usedAlgorithm = new JLabel("--");
+		usedAlgorithm.setFont(font);
+		this.add(usedAlgorithm);
+		JLabel colorLabel = new JLabel("  Number of Colors:");
+		colorLabel.setFont(font);
+		this.add(colorLabel);
+		numberOfColors = new JLabel("--");
+		numberOfColors.setFont(font);
+		this.add(numberOfColors);
+		JLabel stepLabel = new JLabel("  Last Step:");
+		stepLabel.setFont(font);
+		this.add(stepLabel);
+		lastStep = new JLabel("--");
+		lastStep.setFont(font);
+		this.add(lastStep);
 	}
+	
+	
 	
 	/**
 	 * Fills in information about the graph like type, vertex number, 
@@ -100,7 +136,30 @@ public class GraphInfoPanel extends JPanel {
 			vertexDegree.setText(String.valueOf(((SimpleGraph)model).calculateMaxVertexDegree()));
 			lBound.setText(String.valueOf(((SimpleGraph)model).calculateLBChromaticIndex()));
 			uBound.setText(String.valueOf(((SimpleGraph)model).calculateUBChromaticIndex()));
+			usedAlgorithm.setText(getAlgorithm());
+			numberOfColors.setText(String.valueOf(((SimpleGraph)model).getQuantityColors()));
+			lastStep.setText(getLastStep());
+			
 		}
+	}
+	
+	/**
+	 * Returns the used algorithm for this graph
+	 * @return
+	 */
+	private String getAlgorithm(){
+		switch(model.getType()){
+		case "Bipartite graph": return "Koenig's Algorithm";
+		case "Simple graph": return "not implemented";
+		default: throw new IllegalGraphTypeException("Not a valid graph type");
+		}
+	}
+	
+	private String getLastStep(){
+		String res = new String();
+		int[] tmp = ((SimpleGraph)model).getLastStep();
+		res += ("("+(tmp[0]+1)+","+(tmp[1]+1) + ") colored " + tmp[2]);
+		return res;
 	}
 	
 	/**
@@ -110,6 +169,16 @@ public class GraphInfoPanel extends JPanel {
 	 */
 	public void setModel(DrawableGraph model){
 		this.model = model; 
+		setUpInfoLabels();
+	}
+	
+	
+	
+	/**
+	 * Sets up the Infos based on the current State of the graph
+	 */
+	public void paint(Graphics g){
+		super.paint(g);
 		setUpInfoLabels();
 	}
 }

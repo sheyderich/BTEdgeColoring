@@ -37,6 +37,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	protected int ubChromaticIndex 	= 	UNDEFINED;
 	protected int chromaticIndex 	= 	UNDEFINED; 
 	protected List <Point> coordinates = new ArrayList<Point>();
+	protected int[] lastStep = new int[3];
 	
 	
 	/**
@@ -91,6 +92,9 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		}
 		graph[u][v] = color;
 		graph[v][u] = color;
+		lastStep[0] = u;
+		lastStep[1] = v;
+		lastStep[2] = color;
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -336,5 +340,12 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Returns an array where the last step is saved in
+	 */
+	public int[] getLastStep(){
+		return lastStep;
 	}
 }
