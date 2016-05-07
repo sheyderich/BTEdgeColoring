@@ -39,6 +39,20 @@ public abstract class DrawableGraph extends Observable{
 	public abstract int getVertexNumber();
 	
 	/**
+	 * Checks whether the graph is completely uncolored
+	 * @return
+	 */
+	public abstract boolean isUncolored();
+	
+	/**
+	 * Checks whether there is an uncolored edge in the 
+	 * graph. Does not tell anything about the validity
+	 * of the coloring
+	 * @return
+	 */
+	public abstract boolean isColorizationFinished();
+	
+	/**
 	 * Draws a black edge between two nodes in a given color on the 
 	 * graphics context g.
 	 * @param start

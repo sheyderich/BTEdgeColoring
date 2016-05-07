@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -27,6 +28,7 @@ public class GraphPanelViewController {
 	private DrawableGraph model;
 	private AlgorithmKoenig algo;
 	private boolean started = false; 
+	private Dimension dim = new Dimension(800,500);
 	private final String WRONG_FILE = "Please choose a .txt file with a representation of a graph. The file should be "
 			+ "build like this: \n\nFirst line: Vertex Number (bipartite graph: "
 			+ "[Number of vertices in Set 1],[Number of vertices in Set 2])"
@@ -35,7 +37,7 @@ public class GraphPanelViewController {
 	public GraphPanelViewController(){
 		
 		model = null;
-		graphPanelView = new GraphPanelView(800,500,model);
+		graphPanelView = new GraphPanelView((int)dim.getWidth(), (int)dim.getHeight(),model);
 		algo = new AlgorithmKoenig();
 		
 		ActionListener startAlgorithm = new ActionListener(){
@@ -61,7 +63,8 @@ public class GraphPanelViewController {
 		
 		ActionListener importFile = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				final JFileChooser fc = new JFileChooser();
+				final JFileChooser fc = new JFileChooser("C:\\Users\\Shey\\workspace\\Git\\BachelorThesis");
+//				final JFileChooser fc = new JFileChooser();
 				int result = fc.showOpenDialog(graphPanelView);
 				if(result == JFileChooser.APPROVE_OPTION){
 					File file = fc.getSelectedFile();
@@ -87,10 +90,10 @@ public class GraphPanelViewController {
 	 * Sets the Graph that is drawn to a new one
 	 * @param model
 	 */
-	public void setGraph(DrawableGraph model){
-		this.model = model;
-		graphPanelView.setModel(model);
+	public void setGraph(DrawableGraph newModel){
+		this.model = newModel;
 		model.addObserver(graphPanelView);
+		graphPanelView.setModel(newModel);
 		graphPanelView.repaint();
 		algo = new AlgorithmKoenig();
 	}

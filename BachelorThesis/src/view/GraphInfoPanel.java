@@ -121,4 +121,11 @@ public class GraphInfoPanel extends JPanel {
 		}
 		this.add(new JLabel("  Used " + algorithm));
 	}
+	
+	public void setModel(DrawableGraph model){
+		this.model = model; 
+		this.removeAll();
+		setUpInfo();
+		this.repaint();
+	}
 }

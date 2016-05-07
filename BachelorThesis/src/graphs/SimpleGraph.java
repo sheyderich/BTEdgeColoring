@@ -314,12 +314,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		return numberEdges;
 	}
 	
-	/**
-	 * Checks whether there is an uncolored edge in the 
-	 * graph. Does not tell anything about the validity
-	 * of the coloring
-	 * @return
-	 */
+	@Override
 	public boolean isColorizationFinished(){
 		for(int i = 0; i < graph.length; i++){
 			for(int j = 0; j < graph.length; j++){
@@ -331,10 +326,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		return true;
 	}
 	
-	/**
-	 * Checks whether the graph is completely uncolored
-	 * @return
-	 */
+	@Override
 	public boolean isUncolored(){
 		for(int i = 0; i < graph.length; i++){
 			for(int j = 0; j < graph.length; j++){

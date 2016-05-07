@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -88,11 +89,19 @@ public class GraphPanelView extends JPanel implements Observer{
 	 * well as the graphPanel to draw the model.
 	 * @param model
 	 */
-	public void setModel(DrawableGraph model) {
-		graphPanel.setModel(model);
-		graphInfoPanel = new GraphInfoPanel((int)(dimension.getWidth()/3), ((int) dimension.getHeight()), model);
-		this.add(graphInfoPanel, BorderLayout.WEST);
+	public void setModel(DrawableGraph newModel) {
+		graphPanel.setModel(newModel);
+		graphInfoPanel.setModel(newModel);
+//		this.remove(graphInfoPanel);
+//		graphInfoPanel = new GraphInfoPanel((int)(dimension.getWidth()/3), ((int) dimension.getHeight()), newModel);
+//		this.add(graphInfoPanel, BorderLayout.WEST);
+		this.repaint();
 	}
+	
+//	public void paint(Graphics g){
+//		super.paint(g);
+//		graphInfoPanel.paint(g);
+//	}
 	
 	/**
 	 * Repaints the graphPanel when the model notifies it and  updates the 
