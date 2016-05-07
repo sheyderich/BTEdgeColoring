@@ -25,6 +25,7 @@ public class GraphPanelViewController {
 	
 	private GraphPanelView graphPanelView;
 	private DrawableGraph model;
+	private AlgorithmKoenig algo;
 	private boolean started = false; 
 	private final String WRONG_FILE = "Please choose a .txt file with a representation of a graph. The file should be "
 			+ "build like this: \n\nFirst line: Vertex Number (bipartite graph: "
@@ -35,16 +36,16 @@ public class GraphPanelViewController {
 		
 		model = null;
 		graphPanelView = new GraphPanelView(800,500,model);
+		algo = new AlgorithmKoenig();
 		
 		ActionListener startAlgorithm = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(!started){
 					started = true; 
 					graphPanelView.getStartButton().setText("Next Step");
-					AlgorithmKoenig.applyKoenigAlgorithmStepwise((BipartiteGraph)model);
-				}else{
-					AlgorithmKoenig.applyKoenigAlgorithmStepwise((BipartiteGraph)model);
 				}
+				algo.applyKoenigAlgorithmStepwise((BipartiteGraph)model);
+				
 			}
 		};
 		
@@ -52,7 +53,7 @@ public class GraphPanelViewController {
 		
 		ActionListener lastStep = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				AlgorithmKoenig.undoLastColoring((BipartiteGraph)model);
+				algo.undoLastColoring((BipartiteGraph)model);
 			}
 		};
 		
@@ -91,6 +92,7 @@ public class GraphPanelViewController {
 		graphPanelView.setModel(model);
 		model.addObserver(graphPanelView);
 		graphPanelView.repaint();
+		algo = new AlgorithmKoenig();
 	}
 	
 	/**

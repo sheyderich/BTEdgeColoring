@@ -17,7 +17,8 @@ public class Haupt {
 		
 		GraphReader gr = new GraphReader(args[0]);
 		Graph g = gr.buildGraphFromFile();
-		AlgorithmKoenig.applyKoenigAlgorithmComplete((BipartiteGraph) g);
+		AlgorithmKoenig ak = new AlgorithmKoenig();
+		ak.applyKoenigAlgorithmComplete((BipartiteGraph) g);
 		System.out.println(((SimpleGraph)g).toString());
 		
 		

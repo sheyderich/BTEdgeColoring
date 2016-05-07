@@ -11,9 +11,9 @@ import graphs.Graph;
 
 public class AlgorithmKoenig {
 	
-	private static int u = 0; 
-	private static int v = 0;
-	private static int command = 0; 
+	private int u = 0; 
+	private int v = 0;
+	private int command = 0; 
 	
 	/**
 	 * Uses Koenig's Algorithm to color a bipartite graph 
@@ -21,7 +21,7 @@ public class AlgorithmKoenig {
 	 * @throws EdgeNotColoredException 
 	 * @throws EdgeNotFoundException 
 	 */
-	public static void applyKoenigAlgorithmComplete(BipartiteGraph graph){
+	public void applyKoenigAlgorithmComplete(BipartiteGraph graph){
 		for(int u = 0; u < graph.getVertexNumber(); u++){
 			for(int v = u+1; v < graph.getVertexNumber(); v++){
 				if(graph.isEdgeExistent(u, v)){
@@ -36,7 +36,7 @@ public class AlgorithmKoenig {
 	 * Does not set u, v to a new value if graph is completely colored already
 	 * @param graph
 	 */
-	public static void applyKoenigAlgorithmStepwise(BipartiteGraph graph){
+	public void applyKoenigAlgorithmStepwise(BipartiteGraph graph){
 		if(!graph.isColorizationFinished()){
 			for(; u < graph.getVertexNumber(); u++){
 				for(; v < graph.getVertexNumber(); v++){
@@ -61,7 +61,7 @@ public class AlgorithmKoenig {
 	 * Does not set u, v when the graph is completely uncolored
 	 * @param graph
 	 */
-	public static void undoLastColoring(BipartiteGraph graph){
+	public void undoLastColoring(BipartiteGraph graph){
 		if(!graph.isUncolored()){
 			for(int i = u; i >= 0; i --){
 				for(int j = v; j >= 0; j--){
