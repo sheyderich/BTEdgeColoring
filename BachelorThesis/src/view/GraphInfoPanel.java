@@ -7,8 +7,6 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import exceptions.IllegalGraphTypeException;
 import graphs.DrawableGraph;
 import graphs.SimpleGraph;
 import helper.EdgeColor;

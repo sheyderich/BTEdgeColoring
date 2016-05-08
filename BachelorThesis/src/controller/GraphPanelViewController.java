@@ -4,14 +4,11 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
 import algorithms.AlgorithmKoenig;
 import algorithms.EdgeColoringAlgorithm;
 import graphReader.GraphReader;
@@ -73,6 +70,26 @@ public class GraphPanelViewController {
 		};
 		
 		graphPanelView.getImportButton().addActionListener(importFile);
+		ActionListener startAlgorithm = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if(!started){
+					started = true; 
+					graphPanelView.getStartButton().setText("Next Step");
+				}
+				usedAlgorithm.applyAlgorithmStepwise((BipartiteGraph)model);
+			}
+		};
+		
+		graphPanelView.getStartButton().addActionListener(startAlgorithm);
+		
+		ActionListener lastStep = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				usedAlgorithm.undoLastColoring((BipartiteGraph)model);
+			}
+		};
+		
+		graphPanelView.getLastButton().addActionListener(lastStep);
+
 	}
 	
 	/**
@@ -84,38 +101,7 @@ public class GraphPanelViewController {
 		model.addObserver(graphPanelView);
 		graphPanelView.setModel(newModel);
 		graphPanelView.repaint();
-		setActionListener();
 		setAlgorithmsToUse(newModel);
-//		usedAlgorithm = new AlgorithmKoenig();
-	}
-	
-	/**
-	 * Sets the action listener for the start and undo button
-	 * as long as the model is not null
-	 */
-	private void setActionListener(){
-		if(model != null){
-			ActionListener startAlgorithm = new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					if(!started){
-						started = true; 
-						graphPanelView.getStartButton().setText("Next Step");
-					}
-					usedAlgorithm.applyAlgorithmStepwise((BipartiteGraph)model);
-					
-				}
-			};
-			
-			graphPanelView.getStartButton().addActionListener(startAlgorithm);
-			
-			ActionListener lastStep = new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					usedAlgorithm.undoLastColoring((BipartiteGraph)model);
-				}
-			};
-			
-			graphPanelView.getLastButton().addActionListener(lastStep);
-		}
 	}
 	
 	/**

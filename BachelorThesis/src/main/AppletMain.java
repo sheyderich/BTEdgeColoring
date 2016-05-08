@@ -19,9 +19,9 @@ public class AppletMain {
 	public static void main(String[] args) {
 
 		JFrame frame = new JFrame("Edge Coloring Algorithms");
+		GraphPanelViewController controller = new GraphPanelViewController();
 		GraphReader gr = new GraphReader("bigraph3.txt");
 		Graph g = gr.buildGraphFromFile();
-		GraphPanelViewController controller = new GraphPanelViewController();
 		controller.setModel((DrawableGraph)g);
 		frame.add(controller.getView(), BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
