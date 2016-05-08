@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+
 import exceptions.ChromaticIndexNotCalculatedException;
 import exceptions.EdgeNotColoredException;
 import exceptions.EdgeNotFoundException;
@@ -38,6 +40,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	protected int chromaticIndex 	= 	UNDEFINED; 
 	protected List <Point> coordinates = new ArrayList<Point>();
 	protected int[] lastStep = new int[3];
+	protected Stack<int[]> steps = new Stack<int[]>();
 	
 	
 	/**
@@ -92,9 +95,10 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		}
 		graph[u][v] = color;
 		graph[v][u] = color;
-		lastStep[0] = u;
-		lastStep[1] = v;
-		lastStep[2] = color;
+//		lastStep[0] = u;
+//		lastStep[1] = v;
+//		lastStep[2] = color;
+//		steps.push(lastStep);
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -346,6 +350,27 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 * Returns an array where the last step is saved in
 	 */
 	public int[] getLastStep(){
-		return lastStep;
+		if(steps.isEmpty()){
+			return new int[3];
+		}
+		return steps.peek();
+	}
+	
+	/**
+	 * Removes the last step from the stack 
+	 */
+	public void removeLastStep(){
+		if(!steps.isEmpty()){
+			steps.pop();
+		}
+	}
+	
+	/**
+	 * Sets a step on the last step stack
+	 * @param u
+	 * @param v
+	 */
+	public void setLastStep(int u, int v){
+		steps.push(new int[]{u,v,graph[u][v]});
 	}
 }

@@ -19,7 +19,7 @@ public class AppletMain {
 	public static void main(String[] args) {
 
 		JFrame frame = new JFrame("Edge Coloring Algorithms");
-		GraphReader gr = new GraphReader("bigraph1.txt");
+		GraphReader gr = new GraphReader("bigraph3.txt");
 		Graph g = gr.buildGraphFromFile();
 		GraphPanelViewController controller = new GraphPanelViewController();
 		controller.setGraph((DrawableGraph)g);

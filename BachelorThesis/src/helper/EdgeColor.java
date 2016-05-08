@@ -33,6 +33,29 @@ public class EdgeColor {
 		    Color.decode("0x00ff00"),    // toxic green
 		};
 	
+	private static final String[] COLOR_NAMES = {
+		   "Dark Red",    
+		   "Dark Blue",   
+		   "Yellow",    
+		   "Dark Green",
+		   "Dark Purple",
+		   "Bright Pink",
+		   "Ligth Blue",
+		   "Brigth Red",
+		   "Light Green",
+		   "Bright Purple",
+		   "Orange",
+		   "Brown",
+		   "Deep Blue",
+		   "Ligth Brown",
+		   "Gray",
+		   "Blue-Green",
+		   "Pastel Green",
+		   "Pastel Blue",
+		   "Pastel Red",
+		   "Toxic Green"
+		};
+	
 	/**
 	 * Returns a color based on its position in the list. 
 	 * There are only 20 colors to choose from
@@ -44,5 +67,18 @@ public class EdgeColor {
 			throw new NotEnoughColorsException("There are only 20 colors in the set.");
 		}
 		return EDGE_COLORS[i];
+	}
+	
+	/**
+	 * Returns a color name based on its position in the list. 
+	 * There are only 20 colors to choose from
+	 * @param i
+	 * @return
+	 */
+	public static String getColorName(int i){
+		if(i > COLOR_NAMES.length){
+			throw new NotEnoughColorsException("There are only 20 colors in the set.");
+		}
+		return COLOR_NAMES[i];
 	}
 }

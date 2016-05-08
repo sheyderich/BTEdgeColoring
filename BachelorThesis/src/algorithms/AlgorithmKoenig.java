@@ -5,11 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import exceptions.EdgeNotColoredException;
 import exceptions.EdgeNotFoundException;
+import exceptions.IllegalGraphTypeException;
 import exceptions.NoFreeColorException;
 import graphs.BipartiteGraph;
 import graphs.Graph;
 
-public class AlgorithmKoenig {
+public class AlgorithmKoenig implements EdgeColoringAlgorithm{
 	
 	private int u = 0; 
 	private int v = 0;
@@ -21,7 +22,13 @@ public class AlgorithmKoenig {
 	 * @throws EdgeNotColoredException 
 	 * @throws EdgeNotFoundException 
 	 */
-	public void applyKoenigAlgorithmComplete(BipartiteGraph graph){
+	public void applyAlgorithmComplete(Graph g){
+		BipartiteGraph graph;
+		if(!(g instanceof BipartiteGraph)){
+			throw new IllegalGraphTypeException("Only Bipartite Graphs are allowed in Koenig's algorithm.");
+		}else{
+			graph = (BipartiteGraph)g;
+		}
 		for(int u = 0; u < graph.getVertexNumber(); u++){
 			for(int v = u+1; v < graph.getVertexNumber(); v++){
 				if(graph.isEdgeExistent(u, v)){
@@ -36,7 +43,13 @@ public class AlgorithmKoenig {
 	 * Does not set u, v to a new value if graph is completely colored already
 	 * @param graph
 	 */
-	public void applyKoenigAlgorithmStepwise(BipartiteGraph graph){
+	public void applyAlgorithmStepwise(Graph g){
+		BipartiteGraph graph;
+		if(!(g instanceof BipartiteGraph)){
+			throw new IllegalGraphTypeException("Only Bipartite Graphs are allowed in Koenig's algorithm.");
+		}else{
+			graph = (BipartiteGraph)g;
+		}
 		if(!graph.isColorizationFinished()){
 			for(; u < graph.getVertexNumber(); u++){
 				for(; v < graph.getVertexNumber(); v++){
@@ -67,6 +80,7 @@ public class AlgorithmKoenig {
 				for(int j = v; j >= 0; j--){
 					if(graph.isEdgeExistent(i, j) && graph.isEdgeColored(i, j)){
 						graph.removeEdgeColor(i, j);
+						graph.removeLastStep();
 						u = i; 
 						v = j; 
 						return;
@@ -93,6 +107,8 @@ public class AlgorithmKoenig {
 				int cu = getFreeColor(graph,v);
 				List<Integer> path = findAlternatingPath(graph, v, cv, cu);
 				graph.setAugmentedPath(path);
+			}else{
+				graph.setLastStep(u,v);
 			}
 			break; 
 		case 1: 
@@ -103,6 +119,7 @@ public class AlgorithmKoenig {
 		case 2: 
 			graph.deleteAugmentedPath();
 			tryColorEdge(graph, u, v);
+			graph.setLastStep(u, v);
 		default: 
 			break;
 		}

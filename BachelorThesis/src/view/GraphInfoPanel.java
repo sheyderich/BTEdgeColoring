@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import exceptions.IllegalGraphTypeException;
 import graphs.DrawableGraph;
 import graphs.SimpleGraph;
+import helper.EdgeColor;
 
 /**
  * Displays a panel that consists of information about a given graph. 
@@ -155,10 +156,16 @@ public class GraphInfoPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Formats the last steps to display it on the graph info panel
+	 * @return
+	 */
 	private String getLastStep(){
 		String res = new String();
 		int[] tmp = ((SimpleGraph)model).getLastStep();
-		res += ("("+(tmp[0]+1)+","+(tmp[1]+1) + ") colored " + tmp[2]);
+		if(tmp[2] > 0){
+			res += ("("+(tmp[0]+1)+","+(tmp[1]+1) + ") in " + EdgeColor.getColorName(tmp[2]-1));
+		}
 		return res;
 	}
 	

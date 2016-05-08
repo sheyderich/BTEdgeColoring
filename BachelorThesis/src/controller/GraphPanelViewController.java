@@ -46,7 +46,7 @@ public class GraphPanelViewController {
 					started = true; 
 					graphPanelView.getStartButton().setText("Next Step");
 				}
-				algo.applyKoenigAlgorithmStepwise((BipartiteGraph)model);
+				algo.applyAlgorithmStepwise((BipartiteGraph)model);
 				
 			}
 		};
