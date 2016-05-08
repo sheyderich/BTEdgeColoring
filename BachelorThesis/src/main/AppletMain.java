@@ -28,6 +28,7 @@ public class AppletMain {
 		SwingUtilities.updateComponentTreeUI(frame);
 		frame.pack();
 		frame.setVisible(true);
+		frame.setResizable(false);
 		controller.getView().repaint();	
 	}
 }
