@@ -25,7 +25,8 @@ public class GraphPanelView extends JPanel implements Observer{
 	private JButton startButton; 
 	private JButton importButton;
 	private JButton lastButton;
-	private JComboBox<String> chooseAlgorithm;
+	private JComboBox<Object> chooseAlgorithm;
+	private JPanel menu;
 	
 	/**
 	 * Constructs the view that holds the graph panel, the graph info panel and 
@@ -46,12 +47,12 @@ public class GraphPanelView extends JPanel implements Observer{
 		graphInfoPanel = new GraphInfoPanel(width/3, height, model);
 		this.add(graphPanel, BorderLayout.CENTER);
 		this.add(graphInfoPanel, BorderLayout.WEST);
-		JPanel menu = new JPanel(new GridLayout(1,0));
+		menu = new JPanel(new GridLayout(1,0));
 		this.add(menu, BorderLayout.SOUTH);
 		startButton = new JButton("Start Algorithm");
 		importButton = new JButton("Import Graph");
 		lastButton = new JButton("Undo Last Coloring");
-		chooseAlgorithm = new JComboBox<String>();
+		chooseAlgorithm = new JComboBox<Object>();
 		menu.add(chooseAlgorithm);
 		menu.add(importButton);
 		menu.add(startButton);
@@ -86,9 +87,16 @@ public class GraphPanelView extends JPanel implements Observer{
 	 * Returns the ComboBox that chooses the algorithm
 	 * @return
 	 */
-	public JComboBox<String> getChooseAlgorithm(){
+	public JComboBox<Object> getChooseAlgorithm(){
 		return chooseAlgorithm;
 	}
+	
+	public void setChooseAlgorithm(Object[] algos){
+		menu.remove(chooseAlgorithm);
+		chooseAlgorithm = new JComboBox<Object>(algos);
+		menu.add(chooseAlgorithm, 0,0);
+	}
+	
 	/**
 	 * Sets the model to the given one and updates the graphInfoPanel as
 	 * well as the graphPanel to draw the model.

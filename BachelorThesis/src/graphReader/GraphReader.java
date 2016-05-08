@@ -47,7 +47,7 @@ public class GraphReader {
 				String[] split_type = firstLine.split(",");
 				vertexCount1 = Integer.parseInt(split_type[0]);
 				vertexCount2 = Integer.parseInt(split_type[1]);
-			}else if (firstLine.matches("[1-9]\\d*")){
+			}else if (firstLine.matches("\\d*")){
 				graphType = 2;
 				vertexCount1 = Integer.parseInt(firstLine);
 			} else {

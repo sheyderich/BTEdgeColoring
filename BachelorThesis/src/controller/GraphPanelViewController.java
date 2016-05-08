@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +38,16 @@ public class GraphPanelViewController {
 			+ "build like this: \n\nFirst line: Vertex Number (bipartite graph: "
 			+ "[Number of vertices in Set 1],[Number of vertices in Set 2])"
 			+ "\nNext n lines: Edges (representation: [edge u] [edge v])";
+	private List<String> algorithms = new ArrayList<String>(); 
 	
 	public GraphPanelViewController(){
 		
 		model = null;
 		graphPanelView = new GraphPanelView((int)dim.getWidth(), (int)dim.getHeight(),model);
+		
+		algorithms.add("Greedy Algorithm");
+		algorithms.add("Local Search Algorithm");
+		algorithms.add("Line Graph");
 		
 		ActionListener importFile = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -56,6 +62,7 @@ public class GraphPanelViewController {
 							Graph g = gr.buildGraphFromFile();
 							setModel((DrawableGraph)g);
 						}catch(Exception ex){
+							ex.printStackTrace();
 							JOptionPane.showMessageDialog(graphPanelView,WRONG_FILE, "Error",  JOptionPane.ERROR_MESSAGE);
 						}
 					}else{
@@ -118,18 +125,22 @@ public class GraphPanelViewController {
 	 * @param model
 	 */
 	private void setAlgorithmsToUse(DrawableGraph model){
-		List<String> algorithms = new ArrayList<String>();
-		algorithms.add("Greedy Algorithm");
-		algorithms.add("Local Search Algorithm");
-		algorithms.add("Line Graph Algorithm");
+		
 		if(model instanceof BipartiteGraph){
-			algorithms.add(0, "König's Algorithm");
+			if(!algorithms.get(0).equals("König's Algorithm"))
+					algorithms.add(0, "König's Algorithm");
+		}else{
+			if(algorithms.get(0).equals("König's Algorithm")){
+				algorithms.remove(0);
+			}
 		}
-		for(String s: algorithms){
-			graphPanelView.getChooseAlgorithm().addItem(s);
-		}
+		
+		graphPanelView.setChooseAlgorithm(algorithms.toArray());
+		JComboBox<Object> cb = graphPanelView.getChooseAlgorithm();
+		
+		
 		//default algorithm
-		usedAlgorithm = getAlgorithm(algorithms.get(0));
+		usedAlgorithm = getAlgorithm((String)cb.getSelectedItem());
 		
 		ActionListener chooseAlg = new ActionListener(){
 			@SuppressWarnings("unchecked")
@@ -140,7 +151,7 @@ public class GraphPanelViewController {
 		        usedAlgorithm = getAlgorithm(algorithmName);
 			}
 		};
-		graphPanelView.getChooseAlgorithm().addActionListener(chooseAlg);
+		cb.addActionListener(chooseAlg);
 		
 	}
 	
@@ -154,7 +165,8 @@ public class GraphPanelViewController {
 	private EdgeColoringAlgorithm getAlgorithm(String algorithmName) {
 		switch(algorithmName){
 		case "König's Algorithm": return new AlgorithmKoenig();
-		default: throw new RuntimeException("Not yet implemented");
+		default: System.out.println("Not yet implemented");
+		return new AlgorithmKoenig();
 		}
 	}
 	
