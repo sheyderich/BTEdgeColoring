@@ -74,7 +74,13 @@ public class AlgorithmKoenig implements EdgeColoringAlgorithm{
 	 * Does not set u, v when the graph is completely uncolored
 	 * @param graph
 	 */
-	public void undoLastColoring(BipartiteGraph graph){
+	public void undoLastColoring(Graph g){
+		BipartiteGraph graph;
+		if(!(g instanceof BipartiteGraph)){
+			throw new IllegalGraphTypeException("Only Bipartite Graphs are allowed in Koenig's algorithm.");
+		}else{
+			graph = (BipartiteGraph)g;
+		}
 		if(!graph.isUncolored()){
 			for(int i = u; i >= 0; i --){
 				for(int j = v; j >= 0; j--){

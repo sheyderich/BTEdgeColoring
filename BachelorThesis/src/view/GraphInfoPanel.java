@@ -30,7 +30,6 @@ public class GraphInfoPanel extends JPanel {
 	private JLabel vertexDegree;
 	private JLabel lBound;
 	private JLabel uBound;
-	private JLabel usedAlgorithm;
 	private JLabel numberOfColors;
 	private JLabel lastStep;
 	
@@ -104,12 +103,6 @@ public class GraphInfoPanel extends JPanel {
 		this.add(algorithm);
 		JLabel empty3 = new JLabel("");
 		this.add(empty3);
-		JLabel algo = new JLabel("  Used:");
-		algo.setFont(font);
-		this.add(algo);
-		usedAlgorithm = new JLabel("--");
-		usedAlgorithm.setFont(font);
-		this.add(usedAlgorithm);
 		JLabel colorLabel = new JLabel("  Number of Colors:");
 		colorLabel.setFont(font);
 		this.add(colorLabel);
@@ -137,22 +130,9 @@ public class GraphInfoPanel extends JPanel {
 			vertexDegree.setText(String.valueOf(((SimpleGraph)model).calculateMaxVertexDegree()));
 			lBound.setText(String.valueOf(((SimpleGraph)model).calculateLBChromaticIndex()));
 			uBound.setText(String.valueOf(((SimpleGraph)model).calculateUBChromaticIndex()));
-			usedAlgorithm.setText(getAlgorithm());
 			numberOfColors.setText(String.valueOf(((SimpleGraph)model).getQuantityColors()));
 			lastStep.setText(getLastStep());
 			
-		}
-	}
-	
-	/**
-	 * Returns the used algorithm for this graph
-	 * @return
-	 */
-	private String getAlgorithm(){
-		switch(model.getType()){
-		case "Bipartite graph": return "Koenig's Algorithm";
-		case "Simple graph": return "not implemented";
-		default: throw new IllegalGraphTypeException("Not a valid graph type");
 		}
 	}
 	

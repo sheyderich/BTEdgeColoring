@@ -22,7 +22,7 @@ public class AppletMain {
 		GraphReader gr = new GraphReader("bigraph3.txt");
 		Graph g = gr.buildGraphFromFile();
 		GraphPanelViewController controller = new GraphPanelViewController();
-		controller.setGraph((DrawableGraph)g);
+		controller.setModel((DrawableGraph)g);
 		frame.add(controller.getView(), BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SwingUtilities.updateComponentTreeUI(frame);

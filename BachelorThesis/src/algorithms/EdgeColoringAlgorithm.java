@@ -27,4 +27,10 @@ public interface EdgeColoringAlgorithm {
 	 */
 	public void applyAlgorithmStepwise(Graph graph);
 	
+	/**
+	 * Revokes the last step that was done by the algorithm
+	 * @param graph
+	 */
+	public void undoLastColoring(Graph graph);
+	
 }

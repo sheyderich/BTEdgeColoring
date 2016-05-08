@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import graphs.DrawableGraph;
 
@@ -24,7 +25,7 @@ public class GraphPanelView extends JPanel implements Observer{
 	private JButton startButton; 
 	private JButton importButton;
 	private JButton lastButton;
-	// TO DO: SwitchBox for algorithms
+	private JComboBox<String> chooseAlgorithm;
 	
 	/**
 	 * Constructs the view that holds the graph panel, the graph info panel and 
@@ -50,6 +51,8 @@ public class GraphPanelView extends JPanel implements Observer{
 		startButton = new JButton("Start Algorithm");
 		importButton = new JButton("Import Graph");
 		lastButton = new JButton("Undo Last Coloring");
+		chooseAlgorithm = new JComboBox<String>();
+		menu.add(chooseAlgorithm);
 		menu.add(importButton);
 		menu.add(startButton);
 		menu.add(lastButton);
@@ -79,6 +82,13 @@ public class GraphPanelView extends JPanel implements Observer{
 		return lastButton;
 	}
 	
+	/**
+	 * Returns the ComboBox that chooses the algorithm
+	 * @return
+	 */
+	public JComboBox<String> getChooseAlgorithm(){
+		return chooseAlgorithm;
+	}
 	/**
 	 * Sets the model to the given one and updates the graphInfoPanel as
 	 * well as the graphPanel to draw the model.
