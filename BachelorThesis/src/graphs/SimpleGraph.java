@@ -323,7 +323,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	}
 	
 	@Override
-	public boolean isColorizationFinished(){
+	public boolean isColored(){
 		for(int i = 0; i < graph.length; i++){
 			for(int j = 0; j < graph.length; j++){
 				if(graph[i][j] == UNCOLORED){

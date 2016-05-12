@@ -1,6 +1,7 @@
 package main;
 
-import algorithms.AlgorithmKoenig;
+import algorithms.Greedy;
+import algorithms.Koenig;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.Graph;
@@ -17,10 +18,11 @@ public class Haupt {
 		
 		GraphReader gr = new GraphReader(args[0]);
 		Graph g = gr.buildGraphFromFile();
-		AlgorithmKoenig ak = new AlgorithmKoenig();
-		ak.applyAlgorithmComplete((BipartiteGraph) g);
+		Greedy gre = new Greedy();
+		gre.applyAlgorithmComplete(g);
 		System.out.println(((SimpleGraph)g).toString());
-		
+		System.out.println(g.getQuantityColors());
+		System.out.println(g.calculateMaxVertexDegree());
 		
 	}
 }

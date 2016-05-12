@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import algorithms.AlgorithmKoenig;
+import algorithms.Koenig;
 import exceptions.NoFreeColorException;
 import graphs.BipartiteGraph;
 
@@ -34,12 +34,12 @@ public class KoenigTest {
 	 */
 	@Test
 	public void testFreeColor(){
-		assertEquals(1, AlgorithmKoenig.testFreeColor(bg, 0));
+		assertEquals(1, Koenig.testFreeColor(bg, 0));
 		bg.setEdgeColor(0, 3, 1);
 		bg.setEdgeColor(1, 3, 2);
 		bg.setEdgeColor(2, 3, 3);
 		try{
-			AlgorithmKoenig.testFreeColor(bg, 3);
+			Koenig.testFreeColor(bg, 3);
 		}catch(NoFreeColorException e){
 			
 		}
@@ -51,14 +51,14 @@ public class KoenigTest {
 	@Test
 	public void testAlternatingPath(){
 		paintPath();
-		List<Integer> path = AlgorithmKoenig.testFindAlternatingPath(bg, 0, 1, 2);
+		List<Integer> path = Koenig.testFindAlternatingPath(bg, 0, 1, 2);
 		assertEquals(4, path.size());
 		for(Integer i: path){
 			if(i != 0 && i != 3 && i != 2 && i != 5){
 				fail();
 			}
 		}
-		assertTrue(AlgorithmKoenig.testFindAlternatingPath(bg, 0, 3, 2).size() == 1);
+		assertTrue(Koenig.testFindAlternatingPath(bg, 0, 3, 2).size() == 1);
 	}
 	
 	/**
@@ -67,8 +67,8 @@ public class KoenigTest {
 	@Test
 	public void testGetNeighborWithColor(){
 		paintPath();
-		assertEquals(3, AlgorithmKoenig.testGetNeighboringVertexWithColor(bg, 0, 1));
-		assertEquals(-1, AlgorithmKoenig.testGetNeighboringVertexWithColor(bg, 0, 2));
+		assertEquals(3, Koenig.testGetNeighboringVertexWithColor(bg, 0, 1));
+		assertEquals(-1, Koenig.testGetNeighboringVertexWithColor(bg, 0, 2));
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class KoenigTest {
 		String exp = "2 1 2";
 		List<Integer> path = getPath(); 
 
-		AlgorithmKoenig.testSwitchColorOnPath(bg, path, 1, 2);
+		Koenig.testSwitchColorOnPath(bg, path, 1, 2);
 		String act = bg.getEdgeColor(path.get(0), path.get(1)) + " ";
 		act += bg.getEdgeColor(path.get(1), path.get(2)) + " ";
 		act += bg.getEdgeColor(path.get(2), path.get(3)) + "";

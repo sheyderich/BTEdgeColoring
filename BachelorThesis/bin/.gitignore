@@ -1,7 +1,5 @@
-/view/
-/graphs/
-/helper/
-/controller/
 /algorithms/
+/controller/
 /main/
-/graphReader/
+/tests/
+/graphs/

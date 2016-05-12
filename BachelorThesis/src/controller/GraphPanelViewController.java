@@ -9,8 +9,9 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import algorithms.AlgorithmKoenig;
+import algorithms.Koenig;
 import algorithms.EdgeColoringAlgorithm;
+import algorithms.Greedy;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
@@ -70,13 +71,14 @@ public class GraphPanelViewController {
 		};
 		
 		graphPanelView.getImportButton().addActionListener(importFile);
+		
 		ActionListener startAlgorithm = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(!started){
 					started = true; 
 					graphPanelView.getStartButton().setText("Next Step");
 				}
-				usedAlgorithm.applyAlgorithmStepwise((BipartiteGraph)model);
+				usedAlgorithm.applyAlgorithmStepwise((Graph)model);
 			}
 		};
 		
@@ -84,7 +86,7 @@ public class GraphPanelViewController {
 		
 		ActionListener lastStep = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				usedAlgorithm.undoLastColoring((BipartiteGraph)model);
+				usedAlgorithm.undoLastColoring((Graph)model);
 			}
 		};
 		
@@ -150,9 +152,10 @@ public class GraphPanelViewController {
 	 */
 	private EdgeColoringAlgorithm getAlgorithm(String algorithmName) {
 		switch(algorithmName){
-		case "König's Algorithm": return new AlgorithmKoenig();
+		case "König's Algorithm": return new Koenig();
+		case "Greedy Algorithm": return new Greedy();
 		default: System.out.println("Not yet implemented");
-		return new AlgorithmKoenig();
+		return new Koenig();
 		}
 	}
 	

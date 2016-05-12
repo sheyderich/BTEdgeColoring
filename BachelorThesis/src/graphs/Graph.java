@@ -42,6 +42,17 @@ public interface Graph {
 	public boolean isEdgeColored(int u, int v);
 	
 	/**
+	 * Returns whether the graph is uncolored or not
+	 */
+	public boolean isUncolored();
+	
+	/**
+	 * Returns whether the graph is completely colored or not
+	 * @return
+	 */
+	public boolean isColored();
+	
+	/**
 	 * Sets the color of an edge based on the two vertices that the edge
 	 * connects and an integer for the color
 	 * @param u
@@ -49,6 +60,11 @@ public interface Graph {
 	 * @param color
 	 */
 	public void setEdgeColor(int u, int v, int color);
+	
+	/**
+	 * Removes the last step that was colored
+	 */
+	public void removeLastStep();
 	
 	/**
 	 * Removes the edge color that was given to this particular edge
@@ -144,4 +160,11 @@ public interface Graph {
 	 * @return
 	 */
 	public String toEdgeString();
+	
+	/**
+	 * Sets the last step that was done in the graph
+	 * @param u
+	 * @param v
+	 */
+	public void setLastStep(int u, int v);
 }

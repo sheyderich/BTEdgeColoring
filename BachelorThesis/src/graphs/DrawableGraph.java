@@ -50,7 +50,7 @@ public abstract class DrawableGraph extends Observable{
 	 * of the coloring
 	 * @return
 	 */
-	public abstract boolean isColorizationFinished();
+	public abstract boolean isColored();
 	
 	/**
 	 * Draws a black edge between two nodes in a given color on the 

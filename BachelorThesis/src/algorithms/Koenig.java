@@ -9,8 +9,14 @@ import exceptions.IllegalGraphTypeException;
 import exceptions.NoFreeColorException;
 import graphs.BipartiteGraph;
 import graphs.Graph;
-
-public class AlgorithmKoenig implements EdgeColoringAlgorithm{
+/**
+ * A algorithm for coloring the edges of a bipartite graph 
+ * introduced by König. It colors the edges with the first available color
+ * and if there is none available, switches colors on an augmented path.
+ * @author Stephanie Heyderich
+ * @version 12.05.2016
+ */
+public class Koenig implements EdgeColoringAlgorithm{
 	
 	private int u = 0; 
 	private int v = 0;
@@ -50,7 +56,7 @@ public class AlgorithmKoenig implements EdgeColoringAlgorithm{
 		}else{
 			graph = (BipartiteGraph)g;
 		}
-		if(!graph.isColorizationFinished()){
+		if(!graph.isColored()){
 			for(; u < graph.getVertexNumber(); u++){
 				for(; v < graph.getVertexNumber(); v++){
 					if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
