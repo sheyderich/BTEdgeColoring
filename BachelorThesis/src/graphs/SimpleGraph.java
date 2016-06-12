@@ -232,7 +232,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		chromaticIndex = lbChromaticIndex; 
 		return chromaticIndex;
 	}
-
+	
+	
 	@Override
 	public int getQuantityColors() {
 		return colors;

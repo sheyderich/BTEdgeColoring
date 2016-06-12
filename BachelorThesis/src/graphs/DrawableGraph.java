@@ -201,4 +201,7 @@ public abstract class DrawableGraph extends Observable{
 		g.setColor(c);
 	}
 	
+	
+	public abstract int getQuantityColors();
+	
 }

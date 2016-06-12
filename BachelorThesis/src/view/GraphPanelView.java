@@ -8,7 +8,10 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import exceptions.TooManyColorsException;
 import graphs.DrawableGraph;
 
 /**
@@ -28,6 +31,7 @@ public class GraphPanelView extends JPanel implements Observer{
 	private JButton completeButton;
 	private JComboBox<Object> chooseAlgorithm;
 	private JPanel menu;
+	private DrawableGraph model;
 	
 	/**
 	 * Constructs the view that holds the graph panel, the graph info panel and 
@@ -41,7 +45,7 @@ public class GraphPanelView extends JPanel implements Observer{
 		if(height < 1 || width < 1){
 			throw new IllegalArgumentException("GraphPanelView has to be at least 1x1");
 		}
-		
+		this.model = model;
 		this.setLayout(new BorderLayout());
 		graphPanel = new GraphPanel(width, height, model);
 		graphInfoPanel = new GraphInfoPanel(width/3, height, model);
@@ -115,6 +119,7 @@ public class GraphPanelView extends JPanel implements Observer{
 	public void setModel(DrawableGraph newModel) {
 		graphPanel.setModel(newModel);
 		graphInfoPanel.setModel(newModel);
+		this.model = newModel;
 		this.repaint();
 	}
 	
@@ -124,6 +129,11 @@ public class GraphPanelView extends JPanel implements Observer{
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
+		if(model != null){
+			if(model.getQuantityColors() > 20){
+				JOptionPane.showMessageDialog(this, "There are only 20 colors. Your graph uses too many.",  "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 		graphPanel.repaint();
 		graphInfoPanel.repaint();
 	}
