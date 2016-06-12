@@ -17,6 +17,8 @@ public class Greedy implements EdgeColoringAlgorithm {
 	
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
+		u = graph.getVertexNumber();
+		v = graph.getVertexNumber();
 		for(int u = 0; u < graph.getVertexNumber(); u++){
 			for(int v = 0; v < graph.getVertexNumber(); v++){
 				if(graph.isEdgeExistent(u, v)){

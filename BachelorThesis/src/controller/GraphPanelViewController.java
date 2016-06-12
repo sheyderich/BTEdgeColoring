@@ -91,6 +91,14 @@ public class GraphPanelViewController {
 		};
 		
 		graphPanelView.getLastButton().addActionListener(lastStep);
+		
+		ActionListener completeAlg = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				usedAlgorithm.applyAlgorithmComplete((Graph)model);
+			}
+		};
+		
+		graphPanelView.getCompleteButton().addActionListener(completeAlg);
 
 	}
 	

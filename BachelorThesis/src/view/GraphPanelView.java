@@ -25,6 +25,7 @@ public class GraphPanelView extends JPanel implements Observer{
 	private JButton startButton; 
 	private JButton importButton;
 	private JButton lastButton;
+	private JButton completeButton;
 	private JComboBox<Object> chooseAlgorithm;
 	private JPanel menu;
 	
@@ -43,7 +44,6 @@ public class GraphPanelView extends JPanel implements Observer{
 		
 		this.setLayout(new BorderLayout());
 		graphPanel = new GraphPanel(width, height, model);
-		graphPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		graphInfoPanel = new GraphInfoPanel(width/3, height, model);
 		this.add(graphPanel, BorderLayout.CENTER);
 		this.add(graphInfoPanel, BorderLayout.WEST);
@@ -52,11 +52,13 @@ public class GraphPanelView extends JPanel implements Observer{
 		startButton = new JButton("Start Algorithm");
 		importButton = new JButton("Import Graph");
 		lastButton = new JButton("Undo Last Coloring");
+		completeButton = new JButton("Final Coloring");
 		chooseAlgorithm = new JComboBox<Object>();
 		menu.add(chooseAlgorithm);
 		menu.add(importButton);
 		menu.add(startButton);
 		menu.add(lastButton);
+		menu.add(completeButton);
 	}
 	
 	/**
@@ -81,6 +83,14 @@ public class GraphPanelView extends JPanel implements Observer{
 	 */
 	public JButton getLastButton(){
 		return lastButton;
+	}
+	
+	/**
+	 * Returns the complete button
+	 * @return
+	 */
+	public JButton getCompleteButton(){
+		return completeButton;
 	}
 	
 	/**

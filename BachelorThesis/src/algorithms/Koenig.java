@@ -30,6 +30,8 @@ public class Koenig implements EdgeColoringAlgorithm{
 	 */
 	public void applyAlgorithmComplete(Graph g){
 		BipartiteGraph graph;
+		u = g.getVertexNumber();
+		v = g.getVertexNumber();
 		if(!(g instanceof BipartiteGraph)){
 			throw new IllegalGraphTypeException("Only Bipartite Graphs are allowed in Koenig's algorithm.");
 		}else{
