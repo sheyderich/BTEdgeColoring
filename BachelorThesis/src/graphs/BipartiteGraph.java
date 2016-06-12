@@ -23,6 +23,16 @@ public class BipartiteGraph extends SimpleGraph{
 		this.vertexCount1 = vertexNumber1;
 		this.vertexCount2 = vertexNumber2;
 	}
+	
+	/**
+	 * Copy Constructor
+	 * @param g
+	 */
+	public BipartiteGraph(BipartiteGraph g){
+		super(g);
+		this.vertexCount1 = g.vertexCount1;
+		this.vertexCount2 = g.vertexCount2;
+	}
 
 	/**
 	 * Using Koenig's Theorem for bipartite Graphs to calculate the 

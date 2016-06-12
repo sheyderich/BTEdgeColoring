@@ -51,6 +51,18 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		graph = new int[vertexNumber][vertexNumber];
 	}
 	
+	/**
+	 * Copy Constructor
+	 */
+	public SimpleGraph(SimpleGraph g){
+		graph = new int[g.getVertexNumber()][g.getVertexNumber()];
+		for(int i = 0; i < graph.length; i++){
+			for(int j = 0; j < graph.length; j++){
+				graph[i][j] = g.isEdgeExistent(i, j)? -2: 0;
+			}
+		}
+	}
+	
 	@Override
 	public int getVertexNumber(){
 		return graph.length;

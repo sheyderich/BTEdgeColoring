@@ -10,12 +10,14 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import algorithms.Koenig;
+import exceptions.IllegalGraphTypeException;
 import algorithms.EdgeColoringAlgorithm;
 import algorithms.Greedy;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
 import graphs.Graph;
+import graphs.SimpleGraph;
 import view.GraphPanelView;
 
 /**
@@ -145,6 +147,14 @@ public class GraphPanelViewController {
 				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 		        String algorithmName = (String)cb.getSelectedItem();
 		        usedAlgorithm = getAlgorithm(algorithmName);
+		        if(getModel() instanceof BipartiteGraph){
+		        	setModel(new BipartiteGraph((BipartiteGraph)getModel()));
+		        }else if(getModel() instanceof SimpleGraph){
+		        	setModel(new SimpleGraph((SimpleGraph)getModel()));
+		        } else {
+		        	throw new IllegalGraphTypeException("This type of graph is not supported");
+		        }
+		        
 			}
 		};
 		cb.addActionListener(chooseAlg);
@@ -172,6 +182,14 @@ public class GraphPanelViewController {
 	 */
 	public GraphPanelView getView(){
 		return graphPanelView;
+	}
+	
+	/**
+	 * Returns the model
+	 * @return
+	 */
+	private DrawableGraph getModel(){
+		return model;
 	}
 
 }	
