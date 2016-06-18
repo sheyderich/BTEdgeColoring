@@ -1,9 +1,7 @@
 package main;
 
 import algorithms.Greedy;
-import algorithms.Koenig;
 import graphReader.GraphReader;
-import graphs.BipartiteGraph;
 import graphs.Graph;
 import graphs.SimpleGraph;
 

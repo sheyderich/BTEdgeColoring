@@ -79,7 +79,6 @@ public class Greedy implements EdgeColoringAlgorithm {
 		}
 		graph.setLastStep(u, v);
 		steps.add(graph.getLastStep());
-		
 	}
 	
 }
