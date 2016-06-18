@@ -19,7 +19,7 @@ public abstract class DrawableGraph extends Observable{
 	 * Draws a given Graph on the graphics context g
 	 * @param g
 	 */
-	public abstract void paintGraph(Graphics g,Dimension d);
+	public abstract void paintGraph(Graphics g,Dimension d) throws ArrayIndexOutOfBoundsException;
 	
 	/**
 	 * Returns a List of points that represent the nodes of a 

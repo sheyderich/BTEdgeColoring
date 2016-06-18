@@ -96,7 +96,11 @@ public class GraphPanelViewController {
 		
 		ActionListener completeAlg = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				usedAlgorithm.applyAlgorithmComplete((Graph)model);
+				try{
+					usedAlgorithm.applyAlgorithmComplete((Graph)model);
+				}catch(ArrayIndexOutOfBoundsException ex){
+					System.out.println("hi");
+				}
 			}
 		};
 		

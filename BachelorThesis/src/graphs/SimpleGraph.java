@@ -286,7 +286,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	
 	
 	@Override
-	public void paintGraph(Graphics g, Dimension d) {
+	public void paintGraph(Graphics g, Dimension d){
 		
 		List<Point> coordinates = calculateNodeCoordinates(d);
 		

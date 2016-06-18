@@ -70,7 +70,7 @@ public class Greedy implements EdgeColoringAlgorithm {
 	 * @param v
 	 */
 	private void tryColorEdge(Graph graph, int u, int v) {
-		for(int color = 1; color <= graph.calculateMaxVertexDegree() +1 ; color++){
+		for(int color = 1; color <= Integer.MAX_VALUE ; color++){
 			graph.setEdgeColor(u, v, color);
 			if(graph.isEdgeColoringValid(u, v)){
 				break;

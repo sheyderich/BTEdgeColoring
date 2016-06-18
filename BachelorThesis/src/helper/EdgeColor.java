@@ -63,7 +63,7 @@ public class EdgeColor {
 	 * @return
 	 */
 	public static Color getColor(int i){
-		if(i > EDGE_COLORS.length){
+		if(i >= EDGE_COLORS.length){
 			throw new NotEnoughColorsException("There are only 20 colors in the set.");
 		}
 		return EDGE_COLORS[i];

@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import exceptions.NotEnoughColorsException;
 import graphs.DrawableGraph;
 
 /**
@@ -42,7 +43,12 @@ public class GraphPanel extends JPanel {
 	public void paint(Graphics g){
 		super.paint(g);
 		if(model != null){
-			model.paintGraph(g, this.getSize(dimension));
+			try{
+				model.paintGraph(g, this.getSize(dimension));
+			} catch (NotEnoughColorsException e){
+				System.err.println("There are not enough colors for this graph to be colored.");
+				System.out.println("Please input a graph that can be colored with 20 or less colors.");
+			}
 		}
 	}
 	

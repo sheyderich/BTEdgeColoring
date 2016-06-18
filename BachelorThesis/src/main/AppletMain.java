@@ -17,7 +17,7 @@ import graphs.Graph;
  */
 public class AppletMain {
 	public static void main(String[] args) {
-
+		
 		JFrame frame = new JFrame("Edge Coloring Algorithms");
 		GraphPanelViewController controller = new GraphPanelViewController();
 		GraphReader gr = new GraphReader("simplegraph1.txt");
@@ -29,6 +29,6 @@ public class AppletMain {
 		frame.pack();
 		frame.setVisible(true);
 		frame.setResizable(false);
-		controller.getView().repaint();	
+		controller.getView().repaint();
 	}
 }
