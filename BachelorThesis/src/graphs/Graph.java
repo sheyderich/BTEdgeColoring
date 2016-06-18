@@ -61,10 +61,6 @@ public interface Graph {
 	 */
 	public void setEdgeColor(int u, int v, int color);
 	
-	/**
-	 * Removes the last step that was colored
-	 */
-	public void removeLastStep();
 	
 	/**
 	 * Removes the edge color that was given to this particular edge
@@ -167,4 +163,15 @@ public interface Graph {
 	 * @param v
 	 */
 	public void setLastStep(int u, int v);
+
+	/**
+	 * Removes the last step that was colored
+	 */
+	public void removeLastStep();
+	
+	/**
+	 * Returns the last step that was made in the coloring.
+	 * @return
+	 */
+	public int[] getLastStep();
 }

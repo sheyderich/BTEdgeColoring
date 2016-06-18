@@ -1,5 +1,8 @@
 package algorithms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import graphs.Graph;
 
 /**
@@ -13,6 +16,7 @@ public class Greedy implements EdgeColoringAlgorithm {
 
 	private int u = 0; 
 	private int v = 0;
+	private List<int[]> steps = new ArrayList<int[]>();
 	
 	
 	@Override
@@ -36,6 +40,7 @@ public class Greedy implements EdgeColoringAlgorithm {
 					if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
 						tryColorEdge(graph, u, v);
 						graph.setLastStep(u,v);
+						steps.add(graph.getLastStep());
 						return;
 					}
 				}
@@ -46,19 +51,13 @@ public class Greedy implements EdgeColoringAlgorithm {
 
 	@Override
 	public void undoLastColoring(Graph graph) {
-		if(!graph.isUncolored()){
-			for(int i = u; i >= 0; i --){
-				for(int j = v; j >= 0; j--){
-					if(graph.isEdgeExistent(i, j) && graph.isEdgeColored(i, j)){
-						graph.removeEdgeColor(i, j);
-						graph.removeLastStep();
-						u = i; 
-						v = j; 
-						return;
-					}
-					v = graph.getEdgeNumber();
-				}
-			}
+		if(steps.size() > 0){
+			int[] last = steps.get(steps.size()-1);
+			steps.remove(steps.size()-1);
+			graph.removeLastStep();
+			graph.removeEdgeColor(last[0], last[1]);
+			u = last[0];
+			v = last[1];
 		}
 	}
 
@@ -78,6 +77,8 @@ public class Greedy implements EdgeColoringAlgorithm {
 				graph.removeEdgeColor(u, v);
 			}
 		}
+		graph.setLastStep(u, v);
+		steps.add(graph.getLastStep());
 		
 	}
 	

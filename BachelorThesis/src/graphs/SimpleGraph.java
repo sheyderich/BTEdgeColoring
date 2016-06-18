@@ -107,10 +107,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		}
 		graph[u][v] = color;
 		graph[v][u] = color;
-//		lastStep[0] = u;
-//		lastStep[1] = v;
-//		lastStep[2] = color;
-//		steps.push(lastStep);
 		this.setChanged();
 		this.notifyObservers();
 	}
