@@ -21,14 +21,13 @@ public class Greedy implements EdgeColoringAlgorithm {
 	
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
-		u = graph.getVertexNumber();
-		v = graph.getVertexNumber();
-		for(int u = 0; u < graph.getVertexNumber(); u++){
-			for(int v = 0; v < graph.getVertexNumber(); v++){
-				if(graph.isEdgeExistent(u, v)){
+		for(; u < graph.getVertexNumber(); u++){
+			for(; v < graph.getVertexNumber(); v++){
+				if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
 					tryColorEdge(graph, u, v);
 				}
 			}
+			v = 0;
 		}
 	}
 
@@ -39,8 +38,6 @@ public class Greedy implements EdgeColoringAlgorithm {
 				for(; v < graph.getVertexNumber(); v++){
 					if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
 						tryColorEdge(graph, u, v);
-						graph.setLastStep(u,v);
-						steps.add(graph.getLastStep());
 						return;
 					}
 				}
@@ -51,13 +48,14 @@ public class Greedy implements EdgeColoringAlgorithm {
 
 	@Override
 	public void undoLastColoring(Graph graph) {
-		if(steps.size() > 0){
-			int[] last = steps.get(steps.size()-1);
-			steps.remove(steps.size()-1);
-			graph.removeLastStep();
-			graph.removeEdgeColor(last[0], last[1]);
-			u = last[0];
-			v = last[1];
+		if(!steps.isEmpty()){
+			
+				int[] last = steps.get(steps.size()-1);
+				steps.remove(steps.size()-1);
+				graph.removeEdgeColor(last[0], last[1]);
+				graph.removeLastStep();
+				u = last[0];
+				v = last[1];
 		}
 	}
 
@@ -69,14 +67,12 @@ public class Greedy implements EdgeColoringAlgorithm {
 	 * @param v
 	 */
 	private void tryColorEdge(Graph graph, int u, int v) {
-		for(int color = 1; color <= Integer.MAX_VALUE ; color++){
+		int color = 1;
+		do{
 			graph.setEdgeColor(u, v, color);
-			if(graph.isEdgeColoringValid(u, v)){
-				break;
-			}else{
-				graph.removeEdgeColor(u, v);
-			}
-		}
+			color++;
+		}while(!graph.isEdgeColoringValid(u, v));
+		
 		graph.setLastStep(u, v);
 		steps.add(graph.getLastStep());
 	}

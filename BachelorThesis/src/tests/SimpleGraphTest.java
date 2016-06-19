@@ -33,6 +33,7 @@ public class SimpleGraphTest {
 		adjacencyMatrix = new String();
 		fillMatrixWithEdges();
 		sg.setEdgeColor(0, 1, 1);
+		sg.setLastStep(0,1);
 	}
 
 	/**

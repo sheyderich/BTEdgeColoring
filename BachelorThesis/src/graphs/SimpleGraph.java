@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -33,7 +34,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	
 	protected int[][] graph; 
 	protected int numberEdges;
-	protected int colors; 
+	protected int[] colors; 
 	protected int maxVertexDegree 	= 	UNDEFINED; 
 	protected int lbChromaticIndex	= 	UNDEFINED;
 	protected int ubChromaticIndex 	= 	UNDEFINED;
@@ -49,6 +50,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public SimpleGraph(int vertexNumber){
 		graph = new int[vertexNumber][vertexNumber];
+		colors = new int[this.getVertexNumber()];
+		Arrays.fill(colors, 0);
 	}
 	
 	/**
@@ -61,6 +64,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 				graph[i][j] = g.isEdgeExistent(i, j)? -2: 0;
 			}
 		}
+		colors = new int[this.getVertexNumber()];
+		Arrays.fill(colors, 0);
 	}
 	
 	@Override
@@ -102,13 +107,11 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	@Override
 	public void setEdgeColor(int u, int v, int color) {
 		if(color < 1) throw new InvalidColorException("Color has to be chosen from 1 .. n. Color was: " + color);
-		if(color > colors){
-			colors++;
-		}
+		
 		graph[u][v] = color;
 		graph[v][u] = color;
-		this.setChanged();
-		this.notifyObservers();
+//		this.setChanged();
+//		this.notifyObservers();
 	}
 	
 	@Override
@@ -116,10 +119,11 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		if(graph[u][v] == NOTEXISTENT){
 			throw new EdgeNotFoundException("The Edge does not exist");
 		}
+		
 		graph[u][v] = UNCOLORED;
 		graph[v][u] = UNCOLORED;
-		this.setChanged();
-		this.notifyObservers();
+//		this.setChanged();
+//		this.notifyObservers();
 	}
 
 	@Override
@@ -232,7 +236,13 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	
 	@Override
 	public int getQuantityColors() {
-		return colors;
+		int quantity_colors = 0; 
+		for(int i : colors){
+			if(i > 0){
+				quantity_colors ++;
+			}
+		}
+		return quantity_colors;
 	}
 
 	@Override
@@ -370,8 +380,11 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public void removeLastStep(){
 		if(!steps.isEmpty()){
-			steps.pop();
+			int [] last = steps.pop();
+			colors[last[2]-1]--;;
 		}
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	/**
@@ -380,6 +393,16 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 * @param v
 	 */
 	public void setLastStep(int u, int v){
-		steps.push(new int[]{u,v,graph[u][v]});
+		
+		int color = graph[u][v];
+		steps.push(new int[]{u,v,color});
+		
+		if(colors.length-1 == color){
+			colors = Arrays.copyOf(colors, colors.length*2);
+		}
+		
+		colors[color-1]++;
+		this.setChanged();
+		this.notifyObservers();
 	}
 }
