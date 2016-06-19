@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import exceptions.EdgeNotFoundException;
 import graphs.DrawableGraph;
 import graphs.SimpleGraph;
 import helper.EdgeColor;
@@ -141,8 +143,11 @@ public class GraphInfoPanel extends JPanel {
 	private String getLastStep(){
 		String res = new String();
 		int[] tmp = ((SimpleGraph)model).getLastStep();
-		if(tmp[2] > 0){
-			res += ("("+(tmp[0]+1)+","+(tmp[1]+1) + ") in " + EdgeColor.getColorName(tmp[2]-1));
+		try{
+			int color = ((SimpleGraph)model).getEdgeColor(tmp[0], tmp[1]);
+			res += ("("+(tmp[0]+1)+","+(tmp[1]+1) + ") in " + EdgeColor.getColorName(color-1));
+		}catch(EdgeNotFoundException e){
+			
 		}
 		return res;
 	}

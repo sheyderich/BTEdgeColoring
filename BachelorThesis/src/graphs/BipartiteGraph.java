@@ -96,6 +96,8 @@ public class BipartiteGraph extends SimpleGraph{
 	 */
 	public void setAugmentedPath(List<Integer> path){
 		this.augmentedPath = path;
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	/**

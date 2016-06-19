@@ -44,6 +44,7 @@ public class Koenig implements EdgeColoringAlgorithm{
 					applyColoringForEdge(graph,u,v);
 				}
 			}
+			v = 0;
 		}
 	}
 	

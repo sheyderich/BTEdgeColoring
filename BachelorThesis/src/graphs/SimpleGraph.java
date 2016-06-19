@@ -40,7 +40,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	protected int ubChromaticIndex 	= 	UNDEFINED;
 	protected int chromaticIndex 	= 	UNDEFINED; 
 	protected List <Point> coordinates = new ArrayList<Point>();
-	protected int[] lastStep = new int[3];
 	protected Stack<int[]> steps = new Stack<int[]>();
 	
 	
@@ -110,8 +109,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		
 		graph[u][v] = color;
 		graph[v][u] = color;
-//		this.setChanged();
-//		this.notifyObservers();
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	@Override
@@ -370,7 +369,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public int[] getLastStep(){
 		if(steps.isEmpty()){
-			return new int[3];
+			return new int[2];
 		}
 		return steps.peek();
 	}
@@ -381,7 +380,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	public void removeLastStep(){
 		if(!steps.isEmpty()){
 			int [] last = steps.pop();
-			colors[last[2]-1]--;;
+			int color = getEdgeColor(last[0],last[1]);
+			colors[color-1]--;
 		}
 		this.setChanged();
 		this.notifyObservers();
@@ -395,7 +395,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	public void setLastStep(int u, int v){
 		
 		int color = graph[u][v];
-		steps.push(new int[]{u,v,color});
+		steps.push(new int[]{u,v});
 		
 		if(colors.length-1 == color){
 			colors = Arrays.copyOf(colors, colors.length*2);
