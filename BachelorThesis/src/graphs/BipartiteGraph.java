@@ -2,6 +2,7 @@ package graphs;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
@@ -77,12 +78,14 @@ public class BipartiteGraph extends SimpleGraph{
 			
 			for(int i = 0; i < vertexCount1; i++){
 				coordinates.add(new Point((int)xCoordinate, (int)yCoordinate1Row));
+				labelCoordinates.add(new Point((int)xCoordinate, (int) yCoordinate1Row - 5));
 				xCoordinate += distanceBetweenFirstSet;
 			}
 			
 			xCoordinate = 25 + distanceBetweenSecondSet/2;
 			for(int i = 0; i < vertexCount2; i++){
 				coordinates.add(new Point((int)xCoordinate, (int)yCoordinate2Row));
+				labelCoordinates.add(new Point((int)xCoordinate, (int) yCoordinate2Row + 25));
 				xCoordinate += distanceBetweenSecondSet;
 			}
 			
@@ -123,9 +126,15 @@ public class BipartiteGraph extends SimpleGraph{
 	public void paintGraph(Graphics g, Dimension d) {
 		
 		List<Point> coordinates = calculateNodeCoordinates(d);
-		
 		for(Point p: coordinates){
 			paintNode(p, g);
+		}
+
+		int node = 1;
+		g.setFont(new Font("", Font.BOLD, 12));
+		for(Point p: labelCoordinates){
+			g.drawString(String.valueOf(node), (int)p.getX(), (int)p.getY());
+			node++;
 		}
 		
 		for(int i = 0; i < graph.length; i++){

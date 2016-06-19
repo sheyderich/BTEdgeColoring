@@ -3,11 +3,15 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import exceptions.NotEnoughColorsException;
 import graphs.DrawableGraph;
+import graphs.SimpleGraph;
 
 /**
  * Displays a white Panel where the graph is drawn upon.  
@@ -32,6 +36,7 @@ public class GraphPanel extends JPanel {
 			throw new IllegalArgumentException("Panel has to be at least 1x1 Pixel.");
 		this.model = model;
 		this.dimension = new Dimension(width,height);
+		this.setLayout(null);
 		setPreferredSize(dimension);
 		setForeground(Color.BLACK);
 		setBackground(Color.WHITE);

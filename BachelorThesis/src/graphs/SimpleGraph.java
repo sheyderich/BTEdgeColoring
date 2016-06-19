@@ -1,6 +1,7 @@
 package graphs;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	protected int ubChromaticIndex 	= 	UNDEFINED;
 	protected int chromaticIndex 	= 	UNDEFINED; 
 	protected List <Point> coordinates = new ArrayList<Point>();
+	protected List <Point> labelCoordinates = new ArrayList<Point>();
 	protected Stack<int[]> steps = new Stack<int[]>();
 	
 	
@@ -292,7 +294,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	
 	@Override
 	public void paintGraph(Graphics g, Dimension d){
-		
+
 		List<Point> coordinates = calculateNodeCoordinates(d);
 		
 		for(Point p: coordinates){
@@ -309,6 +311,14 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 				}
 			}
 		}
+		
+		int node = 1;
+		g.setFont(new Font("", Font.BOLD, 12));
+		for(Point p: labelCoordinates){
+			g.drawString(String.valueOf(node), (int)p.getX(), (int)p.getY());
+			node++;
+		}
+		
 	}
 	
 	/**
@@ -320,16 +330,25 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	@Override
 	public List<Point> calculateNodeCoordinates(Dimension d) {
+		
 		if(coordinates.isEmpty()){
 			double radius = d.getWidth() < d.getHeight()? (d.getWidth()/2)-20 : (d.getHeight()/2)-20;
 			Point center = new Point((int)(d.getWidth()/2 + 0.5),(int)(d.getHeight()/2 + 0.5));
 			double degreeBetweenPoints = (2*Math.PI)/graph.length;
+			double radiusLabel = radius + 15;
 			
 			for(int i = 0; i < graph.length; i++){
 				double x = Math.cos(i*degreeBetweenPoints)*radius+center.getX();
 				double y = Math.sin(i*degreeBetweenPoints)*radius+center.getY();
 				Point p = new Point((int)(x+0.5), (int)(y+0.5));
 				coordinates.add(p);
+				
+				double xL = Math.cos(i*degreeBetweenPoints)*radiusLabel+center.getX();
+				xL = xL+4.5;
+				double yL = Math.sin(i*degreeBetweenPoints)*radiusLabel+center.getY();
+				yL= yL+10;
+				Point pL = new Point((int)(xL+0.5), (int)(yL+0.5));
+				labelCoordinates.add(pL);
 			}
 		}
 		return coordinates;
@@ -404,5 +423,14 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		colors[color-1]++;
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	/**
+	 * Returns a list with coordinates where labels should be placed to 
+	 * denote the node numbers on the graph
+	 * @return
+	 */
+	public List<Point> getLabelCoordinates(){
+		return labelCoordinates;
 	}
 }
