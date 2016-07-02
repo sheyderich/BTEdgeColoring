@@ -39,6 +39,12 @@ public abstract class DrawableGraph extends Observable{
 	public abstract int getVertexNumber();
 	
 	/**
+	 * Returns a list of the edges of the graph
+	 * @return
+	 */
+	public abstract List<Object> getEdges();
+	
+	/**
 	 * Checks whether the graph is completely uncolored
 	 * @return
 	 */

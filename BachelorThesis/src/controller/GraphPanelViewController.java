@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import algorithms.Koenig;
+import algorithms.LocalSearchGreedy;
 import exceptions.IllegalGraphTypeException;
 import algorithms.EdgeColoringAlgorithm;
 import algorithms.Greedy;
@@ -46,7 +47,7 @@ public class GraphPanelViewController {
 		graphPanelView = new GraphPanelView((int)dim.getWidth(), (int)dim.getHeight(),model);
 		
 		algorithms.add("Greedy Algorithm");
-		algorithms.add("Local Search Algorithm");
+		algorithms.add("Local Search Algorithm Greedy");
 		algorithms.add("Line Graph");
 		
 		ActionListener importFile = new ActionListener(){
@@ -147,14 +148,7 @@ public class GraphPanelViewController {
 				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 		        String algorithmName = (String)cb.getSelectedItem();
 		        usedAlgorithm = getAlgorithm(algorithmName);
-		        if(getModel() instanceof BipartiteGraph){
-		        	setModel(new BipartiteGraph((BipartiteGraph)getModel()));
-		        }else if(getModel() instanceof SimpleGraph){
-		        	setModel(new SimpleGraph((SimpleGraph)getModel()));
-		        } else {
-		        	throw new IllegalGraphTypeException("This type of graph is not supported");
-		        }
-		        
+		        ((Graph)getModel()).uncolor();
 			}
 		};
 		cb.addActionListener(chooseAlg);
@@ -171,7 +165,8 @@ public class GraphPanelViewController {
 	private EdgeColoringAlgorithm getAlgorithm(String algorithmName) {
 		switch(algorithmName){
 		case "König's Algorithm": return new Koenig();
-		case "Greedy Algorithm": return new Greedy();
+		case "Greedy Algorithm": return new Greedy(model.getEdges());
+		case "Local Search Algorithm Greedy": return new LocalSearchGreedy();
 		default: System.out.println("Not yet implemented");
 		return new Koenig();
 		}

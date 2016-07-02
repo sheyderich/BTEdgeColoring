@@ -1,5 +1,6 @@
 package graphs;
 
+import java.awt.Point;
 import java.util.List;
 /**
  * Interface that defines the operations a graph must provide.
@@ -27,6 +28,14 @@ public interface Graph {
 	 * @param v the other vertex of the edge
 	 */
 	public void addEdge(int u, int v);
+	
+	/**
+	 * Returns a List filled with points, where 
+	 * the two coordinates of the point denote
+	 * an edge
+	 * @return
+	 */
+	public List<Object> getEdges();
 	
 	/**
 	 * Returns true if an edge exists, false else
@@ -174,4 +183,9 @@ public interface Graph {
 	 * @return
 	 */
 	public int[] getLastStep();
+	
+	/**
+	 * Uncolors the graph to reset the algorithm
+	 */
+	public void uncolor();
 }

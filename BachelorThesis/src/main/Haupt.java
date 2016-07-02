@@ -16,7 +16,7 @@ public class Haupt {
 		
 		GraphReader gr = new GraphReader(args[0]);
 		Graph g = gr.buildGraphFromFile();
-		Greedy gre = new Greedy();
+		Greedy gre = new Greedy(g.getEdges());
 		gre.applyAlgorithmComplete(g);
 		System.out.println(((SimpleGraph)g).toString());
 		System.out.println(g.getQuantityColors());

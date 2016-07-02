@@ -40,6 +40,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	protected int lbChromaticIndex	= 	UNDEFINED;
 	protected int ubChromaticIndex 	= 	UNDEFINED;
 	protected int chromaticIndex 	= 	UNDEFINED; 
+	protected List<Object> edges = new ArrayList<Object>();
 	protected List <Point> coordinates = new ArrayList<Point>();
 	protected List <Point> labelCoordinates = new ArrayList<Point>();
 	protected Stack<int[]> steps = new Stack<int[]>();
@@ -83,7 +84,13 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 			numberEdges += 1;
 			graph[u][v] = UNCOLORED;
 			graph[v][u] = UNCOLORED;
+			edges.add(new Point(u,v));
 		}
+	}
+	
+	@Override
+	public List<Object> getEdges(){
+		return (List<Object>)edges;
 	}
 	
 	@Override
@@ -415,7 +422,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		
 		int color = graph[u][v];
 		steps.push(new int[]{u,v});
-		
 		if(colors.length-1 == color){
 			colors = Arrays.copyOf(colors, colors.length*2);
 		}
@@ -432,5 +438,15 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public List<Point> getLabelCoordinates(){
 		return labelCoordinates;
+	}
+
+	@Override
+	public void uncolor() {
+		while(!steps.isEmpty()){
+			int[] last = steps.pop();
+			removeEdgeColor(last[0], last[1]);
+		}
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

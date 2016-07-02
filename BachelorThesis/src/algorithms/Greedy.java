@@ -1,7 +1,8 @@
 package algorithms;
 
-import java.util.ArrayList;
+import java.awt.Point;
 import java.util.List;
+import java.util.Stack;
 
 import graphs.Graph;
 
@@ -16,46 +17,48 @@ public class Greedy implements EdgeColoringAlgorithm {
 
 	private int u = 0; 
 	private int v = 0;
-	private List<int[]> steps = new ArrayList<int[]>();
+	private int i = 0; 
+	private Stack<int[]> steps = new Stack<int[]>();
+	private List<Object> edges;
 	
+	public Greedy(List<Object> edges){
+		this.edges = edges;
+	}
 	
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
-		for(; u < graph.getVertexNumber(); u++){
-			for(; v < graph.getVertexNumber(); v++){
-				if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
-					tryColorEdge(graph, u, v);
-				}
+		
+		for(; i < edges.size(); i++){
+			u = ((Point)edges.get(i)).x;
+			v = ((Point)edges.get(i)).y;
+			if(!graph.isEdgeColored(u, v)){
+				tryColorEdge(graph,u,v);
 			}
-			v = 0;
 		}
 	}
 
 	@Override
 	public void applyAlgorithmStepwise(Graph graph) {
+		
 		if(!graph.isColored()){
-			for(; u < graph.getVertexNumber(); u++){
-				for(; v < graph.getVertexNumber(); v++){
-					if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
-						tryColorEdge(graph, u, v);
-						return;
-					}
-				}
-				v = 0;
+			u = ((Point)edges.get(i)).x;
+			v = ((Point)edges.get(i)).y;
+			System.out.println(u + " " + v);
+			if(!graph.isEdgeColored(u, v)){
+				tryColorEdge(graph, u, v);
 			}
+			i++;
+			
 		}
 	}
 
 	@Override
 	public void undoLastColoring(Graph graph) {
 		if(!steps.isEmpty()){
-			
-				int[] last = steps.get(steps.size()-1);
-				steps.remove(steps.size()-1);
-				graph.removeEdgeColor(last[0], last[1]);
+				int[] last = steps.pop();
 				graph.removeLastStep();
-				u = last[0];
-				v = last[1];
+				graph.removeEdgeColor(last[0], last[1]);
+				i--;
 		}
 	}
 
@@ -72,9 +75,8 @@ public class Greedy implements EdgeColoringAlgorithm {
 			graph.setEdgeColor(u, v, color);
 			color++;
 		}while(!graph.isEdgeColoringValid(u, v));
-		
 		graph.setLastStep(u, v);
-		steps.add(graph.getLastStep());
+		steps.push(graph.getLastStep());
 	}
 	
 }
