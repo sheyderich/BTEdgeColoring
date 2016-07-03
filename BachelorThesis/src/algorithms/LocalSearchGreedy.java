@@ -23,7 +23,7 @@ public class LocalSearchGreedy implements EdgeColoringAlgorithm {
 
 		createStartSolution(graph);		
 		int numberOfIterationsWithoutImprovement = 0;
-		while (numberOfIterationsWithoutImprovement < 100) {
+		while (numberOfIterationsWithoutImprovement < 10000) {
 			
 			List<Point> neighbor = createNewOrder(solutionOrder);
 			if (isNewOrderBetter(neighbor, graph)) {
@@ -32,6 +32,7 @@ public class LocalSearchGreedy implements EdgeColoringAlgorithm {
 			} else {
 				numberOfIterationsWithoutImprovement++;
 			}
+			
 		}
 	}
 
@@ -62,6 +63,13 @@ public class LocalSearchGreedy implements EdgeColoringAlgorithm {
 			}
 			setNewBestSolution(graph, last);
 		}
+	}
+	
+	@Override
+	public void resetColoring(Graph graph) {
+		lastSteps.clear();
+		numberOfIterations = 0; 
+		graph.uncolor();
 	}
 	
 	/**

@@ -3,15 +3,9 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.util.List;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import exceptions.NotEnoughColorsException;
 import graphs.DrawableGraph;
-import graphs.SimpleGraph;
 
 /**
  * Displays a white Panel where the graph is drawn upon.  

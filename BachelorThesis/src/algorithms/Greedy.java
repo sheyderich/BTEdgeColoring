@@ -61,6 +61,13 @@ public class Greedy implements EdgeColoringAlgorithm {
 				i--;
 		}
 	}
+	
+	@Override
+	public void resetColoring(Graph graph) {
+		graph.uncolor();
+		i = 0; 
+		steps.clear();
+	}
 
 	/**
 	 * Colors the given edge with the first color that does not

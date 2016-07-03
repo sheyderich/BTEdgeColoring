@@ -3,12 +3,15 @@ package algorithms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
+
 import exceptions.EdgeNotColoredException;
 import exceptions.EdgeNotFoundException;
 import exceptions.IllegalGraphTypeException;
 import exceptions.NoFreeColorException;
 import graphs.BipartiteGraph;
 import graphs.Graph;
+import graphs.SimpleGraph;
 /**
  * A algorithm for coloring the edges of a bipartite graph 
  * introduced by König. It colors the edges with the first available color
@@ -18,7 +21,7 @@ import graphs.Graph;
  */
 public class Koenig implements EdgeColoringAlgorithm{
 	
-	private List<int[]> steps = new ArrayList<int[]>();
+	private Stack<int[]> steps = new Stack<int[]>();
 	private int u = 0; 
 	private int v = 0;
 	private int command = 0; 
@@ -53,18 +56,13 @@ public class Koenig implements EdgeColoringAlgorithm{
 	 * Does not set u, v to a new value if graph is completely colored already
 	 * @param graph
 	 */
-	public void applyAlgorithmStepwise(Graph g){
-		BipartiteGraph graph;
-		if(!(g instanceof BipartiteGraph)){
-			throw new IllegalGraphTypeException("Only Bipartite Graphs are allowed in Koenig's algorithm.");
-		}else{
-			graph = (BipartiteGraph)g;
-		}
+	public void applyAlgorithmStepwise(Graph graph){
+
 		if(!graph.isColored()){
 			for(; u < graph.getVertexNumber(); u++){
 				for(; v < graph.getVertexNumber(); v++){
 					if(graph.isEdgeExistent(u, v) && !graph.isEdgeColored(u, v)){
-						applyColoringForEdge(graph,u,v, command);
+						applyColoringForEdge((BipartiteGraph)graph,u,v, command);
 						if(!graph.isEdgeColored(u, v)){
 							command++;
 						}else{
@@ -85,21 +83,22 @@ public class Koenig implements EdgeColoringAlgorithm{
 	 * @param graph
 	 */
 	public void undoLastColoring(Graph g){
-		BipartiteGraph graph;
-		if(!(g instanceof BipartiteGraph)){
-			throw new IllegalGraphTypeException("Only Bipartite Graphs are allowed in Koenig's algorithm.");
-		}else{
-			graph = (BipartiteGraph)g;
-		}
-		
-		if(steps.size() > 0){
-			int[] last = steps.get(steps.size()-1);
-			steps.remove(steps.size()-1);
-			graph.removeLastStep();
-			graph.removeEdgeColor(last[0], last[1]);
+		if(!steps.empty()){
+			int[] last = steps.pop();
+			g.removeLastStep();
+			g.removeEdgeColor(last[0], last[1]);
 			u = last[0];
 			v = last[1];
 		}
+	}
+	
+	@Override
+	public void resetColoring(Graph graph) {
+		graph.uncolor();
+		steps.clear();
+		u = 0; 
+		v = 0;
+		command = 0; 
 	}
 	
 	/**
@@ -120,7 +119,7 @@ public class Koenig implements EdgeColoringAlgorithm{
 				graph.setAugmentedPath(path);
 			}else{
 				graph.setLastStep(u,v);
-				steps.add(graph.getLastStep());
+				steps.push(graph.getLastStep());
 			}
 			break; 
 		case 1: 
@@ -132,7 +131,7 @@ public class Koenig implements EdgeColoringAlgorithm{
 			graph.deleteAugmentedPath();
 			tryColorEdge(graph, u, v);
 			graph.setLastStep(u, v);
-			steps.add(graph.getLastStep());
+			steps.push(graph.getLastStep());
 		default: 
 			break;
 		}
@@ -156,7 +155,7 @@ public class Koenig implements EdgeColoringAlgorithm{
 			tryColorEdge(graph, u, v);
 		}
 		graph.setLastStep(u, v);
-		steps.add(graph.getLastStep());
+		steps.push(graph.getLastStep());
 	}
 	
 
@@ -170,16 +169,18 @@ public class Koenig implements EdgeColoringAlgorithm{
 	 * @return
 	 */
 	private static boolean tryColorEdge(Graph graph, int u, int v){
-		for(int color = 1; color <= graph.getChromaticIndex(); color++){
+		int color = 1; 
+		do{
 			graph.setEdgeColor(u, v, color);
-			
-			if(graph.isEdgeColoringValid(u, v)){
-				break;
-			}else{
-				graph.removeEdgeColor(u, v);
-			}
+			color++;
+		}while(!graph.isEdgeColoringValid(u, v) && color <= graph.getChromaticIndex());
+		
+		if(graph.isEdgeColoringValid(u, v)){
+			return true;
+		}else{
+			graph.setEdgeColor(u,v, SimpleGraph.UNCOLORED);
+			return false;
 		}
-		return graph.isEdgeColored(u, v);
 	}
 	
 	/**

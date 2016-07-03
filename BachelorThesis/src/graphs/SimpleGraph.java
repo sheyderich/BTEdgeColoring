@@ -114,7 +114,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 
 	@Override
 	public void setEdgeColor(int u, int v, int color) {
-		if(color < 1) throw new InvalidColorException("Color has to be chosen from 1 .. n. Color was: " + color);
+		if(color != UNCOLORED && color < 1) throw new InvalidColorException("Color has to be chosen from 1 .. n. Color was: " + color);
 		
 		graph[u][v] = color;
 		graph[v][u] = color;
@@ -422,7 +422,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		if(colors.length-1 == color){
 			colors = Arrays.copyOf(colors, colors.length*2);
 		}
-		
+		System.out.println(color);
 		colors[color-1]++;
 		this.setChanged();
 		this.notifyObservers();

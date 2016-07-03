@@ -25,6 +25,7 @@ public class GraphPanelView extends JPanel implements Observer{
 	private JButton importButton;
 	private JButton lastButton;
 	private JButton completeButton;
+	private JButton resetButton;
 	private JComboBox<Object> chooseAlgorithm;
 	private JPanel menu;
 	private DrawableGraph model;
@@ -53,12 +54,14 @@ public class GraphPanelView extends JPanel implements Observer{
 		importButton = new JButton("Import Graph");
 		lastButton = new JButton("Undo Last Coloring");
 		completeButton = new JButton("Final Coloring");
+		resetButton = new JButton ("Reset Graph");
 		chooseAlgorithm = new JComboBox<Object>();
 		menu.add(chooseAlgorithm);
 		menu.add(importButton);
 		menu.add(startButton);
 		menu.add(lastButton);
 		menu.add(completeButton);
+		menu.add(resetButton);
 	}
 	
 	/**
@@ -91,6 +94,14 @@ public class GraphPanelView extends JPanel implements Observer{
 	 */
 	public JButton getCompleteButton(){
 		return completeButton;
+	}
+	
+	/**
+	 * Returns the reset button
+	 * @return
+	 */
+	public JButton getResetButton(){
+		return resetButton;
 	}
 	
 	/**

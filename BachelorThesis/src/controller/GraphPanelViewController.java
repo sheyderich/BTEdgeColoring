@@ -100,6 +100,14 @@ public class GraphPanelViewController {
 		};
 		
 		graphPanelView.getCompleteButton().addActionListener(completeAlg);
+		
+		ActionListener resetAlg = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				usedAlgorithm.resetColoring((Graph)model);
+			}
+		};
+		
+		graphPanelView.getResetButton().addActionListener(resetAlg);
 
 	}
 	

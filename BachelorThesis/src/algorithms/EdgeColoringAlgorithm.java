@@ -33,4 +33,10 @@ public interface EdgeColoringAlgorithm {
 	 */
 	public void undoLastColoring(Graph graph);
 	
+	/**
+	 * Resets the whole coloring
+	 * @param graph
+	 */
+	public void resetColoring(Graph graph);
+	
 }
