@@ -40,7 +40,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	protected int lbChromaticIndex	= 	UNDEFINED;
 	protected int ubChromaticIndex 	= 	UNDEFINED;
 	protected int chromaticIndex 	= 	UNDEFINED; 
-	protected List<Object> edges = new ArrayList<Object>();
+	protected List<Point> edges = new ArrayList<Point>();
 	protected List <Point> coordinates = new ArrayList<Point>();
 	protected List <Point> labelCoordinates = new ArrayList<Point>();
 	protected Stack<int[]> steps = new Stack<int[]>();
@@ -89,8 +89,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	}
 	
 	@Override
-	public List<Object> getEdges(){
-		return (List<Object>)edges;
+	public List<Point> getEdges(){
+		return edges;
 	}
 	
 	@Override

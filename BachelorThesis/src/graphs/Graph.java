@@ -35,7 +35,7 @@ public interface Graph {
 	 * an edge
 	 * @return
 	 */
-	public List<Object> getEdges();
+	public List<Point> getEdges();
 	
 	/**
 	 * Returns true if an edge exists, false else

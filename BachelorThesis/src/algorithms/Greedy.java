@@ -19,18 +19,18 @@ public class Greedy implements EdgeColoringAlgorithm {
 	private int v = 0;
 	private int i = 0; 
 	private Stack<int[]> steps = new Stack<int[]>();
-	private List<Object> edges;
+	private List<Point> edges;
 	
-	public Greedy(List<Object> edges){
-		this.edges = edges;
+	public Greedy(List<Point> neighbor){
+		this.edges = neighbor;
 	}
 	
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
 		
 		for(; i < edges.size(); i++){
-			u = ((Point)edges.get(i)).x;
-			v = ((Point)edges.get(i)).y;
+			u = edges.get(i).x;
+			v = edges.get(i).y;
 			if(!graph.isEdgeColored(u, v)){
 				tryColorEdge(graph,u,v);
 			}

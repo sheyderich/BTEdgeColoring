@@ -42,7 +42,7 @@ public abstract class DrawableGraph extends Observable{
 	 * Returns a list of the edges of the graph
 	 * @return
 	 */
-	public abstract List<Object> getEdges();
+	public abstract List<Point> getEdges();
 	
 	/**
 	 * Checks whether the graph is completely uncolored

@@ -1,42 +1,35 @@
 package algorithms;
 
 import java.awt.Point;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
+import java.util.Stack;
 import graphs.Graph;
 import graphs.SimpleGraph;
 
 public class LocalSearchGreedy implements EdgeColoringAlgorithm {
 
+	private int numberOfIterations;
+	private EdgeColoringAlgorithm sStar;
+	private int minimalAmountOfColors;
+	private List<Point> solutionOrder;
+	private Random rand = new Random();
+	private Stack<List<Point>> lastSteps = new Stack<List<Point>>();
+
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
-		//generate initial solution
-		EdgeColoringAlgorithm sStar = new Greedy(graph.getEdges());
-		List<Object> solutionOrder = graph.getEdges();
-		sStar.applyAlgorithmComplete(graph);
-		int minimalAmountOfColors = graph.getQuantityColors();
+
+		createStartSolution(graph);		
 		int numberOfIterationsWithoutImprovement = 0;
-		Random rand = new Random();
-		Object[] edges = solutionOrder.toArray();
-		
-		//while better solution exists, do: 
-		while(numberOfIterationsWithoutImprovement < 100){
-			int first = rand.nextInt(solutionOrder.size());
-			int second = rand.nextInt(solutionOrder.size());
-			Point tmp = (Point) solutionOrder.get(first);
-			edges[first] = solutionOrder.get(second);
-			edges[second] = tmp;
-			List<Object> neighbor = Arrays.asList(edges);
-			sStar = new Greedy(neighbor);
-			sStar.applyAlgorithmComplete(new SimpleGraph((SimpleGraph)graph));
-			if(minimalAmountOfColors > graph.getQuantityColors()){
-				minimalAmountOfColors = graph.getQuantityColors();
-				solutionOrder = neighbor;
-			}else{
-				sStar = new Greedy(solutionOrder);
-				sStar.applyAlgorithmComplete(new SimpleGraph((SimpleGraph)graph));
+		while (numberOfIterationsWithoutImprovement < 100) {
+			
+			List<Point> neighbor = createNewOrder(solutionOrder);
+			if (isNewOrderBetter(neighbor, graph)) {
+				setNewBestSolution(graph,neighbor);
+				lastSteps.add(neighbor);
+			} else {
 				numberOfIterationsWithoutImprovement++;
 			}
 		}
@@ -44,17 +37,82 @@ public class LocalSearchGreedy implements EdgeColoringAlgorithm {
 
 	@Override
 	public void applyAlgorithmStepwise(Graph graph) {
-		EdgeColoringAlgorithm sStar = new Greedy(graph.getEdges());
-		sStar.applyAlgorithmComplete(graph);
-		int minimalAmountOfColors = graph.getQuantityColors();
 		
-
+		if (numberOfIterations == 0) {
+			createStartSolution(graph);
+		}else{
+			List<Point> neighbor = createNewOrder(solutionOrder);
+			if (isNewOrderBetter(neighbor, graph)) {
+				setNewBestSolution(graph, neighbor);
+				lastSteps.add(neighbor);
+			}
+		}
+		numberOfIterations++;
 	}
 
 	@Override
 	public void undoLastColoring(Graph graph) {
-		// TODO Auto-generated method stub
+		if(!lastSteps.isEmpty()){
+			lastSteps.pop();
+			List<Point> last;
+			if(!lastSteps.isEmpty()){
+				last = lastSteps.peek();
+			}else {
+				last = graph.getEdges();
+			}
+			setNewBestSolution(graph, last);
+		}
+	}
+	
+	/**
+	 * Creates an initial solution
+	 * @param graph
+	 */
+	private void createStartSolution(Graph graph){
+		solutionOrder = graph.getEdges();
+		sStar = new Greedy(solutionOrder);
+		sStar.applyAlgorithmComplete(graph);
+		minimalAmountOfColors = graph.getQuantityColors();
+	}
+	
+	/**
+	 * Creates a random new Order of a Point List
+	 * based on a given one 
+	 * @param old
+	 * @return
+	 */
+	private List<Point> createNewOrder(List<Point> old){
+		List<Point> neighbor = new ArrayList<Point>(solutionOrder);
+		Collections.shuffle(neighbor, rand);
+		return neighbor;
+	}
+	
+	/**
+	 * Returns true if new Order leads to more efficient 
+	 * coloring
+	 * @param neighbor
+	 * @param graph
+	 * @return
+	 */
+	private boolean isNewOrderBetter(List<Point> neighbor, Graph graph){
+		Greedy greedy = new Greedy(neighbor);
+		Graph tmp = new SimpleGraph((SimpleGraph)graph);
+		greedy.applyAlgorithmComplete(tmp);
+		return tmp.getQuantityColors() <= minimalAmountOfColors;
 
 	}
-
+	
+	/**
+	 * Sets a new best Solution and colors the 
+	 * edges of the graph in the corresponding 
+	 * colors of the new order
+	 * @param graph
+	 * @param neighbor
+	 */
+	private void setNewBestSolution(Graph graph, List<Point> neighbor) {
+		sStar = new Greedy(neighbor);
+		graph.uncolor();
+		sStar.applyAlgorithmComplete(graph);
+		minimalAmountOfColors = graph.getQuantityColors();
+	}
 }
