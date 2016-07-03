@@ -11,14 +11,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import algorithms.Koenig;
 import algorithms.LocalSearchGreedy;
-import exceptions.IllegalGraphTypeException;
 import algorithms.EdgeColoringAlgorithm;
 import algorithms.Greedy;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
 import graphs.Graph;
-import graphs.SimpleGraph;
 import view.GraphPanelView;
 
 /**

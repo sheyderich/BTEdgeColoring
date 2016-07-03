@@ -98,7 +98,7 @@ public class LocalSearchGreedy implements EdgeColoringAlgorithm {
 		Greedy greedy = new Greedy(neighbor);
 		Graph tmp = new SimpleGraph((SimpleGraph)graph);
 		greedy.applyAlgorithmComplete(tmp);
-		return tmp.getQuantityColors() <= minimalAmountOfColors;
+		return tmp.getQuantityColors() < minimalAmountOfColors;
 
 	}
 	

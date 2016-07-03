@@ -127,11 +127,10 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		if(graph[u][v] == NOTEXISTENT){
 			throw new EdgeNotFoundException("The Edge does not exist");
 		}
-		
+		int color = getEdgeColor(u,v);
+		colors[color-1]--;
 		graph[u][v] = UNCOLORED;
 		graph[v][u] = UNCOLORED;
-//		this.setChanged();
-//		this.notifyObservers();
 	}
 
 	@Override
@@ -405,9 +404,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public void removeLastStep(){
 		if(!steps.isEmpty()){
-			int [] last = steps.pop();
-			int color = getEdgeColor(last[0],last[1]);
-			colors[color-1]--;
+			steps.pop();
 		}
 		this.setChanged();
 		this.notifyObservers();
