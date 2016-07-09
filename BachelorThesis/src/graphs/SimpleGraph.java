@@ -422,7 +422,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		if(colors.length-1 == color){
 			colors = Arrays.copyOf(colors, colors.length*2);
 		}
-		System.out.println(color);
 		colors[color-1]++;
 		this.setChanged();
 		this.notifyObservers();

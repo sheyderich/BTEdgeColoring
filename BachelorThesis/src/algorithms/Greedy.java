@@ -43,7 +43,6 @@ public class Greedy implements EdgeColoringAlgorithm {
 		if(!graph.isColored()){
 			u = ((Point)edges.get(i)).x;
 			v = ((Point)edges.get(i)).y;
-			System.out.println(u + " " + v);
 			if(!graph.isEdgeColored(u, v)){
 				tryColorEdge(graph, u, v);
 			}

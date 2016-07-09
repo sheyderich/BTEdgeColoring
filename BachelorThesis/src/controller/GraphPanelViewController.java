@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import algorithms.Koenig;
 import algorithms.LocalSearchGreedy;
+import algorithms.RandomSearchGreedy;
 import algorithms.EdgeColoringAlgorithm;
 import algorithms.Greedy;
 import graphReader.GraphReader;
@@ -45,6 +46,7 @@ public class GraphPanelViewController {
 		graphPanelView = new GraphPanelView((int)dim.getWidth(), (int)dim.getHeight(),model);
 		
 		algorithms.add("Greedy Algorithm");
+		algorithms.add("Randomized Search Algorithm Greedy");
 		algorithms.add("Local Search Algorithm Greedy");
 		algorithms.add("Line Graph");
 		
@@ -172,6 +174,7 @@ public class GraphPanelViewController {
 		switch(algorithmName){
 		case "König's Algorithm": return new Koenig();
 		case "Greedy Algorithm": return new Greedy(model.getEdges());
+		case "Randomized Search Algorithm Greedy": return new RandomSearchGreedy();
 		case "Local Search Algorithm Greedy": return new LocalSearchGreedy();
 		default: System.out.println("Not yet implemented");
 		return new Koenig();
