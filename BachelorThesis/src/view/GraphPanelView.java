@@ -145,4 +145,8 @@ public class GraphPanelView extends JPanel implements Observer{
 		graphInfoPanel.repaint();
 	}
 	
+	public void setAlgorithm(String s){
+		graphInfoPanel.setAlgorithm(s);
+	}
+	
 }

@@ -1,4 +1,4 @@
-package algorithms;
+package edgeAlgorithms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import graphs.SimpleGraph;
  * @author Stephanie Heyderich
  * @version 12.05.2016
  */
-public class Koenig implements EdgeColoringAlgorithm{
+public class Koenig implements ColoringAlgorithm{
 	
 	private Stack<int[]> steps = new Stack<int[]>();
 	private int u = 0; 

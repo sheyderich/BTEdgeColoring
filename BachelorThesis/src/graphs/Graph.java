@@ -188,4 +188,5 @@ public interface Graph {
 	 * Uncolors the graph to reset the algorithm
 	 */
 	public void uncolor();
+	
 }

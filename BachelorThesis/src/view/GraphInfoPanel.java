@@ -30,6 +30,7 @@ public class GraphInfoPanel extends JPanel {
 	private JLabel vertexDegree;
 	private JLabel lBound;
 	private JLabel uBound;
+	private JLabel usedAlgorithm;
 	private JLabel numberOfColors;
 	private JLabel lastStep;
 	
@@ -103,6 +104,14 @@ public class GraphInfoPanel extends JPanel {
 		this.add(algorithm);
 		JLabel empty3 = new JLabel("");
 		this.add(empty3);
+		
+		JLabel uAlgorithm = new JLabel("  Algorithm:");
+		uAlgorithm.setFont(font);
+		this.add(uAlgorithm);
+		usedAlgorithm = new JLabel("--");
+		usedAlgorithm.setFont(font);
+		this.add(usedAlgorithm);
+		
 		JLabel colorLabel = new JLabel("  Number of Colors:");
 		colorLabel.setFont(font);
 		this.add(colorLabel);
@@ -162,6 +171,9 @@ public class GraphInfoPanel extends JPanel {
 		setUpInfoLabels();
 	}
 	
+	public void setAlgorithm(String s){
+		usedAlgorithm.setText(s);
+	}
 	
 	
 	/**

@@ -1,4 +1,4 @@
-package algorithms;
+package edgeAlgorithms;
 
 import java.awt.Point;
 import java.util.List;
@@ -13,7 +13,7 @@ import graphs.Graph;
  * @author Stephanie Heyderich
  * @version 12.05.2016
  */
-public class Greedy implements EdgeColoringAlgorithm {
+public class Greedy implements ColoringAlgorithm {
 
 	private int u = 0; 
 	private int v = 0;

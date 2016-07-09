@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import algorithms.Koenig;
+
+import edgeAlgorithms.Koenig;
 import exceptions.NoFreeColorException;
 import graphs.BipartiteGraph;
 

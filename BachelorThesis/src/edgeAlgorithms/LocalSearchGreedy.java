@@ -1,4 +1,4 @@
-package algorithms;
+package edgeAlgorithms;
 
 import java.awt.Point;
 import java.util.ArrayList;

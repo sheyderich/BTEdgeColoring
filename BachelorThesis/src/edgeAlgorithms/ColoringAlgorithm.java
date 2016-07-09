@@ -1,4 +1,4 @@
-package algorithms;
+package edgeAlgorithms;
 
 import graphs.Graph;
 
@@ -11,7 +11,7 @@ import graphs.Graph;
  * @author Stephanie Heyderich
  * @version 8.5.2016
  */
-public interface EdgeColoringAlgorithm {
+public interface ColoringAlgorithm {
 	
 	/**
 	 * Proceed completely through the algorithm 
@@ -38,5 +38,6 @@ public interface EdgeColoringAlgorithm {
 	 * @param graph
 	 */
 	public void resetColoring(Graph graph);
+	
 	
 }

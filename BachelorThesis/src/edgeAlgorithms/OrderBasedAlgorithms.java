@@ -1,4 +1,4 @@
-package algorithms;
+package edgeAlgorithms;
 
 import java.awt.Point;
 import java.util.List;
@@ -8,10 +8,10 @@ import java.util.Stack;
 import graphs.Graph;
 import graphs.SimpleGraph;
 
-public abstract class OrderBasedAlgorithms implements EdgeColoringAlgorithm {
+public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 
 	private int numberOfIterations;
-	private EdgeColoringAlgorithm sStar;
+	private ColoringAlgorithm sStar;
 	private int minimalAmountOfColors;
 	protected List<Point> solutionOrder;
 	protected Random rand = new Random();

@@ -9,11 +9,14 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import algorithms.Koenig;
-import algorithms.LocalSearchGreedy;
-import algorithms.RandomSearchGreedy;
-import algorithms.EdgeColoringAlgorithm;
-import algorithms.Greedy;
+
+import edgeAlgorithms.ColoringAlgorithm;
+import edgeAlgorithms.Greedy;
+import edgeAlgorithms.Koenig;
+import edgeAlgorithms.LineGraphAlgorithms;
+import edgeAlgorithms.LineGraphGreedy;
+import edgeAlgorithms.LocalSearchGreedy;
+import edgeAlgorithms.RandomSearchGreedy;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
@@ -31,7 +34,7 @@ public class GraphPanelViewController {
 	
 	private GraphPanelView graphPanelView;
 	private DrawableGraph model;
-	private EdgeColoringAlgorithm usedAlgorithm;
+	private ColoringAlgorithm usedAlgorithm;
 	private boolean started = false; 
 	private Dimension dim = new Dimension(800,500);
 	private final String WRONG_FILE = "Please choose a .txt file with a representation of a graph. The file should be "
@@ -48,7 +51,7 @@ public class GraphPanelViewController {
 		algorithms.add("Greedy Algorithm");
 		algorithms.add("Randomized Search Algorithm Greedy");
 		algorithms.add("Local Search Algorithm Greedy");
-		algorithms.add("Line Graph");
+		algorithms.add("Line Graph Greedy");
 		
 		ActionListener importFile = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -148,6 +151,7 @@ public class GraphPanelViewController {
 		
 		//default algorithm
 		usedAlgorithm = getAlgorithm((String)cb.getSelectedItem());
+		graphPanelView.setAlgorithm((String)cb.getSelectedItem());
 		
 		ActionListener chooseAlg = new ActionListener(){
 			@SuppressWarnings("unchecked")
@@ -157,6 +161,7 @@ public class GraphPanelViewController {
 		        String algorithmName = (String)cb.getSelectedItem();
 		        usedAlgorithm = getAlgorithm(algorithmName);
 		        ((Graph)getModel()).uncolor();
+		        graphPanelView.setAlgorithm(algorithmName);
 			}
 		};
 		cb.addActionListener(chooseAlg);
@@ -170,15 +175,25 @@ public class GraphPanelViewController {
 	 * @param algorithmName
 	 * @return
 	 */
-	private EdgeColoringAlgorithm getAlgorithm(String algorithmName) {
+	private ColoringAlgorithm getAlgorithm(String algorithmName) {
 		switch(algorithmName){
 		case "König's Algorithm": return new Koenig();
 		case "Greedy Algorithm": return new Greedy(model.getEdges());
 		case "Randomized Search Algorithm Greedy": return new RandomSearchGreedy();
 		case "Local Search Algorithm Greedy": return new LocalSearchGreedy();
+		case "Line Graph Greedy": return new LineGraphGreedy(this, (Graph)model);
 		default: System.out.println("Not yet implemented");
-		return new Koenig();
+		return new Greedy(model.getEdges());
 		}
+	}
+	
+	/**
+	 * Needed to stay with the LineGraphAlgorithm 
+	 * @param alg
+	 */
+	public void setLineGraphAlgorithm(LineGraphAlgorithms alg){
+		this.usedAlgorithm = alg; 
+        graphPanelView.setAlgorithm("Line Graph Greedy");
 	}
 	
 	/**
