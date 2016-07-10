@@ -13,7 +13,11 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 /**
- * 
+ * Represents the line graph of a graph. It has functions
+ * to color the nodes of a graph and can be obtained by
+ * using the static method convertToLineGraph(Graph g). 
+ * The chromatic index is calculated by using the chromatic
+ * index of the original graph since these are narrower.
  * @author Stephanie Heyderich
  */
 public class LineGraph extends SimpleGraph {
@@ -21,6 +25,11 @@ public class LineGraph extends SimpleGraph {
 	private Graph original; 
 	private int[] nodeColors;
 
+	/**
+	 * Constructor
+	 * @param vertexNumber
+	 * @param g
+	 */
 	public LineGraph(int vertexNumber, Graph g) {
 		super(vertexNumber);
 		setOriginal(g); 
@@ -30,6 +39,11 @@ public class LineGraph extends SimpleGraph {
 		Arrays.fill(nodeColors, UNCOLORED);
 	}
 	
+	/**
+	 * Copy constructor that results in an uncolored
+	 * copy of the given line graph. 
+	 * @param g
+	 */
 	public LineGraph(LineGraph g){
 		super(g.getVertexNumber());
 		for(int i = 0; i < graph.length; i++){

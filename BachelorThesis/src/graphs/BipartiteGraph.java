@@ -9,6 +9,14 @@ import java.util.List;
 
 import helper.EdgeColor;
 
+/**
+ * Represents a bipartite graph. 
+ * it is a simple graph with a few extra functionalites 
+ * and different calculations regarding the node position
+ * in the visual representation and for determining the 
+ * chromatic index. 
+ * @author Stephanie Heyderich
+ */
 public class BipartiteGraph extends SimpleGraph{
 	
 	private int vertexCount1;
@@ -65,6 +73,31 @@ public class BipartiteGraph extends SimpleGraph{
 	public String getType(){
 		return "Bipartite graph";
 	}
+
+	/**
+	 * Sets an augmented Path at which lines the colors are switched
+	 * @param path
+	 */
+	public void setAugmentedPath(List<Integer> path){
+		this.augmentedPath = path;
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
+	/**
+	 * Returns the currently set augmented path
+	 * @return
+	 */
+	public List<Integer> getAugmentedPath(){
+		return augmentedPath;
+	}
+	
+	/**
+	 * Deletes the augmented Path
+	 */
+	public void deleteAugmentedPath(){
+		this.augmentedPath = null;
+	}
 	
 	@Override
 	public List<Point> calculateNodeCoordinates(Dimension d){
@@ -91,31 +124,6 @@ public class BipartiteGraph extends SimpleGraph{
 			
 		}
 		return coordinates;
-	}
-	
-	/**
-	 * Sets an augmented Path at which lines the colors are switched
-	 * @param path
-	 */
-	public void setAugmentedPath(List<Integer> path){
-		this.augmentedPath = path;
-		this.setChanged();
-		this.notifyObservers();
-	}
-	
-	/**
-	 * Returns the currently set augmented path
-	 * @return
-	 */
-	public List<Integer> getAugmentedPath(){
-		return augmentedPath;
-	}
-	
-	/**
-	 * Deletes the augmented Path
-	 */
-	public void deleteAugmentedPath(){
-		this.augmentedPath = null;
 	}
 	
 	/**

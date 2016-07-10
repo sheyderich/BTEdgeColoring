@@ -11,7 +11,6 @@ import java.util.Observable;
  * An abstract class representing a Drawable Graph.  Edges can 
  * be drawn in certain colors to represent the edge colorings. 
  * @author Stephanie Heyderich
- * @version 29.04.2016
  */
 public abstract class DrawableGraph extends Observable{
 
@@ -207,7 +206,11 @@ public abstract class DrawableGraph extends Observable{
 		g.setColor(c);
 	}
 	
-	
+	/**
+	 * Returns the number of colors used in 
+	 * the visualization
+	 * @return
+	 */
 	public abstract int getQuantityColors();
 	
 }

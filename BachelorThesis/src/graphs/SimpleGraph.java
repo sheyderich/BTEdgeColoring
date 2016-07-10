@@ -57,7 +57,8 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	}
 	
 	/**
-	 * Copy Constructor
+	 * Copy Constructor that results in an uncolored
+	 * copy of the given graph
 	 */
 	public SimpleGraph(SimpleGraph g){
 		graph = new int[g.getVertexNumber()][g.getVertexNumber()];
@@ -238,7 +239,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		return chromaticIndex;
 	}
 	
-	
 	@Override
 	public int getQuantityColors() {
 		int quantity_colors = 0; 
@@ -295,7 +295,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		return "Simple Graph";
 	}
 	
-	
 	@Override
 	public void paintGraph(Graphics g, Dimension d){
 
@@ -326,7 +325,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	}
 	
 	/**
-	 * Sets coordinates for the nodes so that they form a cicle. 
+	 * Sets coordinates for the nodes so that they form a circle. 
 	 * This guarantees that the edges between the nodes are not 
 	 * crossing each other. 
 	 * @param Dimension d

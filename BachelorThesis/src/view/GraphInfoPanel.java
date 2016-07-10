@@ -20,7 +20,6 @@ import helper.EdgeColor;
  * index bounds and the algorithm that is used currently on this graph are
  * displayed. 
  * @author Stephanie Heyderich
- * @version 7.05.2016
  */
 @SuppressWarnings("serial")
 public class GraphInfoPanel extends JPanel {
@@ -194,6 +193,10 @@ public class GraphInfoPanel extends JPanel {
 		setUpInfoLabels();
 	}
 	
+	/**
+	 * Used to set the algorithm from the controller
+	 * @param s
+	 */
 	public void setAlgorithm(String s){
 		usedAlgorithm.setText(s);
 	}

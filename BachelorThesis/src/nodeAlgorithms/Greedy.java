@@ -8,6 +8,12 @@ import exceptions.IllegalGraphTypeException;
 import graphs.Graph;
 import graphs.LineGraph;
 
+/**
+ * A greedy algorithm that colors the nodes of a given
+ * graph. It proceeds node by node through the graph and 
+ * uses the first color on the node that is valid. 
+ * @author Stephanie Heyderich
+ */
 public class Greedy implements ColoringAlgorithm {
 
 	private List<Integer> nodes; 

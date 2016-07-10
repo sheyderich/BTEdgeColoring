@@ -10,7 +10,6 @@ import graphs.DrawableGraph;
 /**
  * Displays a white Panel where the graph is drawn upon.  
  * @author Stephanie Heyderich
- * @version 29.04.2016
  */
 @SuppressWarnings("serial")
 public class GraphPanel extends JPanel {

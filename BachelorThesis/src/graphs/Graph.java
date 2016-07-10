@@ -6,7 +6,6 @@ import java.util.List;
  * Interface that defines the operations a graph must provide.
  * 
  * @author Stephanie Heyderich
- * @version 23.04.2016
  */
 public interface Graph {
 	

@@ -14,7 +14,6 @@ import graphs.DrawableGraph;
  * Contains a Graph panel and a graph info panel as well as a small menu for
  * the import and the start algorithm button.  
  * @author Stephanie Heyderich
- * @version 29.04.2016
  */
 @SuppressWarnings("serial")
 public class GraphPanelView extends JPanel implements Observer{
@@ -46,22 +45,8 @@ public class GraphPanelView extends JPanel implements Observer{
 		this.setLayout(new BorderLayout());
 		graphPanel = new GraphPanel(width, height, model);
 		graphInfoPanel = new GraphInfoPanel(width/3, height, model);
-		this.add(graphPanel, BorderLayout.CENTER);
-		this.add(graphInfoPanel, BorderLayout.WEST);
-		menu = new JPanel(new GridLayout(1,0));
-		this.add(menu, BorderLayout.SOUTH);
-		startButton = new JButton("Start Algorithm");
-		importButton = new JButton("Import Graph");
-		lastButton = new JButton("Undo Last Coloring");
-		completeButton = new JButton("Final Coloring");
-		resetButton = new JButton ("Reset Graph");
-		chooseAlgorithm = new JComboBox<Object>();
-		menu.add(chooseAlgorithm);
-		menu.add(importButton);
-		menu.add(startButton);
-		menu.add(lastButton);
-		menu.add(completeButton);
-		menu.add(resetButton);
+		setUpLayout(); 
+		setUpButton(); 
 	}
 	
 	/**
@@ -112,6 +97,12 @@ public class GraphPanelView extends JPanel implements Observer{
 		return chooseAlgorithm;
 	}
 	
+	/**
+	 * Sets the algorithms that can be used by
+	 * taking the algorithm list from the controller
+	 * and adding it to the JComboBox
+	 * @param algos
+	 */
 	public void setChooseAlgorithm(Object[] algos){
 		menu.remove(chooseAlgorithm);
 		chooseAlgorithm = new JComboBox<Object>(algos);
@@ -145,8 +136,41 @@ public class GraphPanelView extends JPanel implements Observer{
 		graphInfoPanel.repaint();
 	}
 	
+	/**
+	 * Set the algorithm in the graphInfoPanel 
+	 * from the controller. 
+	 * @param s
+	 */
 	public void setAlgorithm(String s){
 		graphInfoPanel.setAlgorithm(s);
+	}
+	
+	/**
+	 * Sets up Layouts. 
+	 */
+	private void setUpLayout(){
+		this.add(graphPanel, BorderLayout.CENTER);
+		this.add(graphInfoPanel, BorderLayout.WEST);
+		menu = new JPanel(new GridLayout(1,0));
+		this.add(menu, BorderLayout.SOUTH);
+	}
+	
+	/**
+	 * Sets all the button in the Panel View. 
+	 */
+	private void setUpButton(){
+		startButton = new JButton("Start Algorithm");
+		importButton = new JButton("Import Graph");
+		lastButton = new JButton("Undo Last Coloring");
+		completeButton = new JButton("Final Coloring");
+		resetButton = new JButton ("Reset Graph");
+		chooseAlgorithm = new JComboBox<Object>();
+		menu.add(chooseAlgorithm);
+		menu.add(importButton);
+		menu.add(startButton);
+		menu.add(lastButton);
+		menu.add(completeButton);
+		menu.add(resetButton);
 	}
 	
 }

@@ -7,7 +7,6 @@ import exceptions.NotEnoughColorsException;
  * A Collection of different looking colors that can be
  * used to create the edge colorization 
  * @author Stephanie Heyderich
- * @version 06.05.2016
  */
 public class EdgeColor {
 	private static final Color[] EDGE_COLORS = {

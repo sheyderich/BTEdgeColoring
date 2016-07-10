@@ -13,15 +13,13 @@ import graphs.Graph;
  * a number of edge coloring algorithms step by step. 
  * 
  * @author Stephanie Heyderich
- * @version 06.05.2016
  */
 public class AppletMain {
 	public static void main(String[] args) {
 		
 		JFrame frame = new JFrame("Edge Coloring Algorithms");
 		GraphPanelViewController controller = new GraphPanelViewController();
-		GraphReader gr = new GraphReader("bigraph3.txt");
-//		GraphReader gr = new GraphReader("simplegraph1.txt");
+		GraphReader gr = new GraphReader("simplegraph1.txt");
 		Graph g = gr.buildGraphFromFile();
 		controller.setModel((DrawableGraph)g);
 		frame.add(controller.getView(), BorderLayout.CENTER);
