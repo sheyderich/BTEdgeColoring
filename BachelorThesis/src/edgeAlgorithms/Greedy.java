@@ -9,9 +9,9 @@ import graphs.Graph;
 /**
  * A greedy algorithm that colors the graph with at most 1 color
  * more than is necessary by coloring the edges iterative with 
- * the first color that is available.
+ * the first color that is available. It is given a specific order
+ * in which it colors the edges which influences the result. 
  * @author Stephanie Heyderich
- * @version 12.05.2016
  */
 public class Greedy implements ColoringAlgorithm {
 

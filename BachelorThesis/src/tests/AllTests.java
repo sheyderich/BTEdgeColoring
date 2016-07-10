@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ BipartiteGraphTest.class, KoenigTest.class, SimpleGraphTest.class })
+@SuiteClasses({ BipartiteGraphTest.class, SimpleGraphTest.class })
 public class AllTests {
 
 }

@@ -8,6 +8,13 @@ import exceptions.InvalidColorException;
 import graphs.Graph;
 import graphs.LineGraph;
 
+
+/**
+ * Describes a set of algorithms that work on the line graph
+ * of a graph to color the nodes instead of the edges and later
+ * reverse this to get a valid edge coloring. 
+ * @author Stephanie Heyderich
+ */
 public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	
 	protected LineGraph lg; 
@@ -26,6 +33,12 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 		notfinished = true; 
 	}
 	
+	/**
+	 * Constructor for usage with the MVC pattern
+	 * when visualization is required
+	 * @param graphPanelViewController
+	 * @param g
+	 */
 	public LineGraphAlgorithms(GraphPanelViewController graphPanelViewController, Graph g) {
 		controller = graphPanelViewController; 
 		lg = LineGraph.convertToLineGraph(g);
@@ -82,7 +95,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	}
 	
 	/**
-	 * Applys the coloring determined by the Line Graph to 
+	 * Applies the coloring determined by the Line Graph to 
 	 * the original graph
 	 */
 	private void colorOriginal() {
@@ -113,10 +126,19 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	 */
 	protected abstract void resetAlgorithm();
 	
+	/**
+	 * Returns the line graph
+	 * @return
+	 */
 	public Graph getLineGraph(){
 		return this.lg; 
 	}
 	
+	/**
+	 * Returns the original graph of 
+	 * a line graph. 
+	 * @return
+	 */
 	public Graph getOriginalGraph(){
 		return this.lg.getOriginal(); 
 	}

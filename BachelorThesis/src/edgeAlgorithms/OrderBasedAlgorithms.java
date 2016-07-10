@@ -8,6 +8,14 @@ import java.util.Stack;
 import graphs.Graph;
 import graphs.SimpleGraph;
 
+/**
+ * Describes algorithms that use specific orders that are then
+ * given to the greedy algorithm to color the edges of a graph. 
+ * Only the transformation step from one order to a neighboring one
+ * in the next iteration has to be implemented by writing the method
+ * createNewOrder()
+ * @author Stephanie Heyderich
+ */
 public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 
 	private int numberOfIterations;

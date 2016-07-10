@@ -5,7 +5,6 @@ package exceptions;
  * free color for an edge to be colored in. 
  * 
  * @author Stephanie Heyderich
- * @version 24.04.2016
  */
 @SuppressWarnings("serial")
 public class NoFreeColorException extends RuntimeException {

@@ -17,7 +17,6 @@ import graphs.SimpleGraph;
  * introduced by König. It colors the edges with the first available color
  * and if there is none available, switches colors on an augmented path.
  * @author Stephanie Heyderich
- * @version 12.05.2016
  */
 public class Koenig implements ColoringAlgorithm{
 	
@@ -274,49 +273,6 @@ public class Koenig implements ColoringAlgorithm{
 			active = path.get(next);
 		}
 		
-	}
-	
-	/**
-	 * Reveals method call for getFreeColor to test it
-	 * @param g
-	 * @param vertex
-	 * @return
-	 */
-	public static int testFreeColor(Graph g, int vertex){
-		return getFreeColor(g, vertex);
-	}
-	
-	/**
-	 * Reveals method call for the method SwitchColorOnPath for testing purposes
-	 * @param graph
-	 * @param path
-	 * @param cv
-	 * @param cu
-	 */
-	public static void testSwitchColorOnPath(Graph graph, List<Integer> path, int cv, int cu){
-		switchColorOnPath(graph, path, cv,cu);
-	}
-	/**
-	 * Reveals method call for the method FindAlternatingPath for testing purposes
-	 * @param g
-	 * @param vertex
-	 * @param cv
-	 * @param cu
-	 * @return
-	 */
-	public static List<Integer> testFindAlternatingPath(Graph g, int vertex, int cv, int cu){
-		return findAlternatingPath(g, vertex, cv, cu);
-	}
-	
-	/**
-	 * Reveals method call for the method GetNeighboringVertexWithColor for testing purposes
-	 * @param g
-	 * @param vertex
-	 * @param color
-	 * @return
-	 */
-	public static int testGetNeighboringVertexWithColor(Graph g, int vertex, int color){
-		return getNeighboringVertexWithColor(g, vertex, color);
 	}
 	
 }

@@ -11,6 +11,12 @@ import graphs.BipartiteGraph;
 import graphs.Graph;
 import graphs.SimpleGraph;
 
+/**
+ * Reads a graph from a properly formatted file. 
+ * the graphs can be simple graphs or bipartite graphs. 
+ * multigraphs are not possible. 
+ * @author Stephanie Heyderich
+ */
 public class GraphReader {
 	
 	private String filename;

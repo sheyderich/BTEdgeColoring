@@ -12,6 +12,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 
+/**
+ * 
+ * @author Stephanie Heyderich
+ */
 public class LineGraph extends SimpleGraph {
 	
 	private Graph original; 
