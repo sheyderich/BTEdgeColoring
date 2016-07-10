@@ -21,8 +21,8 @@ public class Greedy implements ColoringAlgorithm {
 	private Stack<int[]> steps = new Stack<int[]>();
 	private List<Point> edges;
 	
-	public Greedy(List<Point> neighbor){
-		this.edges = neighbor;
+	public Greedy(List<Point> edgeOrder){
+		this.edges = edgeOrder;
 	}
 	
 	@Override

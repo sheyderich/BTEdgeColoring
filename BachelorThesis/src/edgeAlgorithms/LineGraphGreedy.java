@@ -1,15 +1,22 @@
 package edgeAlgorithms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.GraphPanelViewController;
 import graphs.Graph;
 
 public class LineGraphGreedy extends LineGraphAlgorithms {
 
-	private Greedy greedy; 
+	private nodeAlgorithms.Greedy greedy; 
 	
 	public LineGraphGreedy(GraphPanelViewController graphPanelViewController, Graph g) {
 		super(graphPanelViewController, g);
-		greedy = new Greedy(lg.getEdges());
+		List<Integer> nodes = new ArrayList<Integer>();
+		for(int i = 0; i < lg.getVertexNumber(); i++){
+			nodes.add(new Integer(i));
+		}
+		greedy = new nodeAlgorithms.Greedy(nodes);
 	}
 
 	@Override

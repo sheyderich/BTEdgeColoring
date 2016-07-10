@@ -52,7 +52,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public SimpleGraph(int vertexNumber){
 		graph = new int[vertexNumber][vertexNumber];
-		colors = new int[this.getVertexNumber()];
+		colors = new int[this.getVertexNumber()]; //edge number not known at this point, array lengthens in method setLastStep()
 		Arrays.fill(colors, 0);
 	}
 	
@@ -63,7 +63,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		graph = new int[g.getVertexNumber()][g.getVertexNumber()];
 		for(int i = 0; i < graph.length; i++){
 			for(int j = 0; j < graph.length; j++){
-				graph[i][j] = g.isEdgeExistent(i, j)? -2: 0;
+				graph[i][j] = g.isEdgeExistent(i, j)? UNCOLORED: NOTEXISTENT;
 			}
 		}
 		colors = new int[this.getVertexNumber()];
@@ -118,8 +118,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		
 		graph[u][v] = color;
 		graph[v][u] = color;
-		this.setChanged();
-		this.notifyObservers();
 	}
 	
 	@Override

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import exceptions.EdgeNotFoundException;
 import graphs.DrawableGraph;
+import graphs.LineGraph;
 import graphs.SimpleGraph;
 import helper.EdgeColor;
 
@@ -140,11 +141,33 @@ public class GraphInfoPanel extends JPanel {
 			lBound.setText(String.valueOf(((SimpleGraph)model).calculateLBChromaticIndex()));
 			uBound.setText(String.valueOf(((SimpleGraph)model).calculateUBChromaticIndex()));
 			numberOfColors.setText(String.valueOf(((SimpleGraph)model).getQuantityColors()));
-			lastStep.setText(getLastStep());
+			if(model instanceof LineGraph){
+				lastStep.setText(getLastStepLineGraph());
+			}else{
+				lastStep.setText(getLastStep());
+			}
 			
 		}
 	}
 	
+	/**
+	 * Formats the last step if it was done as node coloring on the line graph to 
+	 * display it on the graph info panel 
+	 * @return
+	 */
+	private String getLastStepLineGraph() {
+		String res = new String();
+		int[] tmp = ((LineGraph)model).getLastStep();
+		try{
+			int color = ((LineGraph)model).getNodeColor(tmp[0]);
+			if(color != SimpleGraph.UNCOLORED)
+				res += ("Node "+(tmp[0]+1)+" in " + EdgeColor.getColorName(color-1));
+		}catch(EdgeNotFoundException e){
+			
+		}
+		return res;
+	}
+
 	/**
 	 * Formats the last steps to display it on the graph info panel
 	 * @return

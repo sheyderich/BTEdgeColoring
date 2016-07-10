@@ -13,6 +13,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	protected LineGraph lg; 
 	private GraphPanelViewController controller;
 	boolean init;  
+	boolean notfinished;
 	
 	/**
 	 * Constructor for usage without the MVC pattern
@@ -22,12 +23,14 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 		controller = null; 
 		lg = LineGraph.convertToLineGraph(g);
 		init = true; 
+		notfinished = true; 
 	}
 	
 	public LineGraphAlgorithms(GraphPanelViewController graphPanelViewController, Graph g) {
 		controller = graphPanelViewController; 
 		lg = LineGraph.convertToLineGraph(g);
 		init = true; 
+		notfinished = true; 
 	}
 
 	@Override
@@ -44,15 +47,18 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 
 	@Override
 	public void applyAlgorithmStepwise(Graph graph) {
-		if(init){
-			controller.setModel((graphs.DrawableGraph)lg);
-			controller.setLineGraphAlgorithm(this);
-			init = false; 
-		} else if (lg.isColored()){
-			colorOriginal();
-			controller.setModel(((graphs.DrawableGraph)lg.getOriginal()));
-		} else {
-			applyAlgorithm();
+		if(notfinished){
+			if(init){
+				controller.setModel((graphs.DrawableGraph)lg);
+				controller.setLineGraphAlgorithm(this);
+				init = false; 
+			} else if (lg.isColored()){
+				colorOriginal();
+				controller.setModel(((graphs.DrawableGraph)lg.getOriginal()));
+				notfinished = false; 
+			} else {
+				applyAlgorithm();
+			}
 		}
 	}
 
