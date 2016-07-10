@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import edgeAlgorithms.ColoringAlgorithm;
 import edgeAlgorithms.Greedy;
 import edgeAlgorithms.Koenig;
-import edgeAlgorithms.LineGraphAlgorithms;
 import edgeAlgorithms.LineGraphGreedy;
 import edgeAlgorithms.LocalSearchGreedy;
 import edgeAlgorithms.RandomSearchGreedy;
@@ -128,6 +127,13 @@ public class GraphPanelViewController {
 		setAlgorithmsToUse(newModel);
 	}
 	
+	public void setModelLineGraph(DrawableGraph newModel){
+		this.model = newModel;
+		model.addObserver(graphPanelView);
+		graphPanelView.setModel(newModel);
+		graphPanelView.repaint();
+	}
+	
 	/**
 	 * Sets the ComboBox with all algorithms that can be used
 	 * and sets the used algorithm from the ComboBox
@@ -187,14 +193,14 @@ public class GraphPanelViewController {
 		}
 	}
 	
-	/**
-	 * Needed to stay with the LineGraphAlgorithm 
-	 * @param alg
-	 */
-	public void setLineGraphAlgorithm(LineGraphAlgorithms alg){
-		this.usedAlgorithm = alg; 
-        graphPanelView.setAlgorithm("Line Graph Greedy");
-	}
+//	/**
+//	 * Needed to stay with the LineGraphAlgorithm 
+//	 * @param alg
+//	 */
+//	public void setLineGraphAlgorithm(LineGraphAlgorithms alg){
+//		this.usedAlgorithm = alg; 
+//        graphPanelView.setAlgorithm("Line Graph Greedy");
+//	}
 	
 	/**
 	 * Returns the view

@@ -2,7 +2,6 @@ package graphs;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 import exceptions.InvalidColorException;
 import exceptions.NodeNotFoundException;
@@ -203,6 +202,7 @@ public class LineGraph extends SimpleGraph {
 	@Override
 	public void uncolor(){
 		Arrays.fill(nodeColors, UNCOLORED);
+		Arrays.fill(colors, 0);
 		steps.clear();
 		this.setChanged();
 		this.notifyObservers();

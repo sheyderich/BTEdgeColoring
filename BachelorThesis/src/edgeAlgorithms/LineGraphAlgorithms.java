@@ -35,12 +35,15 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
-		while(!lg.isColored()){
-			applyAlgorithm();
-		}
-		colorOriginal();
-		if(controller!=null){
-			controller.setModel(((graphs.DrawableGraph)lg.getOriginal()));
+		if(notfinished){
+			while(!lg.isColored()){
+				applyAlgorithm();
+			}
+			colorOriginal();
+			if(controller!=null){
+				controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
+			}
+			notfinished = false;
 		}
 		
 	}
@@ -49,12 +52,11 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	public void applyAlgorithmStepwise(Graph graph) {
 		if(notfinished){
 			if(init){
-				controller.setModel((graphs.DrawableGraph)lg);
-				controller.setLineGraphAlgorithm(this);
+				controller.setModelLineGraph((graphs.DrawableGraph)lg);
 				init = false; 
 			} else if (lg.isColored()){
 				colorOriginal();
-				controller.setModel(((graphs.DrawableGraph)lg.getOriginal()));
+				controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
 				notfinished = false; 
 			} else {
 				applyAlgorithm();
@@ -70,10 +72,12 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	@Override
 	public void resetColoring(Graph graph) {
 		if(controller!=null){
-			controller.setModel(((graphs.DrawableGraph)lg.getOriginal()));
+			controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
 		}
 		graph.uncolor();
+		lg.uncolor();
 		resetAlgorithm(); 
+		notfinished = true; 
 		init = true; 
 	}
 	
@@ -88,6 +92,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 		int i = 0; 
 		for(Point p: edges){
 			original.setEdgeColor(p.x, p.y, colors[i]);
+			original.setLastStep(p.x, p.y);
 			i++;
 		}
 		if(!original.isGraphColoringValid()) throw new InvalidColorException("Conversion from Line Graph to Original graph failed at coloring");

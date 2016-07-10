@@ -44,7 +44,6 @@ public class Greedy implements ColoringAlgorithm {
 		}else{
 			throw new IllegalGraphTypeException("Only LineGraphs allowed");
 		}
-		
 		if(!g.isColored()){
 			int currentNode = nodes.get(index);
 			if(!g.isNodeColored(currentNode)){
@@ -81,6 +80,7 @@ public class Greedy implements ColoringAlgorithm {
 		}
 		
 		g.uncolor();
+		graph.uncolor();
 		index = 0; 
 		steps.clear();
 	}
