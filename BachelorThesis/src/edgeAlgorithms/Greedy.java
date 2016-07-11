@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Stack;
 
 import graphs.Graph;
+import helper.AlgorithmStep;
+import helper.ColorEdgeStep;
 
 /**
  * A greedy algorithm that colors the graph with at most 1 color
@@ -18,7 +20,7 @@ public class Greedy implements ColoringAlgorithm {
 	private int u = 0; 
 	private int v = 0;
 	private int i = 0; 
-	private Stack<int[]> steps = new Stack<int[]>();
+	private Stack<AlgorithmStep> steps = new Stack<AlgorithmStep>();
 	private List<Point> edges;
 	
 	public Greedy(List<Point> edgeOrder){
@@ -54,9 +56,9 @@ public class Greedy implements ColoringAlgorithm {
 	@Override
 	public void undoLastColoring(Graph graph) {
 		if(!steps.isEmpty()){
-				int[] last = steps.pop();
+				AlgorithmStep last = steps.pop(); 
 				graph.removeLastStep();
-				graph.removeEdgeColor(last[0], last[1]);
+				last.undo(graph);
 				i--;
 		}
 	}
@@ -82,7 +84,7 @@ public class Greedy implements ColoringAlgorithm {
 			color++;
 		}while(!graph.isEdgeColoringValid(u, v));
 		graph.setLastStep(u, v);
-		steps.push(graph.getLastStep());
+		steps.push(new ColorEdgeStep(u,v));
 	}
 	
 }

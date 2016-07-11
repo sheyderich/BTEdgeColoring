@@ -7,6 +7,8 @@ import edgeAlgorithms.ColoringAlgorithm;
 import exceptions.IllegalGraphTypeException;
 import graphs.Graph;
 import graphs.LineGraph;
+import helper.AlgorithmStep;
+import helper.ColorNodeStep;
 
 /**
  * A greedy algorithm that colors the nodes of a given
@@ -17,7 +19,7 @@ import graphs.LineGraph;
 public class Greedy implements ColoringAlgorithm {
 
 	private List<Integer> nodes; 
-	private Stack<int[]> steps = new Stack<int[]>();
+	private Stack<AlgorithmStep> steps = new Stack<AlgorithmStep>(); 
 	private int index = 0; 
 	private LineGraph g; 
 	
@@ -69,9 +71,9 @@ public class Greedy implements ColoringAlgorithm {
 		}
 		
 		if(!steps.isEmpty()){
-			int[] last = steps.pop();
+			AlgorithmStep last = steps.pop(); 
 			g.removeLastStep();
-			g.removeNodeColor(last[0]);
+			last.undo(graph);
 			index--;
 		}
 	}
@@ -103,7 +105,16 @@ public class Greedy implements ColoringAlgorithm {
 			color++;
 		}while(!g.isNodeColoringValid(node));
 		g.setLastStep(node);
-		steps.push(g.getLastStep());
+		steps.push(new ColorNodeStep(node));
+	}
+	
+	/**
+	 * Returns the stack with the steps the algorithm
+	 * has taken so far
+	 * @return
+	 */
+	public Stack<AlgorithmStep> getSteps() {
+		return steps;
 	}
 
 }

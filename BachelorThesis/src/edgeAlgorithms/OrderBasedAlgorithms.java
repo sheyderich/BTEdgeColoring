@@ -7,6 +7,7 @@ import java.util.Stack;
 
 import graphs.Graph;
 import graphs.SimpleGraph;
+import helper.OrderStep;
 
 /**
  * Describes algorithms that use specific orders that are then
@@ -23,7 +24,7 @@ public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 	private int minimalAmountOfColors;
 	protected List<Point> solutionOrder;
 	protected Random rand = new Random();
-	private Stack<List<Point>> lastSteps = new Stack<List<Point>>();
+	private Stack<OrderStep> lastSteps = new Stack<OrderStep>();
 
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
@@ -35,7 +36,7 @@ public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 			List<Point> neighbor = createNewOrder(solutionOrder);
 			if (isNewOrderBetter(neighbor, graph)) {
 				setNewBestSolution(graph,neighbor);
-				lastSteps.add(neighbor);
+				lastSteps.add(new OrderStep(neighbor));
 			} else {
 				numberOfIterationsWithoutImprovement++;
 			}
@@ -52,7 +53,7 @@ public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 			List<Point> neighbor = createNewOrder(solutionOrder);
 			if (isNewOrderBetter(neighbor, graph)) {
 				setNewBestSolution(graph, neighbor);
-				lastSteps.add(neighbor);
+				lastSteps.add(new OrderStep(neighbor));
 			}
 		}
 		numberOfIterations++;
@@ -64,7 +65,7 @@ public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 			lastSteps.pop();
 			List<Point> last;
 			if(!lastSteps.isEmpty()){
-				last = lastSteps.peek();
+				last = lastSteps.peek().getOrder();
 			}else {
 				last = graph.getEdges();
 			}

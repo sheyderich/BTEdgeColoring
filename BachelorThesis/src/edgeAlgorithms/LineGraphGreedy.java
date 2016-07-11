@@ -2,9 +2,11 @@ package edgeAlgorithms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import controller.GraphPanelViewController;
 import graphs.Graph;
+import helper.AlgorithmStep;
 
 /**
  * A line graph edge coloring algorithm that uses 
@@ -45,6 +47,11 @@ public class LineGraphGreedy extends LineGraphAlgorithms {
 	@Override
 	protected void resetAlgorithm() {
 		greedy.resetColoring(lg);
+	}
+
+	@Override
+	protected Stack<AlgorithmStep> getSteps() {
+		return greedy.getSteps(); 
 	}
 
 }

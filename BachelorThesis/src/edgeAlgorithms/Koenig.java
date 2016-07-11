@@ -12,6 +12,9 @@ import exceptions.NoFreeColorException;
 import graphs.BipartiteGraph;
 import graphs.Graph;
 import graphs.SimpleGraph;
+import helper.AlgorithmStep;
+import helper.ColorEdgeStep;
+import helper.PathSwitchingStep;
 /**
  * A algorithm for coloring the edges of a bipartite graph 
  * introduced by König. It colors the edges with the first available color
@@ -20,7 +23,7 @@ import graphs.SimpleGraph;
  */
 public class Koenig implements ColoringAlgorithm{
 	
-	private Stack<int[]> steps = new Stack<int[]>();
+	private Stack<AlgorithmStep> steps = new Stack<AlgorithmStep>();
 	private int u = 0; 
 	private int v = 0;
 	private int command = 0; 
@@ -83,11 +86,11 @@ public class Koenig implements ColoringAlgorithm{
 	 */
 	public void undoLastColoring(Graph g){
 		if(!steps.empty()){
-			int[] last = steps.pop();
+			AlgorithmStep last = steps.pop();
 			g.removeLastStep();
-			g.removeEdgeColor(last[0], last[1]);
-			u = last[0];
-			v = last[1];
+			last.undo(g);
+			u = 0;
+			v = 0;
 		}
 	}
 	
@@ -118,19 +121,20 @@ public class Koenig implements ColoringAlgorithm{
 				graph.setAugmentedPath(path);
 			}else{
 				graph.setLastStep(u,v);
-				steps.push(graph.getLastStep());
+				steps.push(new ColorEdgeStep(u,v));
 			}
 			break; 
 		case 1: 
 			int cv = getFreeColor(graph,u);
 			int cu = getFreeColor(graph,v);
 			switchColorOnPath(graph, graph.getAugmentedPath(), cv, cu);
+			steps.push(new PathSwitchingStep(cv, cu, graph.getAugmentedPath()));
 			break;
 		case 2: 
 			graph.deleteAugmentedPath();
 			tryColorEdge(graph, u, v);
 			graph.setLastStep(u, v);
-			steps.push(graph.getLastStep());
+			steps.push(new ColorEdgeStep(u,v));
 		default: 
 			break;
 		}
@@ -150,11 +154,14 @@ public class Koenig implements ColoringAlgorithm{
 			List<Integer> path = findAlternatingPath(graph, v, cv, cu);
 			graph.setAugmentedPath(path);
 			switchColorOnPath(graph, graph.getAugmentedPath(), cv, cu);
+			steps.push(new PathSwitchingStep(cv,cu,graph.getAugmentedPath()));
 			graph.deleteAugmentedPath();
 			tryColorEdge(graph, u, v);
+			steps.push(new ColorEdgeStep(u,v));
+		}else{
+			steps.push(new ColorEdgeStep(u,v));
 		}
 		graph.setLastStep(u, v);
-		steps.push(graph.getLastStep());
 	}
 	
 
@@ -260,7 +267,7 @@ public class Koenig implements ColoringAlgorithm{
 	 * @param cv
 	 * @param cu
 	 */
-	private static void switchColorOnPath(Graph graph, List<Integer> path, int cv, int cu) {
+	public static void switchColorOnPath(Graph graph, List<Integer> path, int cv, int cu) {
 		
 		int active = path.get(0);
 		for(int next = 1; next < path.size(); next++){

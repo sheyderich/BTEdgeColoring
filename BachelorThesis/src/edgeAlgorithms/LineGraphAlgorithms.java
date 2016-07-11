@@ -2,11 +2,13 @@ package edgeAlgorithms;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.Stack;
 
 import controller.GraphPanelViewController;
 import exceptions.InvalidColorException;
 import graphs.Graph;
 import graphs.LineGraph;
+import helper.AlgorithmStep;
 
 
 /**
@@ -20,7 +22,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	protected LineGraph lg; 
 	private GraphPanelViewController controller;
 	boolean init;  
-	boolean notfinished;
+	boolean finished;
 	
 	/**
 	 * Constructor for usage without the MVC pattern
@@ -30,7 +32,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 		controller = null; 
 		lg = LineGraph.convertToLineGraph(g);
 		init = true; 
-		notfinished = true; 
+		finished = false; 
 	}
 	
 	/**
@@ -43,12 +45,12 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 		controller = graphPanelViewController; 
 		lg = LineGraph.convertToLineGraph(g);
 		init = true; 
-		notfinished = true; 
+		finished = false; 
 	}
 
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
-		if(notfinished){
+		if(!finished){
 			while(!lg.isColored()){
 				applyAlgorithm();
 			}
@@ -56,21 +58,21 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 			if(controller!=null){
 				controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
 			}
-			notfinished = false;
+			finished = true;
 		}
 		
 	}
 
 	@Override
 	public void applyAlgorithmStepwise(Graph graph) {
-		if(notfinished){
+		if(!finished){
 			if(init){
 				controller.setModelLineGraph((graphs.DrawableGraph)lg);
 				init = false; 
 			} else if (lg.isColored()){
 				colorOriginal();
 				controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
-				notfinished = false; 
+				finished = true; 
 			} else {
 				applyAlgorithm();
 			}
@@ -79,7 +81,16 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 
 	@Override
 	public void undoLastColoring(Graph graph) {
-		undoAlgorithm();
+		if(finished){
+			controller.setModelLineGraph((graphs.DrawableGraph)lg);
+			finished = false; 
+		}else if(getSteps().isEmpty() && !init){
+			lg.getOriginal().uncolor();
+			controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
+			init = true; 
+		}else{
+			undoAlgorithm();
+		}
 	}
 
 	@Override
@@ -90,7 +101,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 		graph.uncolor();
 		lg.uncolor();
 		resetAlgorithm(); 
-		notfinished = true; 
+		finished = true; 
 		init = true; 
 	}
 	
@@ -125,6 +136,13 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
 	 * resets the desired algorithm
 	 */
 	protected abstract void resetAlgorithm();
+	
+	/**
+	 * Delivers the steps that were taken during the algorithm
+	 * for the undone button
+	 * @return
+	 */
+	protected abstract Stack<AlgorithmStep> getSteps();
 	
 	/**
 	 * Returns the line graph
