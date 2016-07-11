@@ -166,23 +166,18 @@ public interface Graph {
 	public String toEdgeString();
 	
 	/**
-	 * Sets the last step that was done in the graph
+	 * Notifys the model that a new step was done during an algorithm 
 	 * @param u
 	 * @param v
 	 */
 	public void setLastStep(int u, int v);
 
 	/**
-	 * Removes the last step that was colored
+	 * Notifys the Model that the last step was undone
+	 * and the visual model has to change
 	 */
 	public void removeLastStep();
-	
-	/**
-	 * Returns the last step that was made in the coloring.
-	 * @return
-	 */
-	public int[] getLastStep();
-	
+		
 	/**
 	 * Uncolors the graph to reset the algorithm
 	 */

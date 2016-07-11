@@ -8,11 +8,9 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import exceptions.EdgeNotFoundException;
 import graphs.DrawableGraph;
-import graphs.LineGraph;
 import graphs.SimpleGraph;
-import helper.EdgeColor;
+
 
 /**
  * Displays a panel that consists of information about a given graph. 
@@ -32,7 +30,6 @@ public class GraphInfoPanel extends JPanel {
 	private JLabel uBound;
 	private JLabel usedAlgorithm;
 	private JLabel numberOfColors;
-	private JLabel lastStep;
 	
 	/**
 	 * Sets up a panel where information about the graph is shown. 
@@ -118,12 +115,6 @@ public class GraphInfoPanel extends JPanel {
 		numberOfColors = new JLabel("--");
 		numberOfColors.setFont(font);
 		this.add(numberOfColors);
-		JLabel stepLabel = new JLabel("  Last Step:");
-		stepLabel.setFont(font);
-		this.add(stepLabel);
-		lastStep = new JLabel("--");
-		lastStep.setFont(font);
-		this.add(lastStep);
 	}
 	
 	
@@ -140,48 +131,9 @@ public class GraphInfoPanel extends JPanel {
 			lBound.setText(String.valueOf(((SimpleGraph)model).calculateLBChromaticIndex()));
 			uBound.setText(String.valueOf(((SimpleGraph)model).calculateUBChromaticIndex()));
 			numberOfColors.setText(String.valueOf(((SimpleGraph)model).getQuantityColors()));
-			if(model instanceof LineGraph){
-				lastStep.setText(getLastStepLineGraph());
-			}else{
-				lastStep.setText(getLastStep());
-			}
-			
 		}
 	}
 	
-	/**
-	 * Formats the last step if it was done as node coloring on the line graph to 
-	 * display it on the graph info panel 
-	 * @return
-	 */
-	private String getLastStepLineGraph() {
-		String res = new String();
-		int[] tmp = ((LineGraph)model).getLastStep();
-		try{
-			int color = ((LineGraph)model).getNodeColor(tmp[0]);
-			if(color != SimpleGraph.UNCOLORED)
-				res += ("Node "+(tmp[0]+1)+" in " + EdgeColor.getColorName(color-1));
-		}catch(EdgeNotFoundException e){
-			
-		}
-		return res;
-	}
-
-	/**
-	 * Formats the last steps to display it on the graph info panel
-	 * @return
-	 */
-	private String getLastStep(){
-		String res = new String();
-		int[] tmp = ((SimpleGraph)model).getLastStep();
-		try{
-			int color = ((SimpleGraph)model).getEdgeColor(tmp[0], tmp[1]);
-			res += ("("+(tmp[0]+1)+","+(tmp[1]+1) + ") in " + EdgeColor.getColorName(color-1));
-		}catch(EdgeNotFoundException e){
-			
-		}
-		return res;
-	}
 	
 	/**
 	 * Sets the old model to another given one 

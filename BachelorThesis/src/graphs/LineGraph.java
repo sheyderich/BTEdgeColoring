@@ -212,7 +212,6 @@ public class LineGraph extends SimpleGraph {
 	public void setLastStep(int node){
 		int color = nodeColors[node];
 		colors[color-1]++;
-		steps.push(new int[]{node, color});
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -221,7 +220,6 @@ public class LineGraph extends SimpleGraph {
 	public void uncolor(){
 		Arrays.fill(nodeColors, UNCOLORED);
 		Arrays.fill(colors, 0);
-		steps.clear();
 		this.setChanged();
 		this.notifyObservers();
 	}

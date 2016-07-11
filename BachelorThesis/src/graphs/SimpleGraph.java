@@ -7,7 +7,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 import exceptions.ChromaticIndexNotCalculatedException;
 import exceptions.EdgeNotColoredException;
@@ -43,7 +42,6 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	protected List<Point> edges = new ArrayList<Point>();
 	protected List <Point> coordinates = new ArrayList<Point>();
 	protected List <Point> labelCoordinates = new ArrayList<Point>();
-	protected Stack<int[]> steps = new Stack<int[]>();
 	
 	
 	/**
@@ -127,7 +125,9 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 			throw new EdgeNotFoundException("The Edge does not exist");
 		}
 		int color = getEdgeColor(u,v);
-		colors[color-1]--;
+		if(color != UNCOLORED){
+			colors[color-1]--;
+		}
 		graph[u][v] = UNCOLORED;
 		graph[v][u] = UNCOLORED;
 	}
@@ -385,24 +385,11 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		}
 		return true;
 	}
-	
-	/**
-	 * Returns an array where the last step is saved in
-	 */
-	public int[] getLastStep(){
-		if(steps.isEmpty()){
-			return new int[2];
-		}
-		return steps.peek();
-	}
-	
+		
 	/**
 	 * Removes the last step from the stack 
 	 */
 	public void removeLastStep(){
-		if(!steps.isEmpty()){
-			steps.pop();
-		}
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -413,9 +400,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 * @param v
 	 */
 	public void setLastStep(int u, int v){
-		
 		int color = graph[u][v];
-		steps.push(new int[]{u,v});
 		if(colors.length-1 == color){
 			colors = Arrays.copyOf(colors, colors.length*2);
 		}
@@ -435,9 +420,12 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 
 	@Override
 	public void uncolor() {
-		while(!steps.isEmpty()){
-			int[] last = steps.pop();
-			removeEdgeColor(last[0], last[1]);
+		for(int i = 0; i < graph.length; i++){
+			for(int j = 0; j < graph.length; j++){
+				if(graph[i][j] != NOTEXISTENT && graph[i][j] != UNCOLORED){
+					removeEdgeColor(i,j);
+				}
+			}
 		}
 		this.setChanged();
 		this.notifyObservers();

@@ -1,11 +1,2 @@
-/algorithms/
-/controller/
-/main/
-/tests/
 /graphs/
 /view/
-/exceptions/
-/helper/
-/edgeAlgorithms/
-/nodeAlgorithms/
-/graphReader/
