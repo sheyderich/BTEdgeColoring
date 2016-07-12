@@ -48,6 +48,9 @@ public class GraphReader {
 			reader = new BufferedReader(new FileReader(filename));
 
 			String firstLine = reader.readLine().trim();
+			while(firstLine.matches("c.*")){
+				firstLine = reader.readLine().trim();
+			}
 			if(firstLine.matches("[1-9]\\d*,[1-9]\\d*")){
 				graphType = 1;
 				String[] split_type = firstLine.split(",");
@@ -56,7 +59,12 @@ public class GraphReader {
 			}else if (firstLine.matches("\\d*")){
 				graphType = 2;
 				vertexCount1 = Integer.parseInt(firstLine);
-			} else {
+			}else if(firstLine.matches("p [a-z]* .*")){ 
+				graphType = 2; 
+				firstLine = firstLine.replaceAll("p [a-z]* ", "");
+				String[] split_type = firstLine.split(" ");
+				vertexCount1 = Integer.parseInt(split_type[0]);
+			}else {
 				reader.close();
 				throw new IllegalGraphTypeException("Not a supported format for a graph type " + usage);
 			}
@@ -65,6 +73,7 @@ public class GraphReader {
 			String actualLine = reader.readLine().trim();
 			edges = new String();
 			while(actualLine != null){
+				actualLine = actualLine.replaceAll("e ", "");
 				edges += actualLine.trim() + "\n";
 				actualLine = reader.readLine();
 			}

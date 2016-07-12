@@ -1,6 +1,8 @@
 package main;
 
 import edgeAlgorithms.Greedy;
+import edgeAlgorithms.LocalSearchGreedy;
+import edgeAlgorithms.RandomSearchGreedy;
 import graphReader.GraphReader;
 import graphs.Graph;
 import graphs.SimpleGraph;
@@ -13,14 +15,11 @@ import graphs.SimpleGraph;
 public class Haupt {
 	public static void main(String[] args){
 		
-		GraphReader gr = new GraphReader("bigraph1.txt");
+		GraphReader gr = new GraphReader("r250.5.col.txt");
 		Graph g = gr.buildGraphFromFile();
-		Greedy gre = new Greedy(g.getEdges());
+		RandomSearchGreedy gre = new RandomSearchGreedy();
 		gre.applyAlgorithmComplete(g);
 		System.out.println(((SimpleGraph)g).toString());
 		System.out.println(g.getQuantityColors());
-		System.out.println(g.calculateMaxVertexDegree());
-
-		
 	}
 }
