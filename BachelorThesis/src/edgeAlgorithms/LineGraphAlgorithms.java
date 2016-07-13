@@ -17,7 +17,7 @@ import helper.AlgorithmStep;
  * reverse this to get a valid edge coloring. 
  * @author Stephanie Heyderich
  */
-public abstract class LineGraphAlgorithms implements ColoringAlgorithm {
+public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 	
 	protected LineGraph lg; 
 	private GraphPanelViewController controller;

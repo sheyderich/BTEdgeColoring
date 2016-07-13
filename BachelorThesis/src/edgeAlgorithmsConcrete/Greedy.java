@@ -1,9 +1,10 @@
-package edgeAlgorithms;
+package edgeAlgorithmsConcrete;
 
 import java.awt.Point;
 import java.util.List;
 import java.util.Stack;
 
+import edgeAlgorithms.ColoringAlgorithms;
 import graphs.Graph;
 import helper.AlgorithmStep;
 import helper.ColorEdgeStep;
@@ -15,7 +16,7 @@ import helper.ColorEdgeStep;
  * in which it colors the edges which influences the result. 
  * @author Stephanie Heyderich
  */
-public class Greedy implements ColoringAlgorithm {
+public class Greedy implements ColoringAlgorithms {
 
 	private int u = 0; 
 	private int v = 0;

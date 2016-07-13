@@ -401,7 +401,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public void setLastStep(int u, int v){
 		int color = graph[u][v];
-		if(colors.length-1 == color){
+		if(colors.length < color-1){
 			colors = Arrays.copyOf(colors, colors.length*2);
 		}
 		colors[color-1]++;
@@ -427,7 +427,45 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 				}
 			}
 		}
+		Arrays.fill(colors, 0);
 		this.setChanged();
 		this.notifyObservers();
+	}
+
+	@Override
+	public Graph copyWithColors() {
+		Graph copy;
+		if(this instanceof BipartiteGraph){
+			copy = new BipartiteGraph((BipartiteGraph)this);
+		}else{
+			copy = new SimpleGraph(this); 
+		}
+		
+		for(int i = 0; i < graph.length; i++){
+			for(int j = 0; j < graph.length; j++){
+				if(graph[i][j] != NOTEXISTENT && graph[i][j] != UNCOLORED){
+					copy.setEdgeColor(i,j, getEdgeColor(i,j));
+				}
+			}
+		}
+		
+		return copy; 
+		
+	}
+
+	@Override
+	public List<Integer> getColorsAtVertex(int vertex) {
+		List<Integer> colors = new ArrayList<Integer>(); 
+		List<Integer> neighbors = getNeighbors(vertex);
+		for(Integer neighbor: neighbors){
+			if(isEdgeColored(neighbor, vertex)){
+				int color = getEdgeColor(neighbor, vertex);
+				if(!colors.contains(color)){
+					colors.add(color);
+				}
+				
+			}
+		}
+		return colors; 
 	}
 }

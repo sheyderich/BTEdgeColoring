@@ -1,8 +1,9 @@
 package main;
 
-import edgeAlgorithms.Greedy;
-import edgeAlgorithms.LocalSearchGreedy;
-import edgeAlgorithms.RandomSearchGreedy;
+import edgeAlgorithmsConcrete.Greedy;
+import edgeAlgorithmsConcrete.OrderAPISearch;
+import edgeAlgorithmsConcrete.OrderRANDOMSearch;
+import edgeAlgorithmsConcrete.OrderSWAPSearch;
 import graphReader.GraphReader;
 import graphs.Graph;
 import graphs.SimpleGraph;
@@ -17,9 +18,8 @@ public class Haupt {
 		
 		GraphReader gr = new GraphReader("r250.5.col.txt");
 		Graph g = gr.buildGraphFromFile();
-		RandomSearchGreedy gre = new RandomSearchGreedy();
+		OrderAPISearch gre = new OrderAPISearch();
 		gre.applyAlgorithmComplete(g);
-		System.out.println(((SimpleGraph)g).toString());
 		System.out.println(g.getQuantityColors());
 	}
 }

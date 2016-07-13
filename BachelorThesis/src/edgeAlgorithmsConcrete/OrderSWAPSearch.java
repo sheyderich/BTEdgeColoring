@@ -1,9 +1,11 @@
-package edgeAlgorithms;
+package edgeAlgorithmsConcrete;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import edgeAlgorithms.OrderBasedAlgorithms;
 
 
 /**
@@ -18,7 +20,7 @@ import java.util.List;
  * 
  * @author Stephanie Heyderich
  */
-public class LocalSearchGreedy extends OrderBasedAlgorithms {
+public class OrderSWAPSearch extends OrderBasedAlgorithms {
 	
 	/**
 	 * Creates a random new Order of a Point List

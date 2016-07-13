@@ -10,7 +10,7 @@ import graphs.Graph;
  * 
  * @author Stephanie Heyderich
  */
-public interface ColoringAlgorithm {
+public interface ColoringAlgorithms {
 	
 	/**
 	 * Proceed completely through the algorithm 

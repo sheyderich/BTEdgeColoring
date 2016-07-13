@@ -1,10 +1,11 @@
-package edgeAlgorithms;
+package edgeAlgorithmsConcrete;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+import edgeAlgorithms.ColoringAlgorithms;
 import exceptions.EdgeNotColoredException;
 import exceptions.EdgeNotFoundException;
 import exceptions.IllegalGraphTypeException;
@@ -21,7 +22,7 @@ import helper.PathSwitchingStep;
  * and if there is none available, switches colors on an augmented path.
  * @author Stephanie Heyderich
  */
-public class Koenig implements ColoringAlgorithm{
+public class Koenig implements ColoringAlgorithms{
 	
 	private Stack<AlgorithmStep> steps = new Stack<AlgorithmStep>();
 	private int u = 0; 

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
+import edgeAlgorithmsConcrete.Greedy;
 import graphs.Graph;
 import graphs.SimpleGraph;
 import helper.OrderStep;
@@ -17,10 +18,11 @@ import helper.OrderStep;
  * createNewOrder()
  * @author Stephanie Heyderich
  */
-public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
+public abstract class OrderBasedAlgorithms implements ColoringAlgorithms {
 
 	private int numberOfIterations;
-	private ColoringAlgorithm sStar;
+	protected Graph graph; 
+	private ColoringAlgorithms sStar;
 	private int minimalAmountOfColors;
 	protected List<Point> solutionOrder;
 	protected Random rand = new Random();
@@ -28,10 +30,12 @@ public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
+		
+		this.graph = graph; 
 
 		createStartSolution(graph);		
 		int numberOfIterationsWithoutImprovement = 0;
-		while (numberOfIterationsWithoutImprovement < 100 && minimalAmountOfColors > graph.calculateLBChromaticIndex()) {
+		while (numberOfIterationsWithoutImprovement < 10 && minimalAmountOfColors > graph.calculateLBChromaticIndex()) {
 			
 			List<Point> neighbor = createNewOrder(solutionOrder);
 			if (isNewOrderBetter(neighbor, graph)) {
@@ -46,6 +50,7 @@ public abstract class OrderBasedAlgorithms implements ColoringAlgorithm {
 
 	@Override
 	public void applyAlgorithmStepwise(Graph graph) {
+		this.graph = graph; 
 		
 		if (numberOfIterations == 0) {
 			createStartSolution(graph);

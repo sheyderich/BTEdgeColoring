@@ -3,7 +3,7 @@ package nodeAlgorithms;
 import java.util.List;
 import java.util.Stack;
 
-import edgeAlgorithms.ColoringAlgorithm;
+import edgeAlgorithms.ColoringAlgorithms;
 import exceptions.IllegalGraphTypeException;
 import graphs.Graph;
 import graphs.LineGraph;
@@ -16,7 +16,7 @@ import helper.ColorNodeStep;
  * uses the first color on the node that is valid. 
  * @author Stephanie Heyderich
  */
-public class Greedy implements ColoringAlgorithm {
+public class Greedy implements ColoringAlgorithms {
 
 	private List<Integer> nodes; 
 	private Stack<AlgorithmStep> steps = new Stack<AlgorithmStep>(); 

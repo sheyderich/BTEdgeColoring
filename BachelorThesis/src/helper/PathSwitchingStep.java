@@ -2,7 +2,7 @@ package helper;
 
 import java.util.List;
 
-import edgeAlgorithms.Koenig;
+import edgeAlgorithmsConcrete.Koenig;
 import graphs.Graph;
 
 /**

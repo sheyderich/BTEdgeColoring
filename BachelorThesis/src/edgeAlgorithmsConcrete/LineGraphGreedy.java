@@ -1,10 +1,11 @@
-package edgeAlgorithms;
+package edgeAlgorithmsConcrete;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 import controller.GraphPanelViewController;
+import edgeAlgorithms.LineGraphAlgorithms;
 import graphs.Graph;
 import helper.AlgorithmStep;
 

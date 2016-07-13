@@ -147,6 +147,14 @@ public interface Graph {
 	 * @return
 	 */
 	public List<Integer> getNeighbors(int vertex);
+	
+	/**
+	 * Returns a list of all the colors that were used on the edges of 
+	 * the given vertex
+	 * @param vertex
+	 * @return
+	 */
+	public List<Integer> getColorsAtVertex(int vertex);
 
 	/**
 	 * Returns the type of the graph
@@ -182,5 +190,12 @@ public interface Graph {
 	 * Uncolors the graph to reset the algorithm
 	 */
 	public void uncolor();
+	
+	/**
+	 * Returns a copy of the graph. It also copies
+	 * the colors (!= implemented copy constructor)
+	 * @return
+	 */
+	public Graph copyWithColors();
 	
 }

@@ -10,12 +10,15 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import edgeAlgorithms.ColoringAlgorithm;
-import edgeAlgorithms.Greedy;
-import edgeAlgorithms.Koenig;
-import edgeAlgorithms.LineGraphGreedy;
-import edgeAlgorithms.LocalSearchGreedy;
-import edgeAlgorithms.RandomSearchGreedy;
+import edgeAlgorithms.ColoringAlgorithms;
+import edgeAlgorithmsConcrete.Greedy;
+import edgeAlgorithmsConcrete.Koenig;
+import edgeAlgorithmsConcrete.LineGraphGreedy;
+import edgeAlgorithmsConcrete.OrderAPISearch;
+import edgeAlgorithmsConcrete.OrderRANDOMSearch;
+import edgeAlgorithmsConcrete.OrderSWAPSearch;
+import edgeAlgorithmsConcrete.TabuSearchRandomStart;
+import edgeAlgorithmsConcrete.TabuSearchUnicolorStart;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
@@ -32,7 +35,7 @@ public class GraphPanelViewController {
 	
 	private GraphPanelView graphPanelView;
 	private DrawableGraph model;
-	private ColoringAlgorithm usedAlgorithm;
+	private ColoringAlgorithms usedAlgorithm;
 	private boolean started = false; 
 	private Dimension dim = new Dimension(800,500);
 	private List<String> algorithms = new ArrayList<String>(); 
@@ -92,7 +95,10 @@ public class GraphPanelViewController {
 	private void setUpAlgorithms(){
 		algorithms.add("Greedy Algorithm");
 		algorithms.add("Randomized Search Algorithm Greedy");
-		algorithms.add("Local Search Algorithm Greedy");
+		algorithms.add("Local Search Algorithm SWAP");
+		algorithms.add("Local Search Algorithm API");
+		algorithms.add("Tabu Search Algorithm Random Start");
+		algorithms.add("Tabu Search Algorithm Unicolor Start");
 		algorithms.add("Line Graph Greedy");
 	}
 	
@@ -103,12 +109,15 @@ public class GraphPanelViewController {
 	 * @param algorithmName
 	 * @return
 	 */
-	private ColoringAlgorithm getAlgorithm(String algorithmName) {
+	private ColoringAlgorithms getAlgorithm(String algorithmName) {
 		switch(algorithmName){
 		case "König's Algorithm": return new Koenig();
 		case "Greedy Algorithm": return new Greedy(model.getEdges());
-		case "Randomized Search Algorithm Greedy": return new RandomSearchGreedy();
-		case "Local Search Algorithm Greedy": return new LocalSearchGreedy();
+		case "Randomized Search Algorithm Greedy": return new OrderRANDOMSearch();
+		case "Local Search Algorithm SWAP": return new OrderSWAPSearch();
+		case "Local Search Algorithm API": return new OrderAPISearch(); 
+		case "Tabu Search Algorithm Random Start": return new TabuSearchRandomStart();
+		case "Tabu Search Algorithm Unicolor Start": return new TabuSearchUnicolorStart();
 		case "Line Graph Greedy": return new LineGraphGreedy(this, (Graph)model);
 		default: System.out.println("Not yet implemented");
 		return new Greedy(model.getEdges());
