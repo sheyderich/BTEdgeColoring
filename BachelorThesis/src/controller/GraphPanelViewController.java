@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import edgeAlgorithms.ColoringAlgorithms;
 import edgeAlgorithmsConcrete.Greedy;
 import edgeAlgorithmsConcrete.Koenig;
+import edgeAlgorithmsConcrete.LineGraphDegreeDown;
+import edgeAlgorithmsConcrete.LineGraphDegreeUp;
 import edgeAlgorithmsConcrete.LineGraphGreedy;
 import edgeAlgorithmsConcrete.OrderAPISearch;
 import edgeAlgorithmsConcrete.OrderRANDOMSearch;
@@ -100,6 +102,8 @@ public class GraphPanelViewController {
 		algorithms.add("Tabu Search Algorithm Random Start");
 		algorithms.add("Tabu Search Algorithm Unicolor Start");
 		algorithms.add("Line Graph Greedy");
+		algorithms.add("Line Graph Degrees Down");
+		algorithms.add("Line Graph Degrees Up");
 	}
 	
 	/**
@@ -119,6 +123,8 @@ public class GraphPanelViewController {
 		case "Tabu Search Algorithm Random Start": return new TabuSearchRandomStart();
 		case "Tabu Search Algorithm Unicolor Start": return new TabuSearchUnicolorStart();
 		case "Line Graph Greedy": return new LineGraphGreedy(this, (Graph)model);
+		case "Line Graph Degrees Down": return new LineGraphDegreeDown(this, (Graph)model);
+		case "Line Graph Degrees Up": return new LineGraphDegreeUp(this, (Graph)model);
 		default: System.out.println("Not yet implemented");
 		return new Greedy(model.getEdges());
 		}

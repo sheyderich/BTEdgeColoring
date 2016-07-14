@@ -21,7 +21,7 @@ public class Greedy implements ColoringAlgorithms {
 	private List<Integer> nodes; 
 	private Stack<AlgorithmStep> steps = new Stack<AlgorithmStep>(); 
 	private int index = 0; 
-	private LineGraph g; 
+	private LineGraph lg; 
 	
 	public Greedy(List<Integer> nodeOrder){
 		this.nodes = nodeOrder; 
@@ -31,14 +31,14 @@ public class Greedy implements ColoringAlgorithms {
 	public void applyAlgorithmComplete(Graph graph) {
 		
 		if(graph instanceof LineGraph){
-			g = (LineGraph)graph; 
+			lg = (LineGraph)graph; 
 		}else{
 			throw new IllegalGraphTypeException("Only LineGraphs allowed");
 		}
 		
 		for(; index < graph.getVertexNumber(); index++){
 			int currentNode = nodes.get(index);
-			if(!g.isNodeColored(currentNode)){
+			if(!lg.isNodeColored(currentNode)){
 				tryColorNode(currentNode);
 			}
 		}
@@ -48,13 +48,13 @@ public class Greedy implements ColoringAlgorithms {
 	public void applyAlgorithmStepwise(Graph graph) {
 		
 		if(graph instanceof LineGraph){
-			g = (LineGraph)graph; 
+			lg = (LineGraph)graph; 
 		}else{
 			throw new IllegalGraphTypeException("Only LineGraphs allowed");
 		}
-		if(!g.isColored()){
+		if(!lg.isColored()){
 			int currentNode = nodes.get(index);
-			if(!g.isNodeColored(currentNode)){
+			if(!lg.isNodeColored(currentNode)){
 				tryColorNode(currentNode);
 			}
 			index++;
@@ -63,16 +63,16 @@ public class Greedy implements ColoringAlgorithms {
 
 	@Override
 	public void undoLastColoring(Graph graph) {
-		
+
 		if(graph instanceof LineGraph){
-			g = (LineGraph)graph; 
+			lg = (LineGraph)graph; 
 		}else{
 			throw new IllegalGraphTypeException("Only LineGraphs allowed");
 		}
 		
 		if(!steps.isEmpty()){
 			AlgorithmStep last = steps.pop(); 
-			g.removeLastStep();
+			lg.removeLastStep();
 			last.undo(graph);
 			index--;
 		}
@@ -80,14 +80,14 @@ public class Greedy implements ColoringAlgorithms {
 
 	@Override
 	public void resetColoring(Graph graph) {
-		
+
 		if(graph instanceof LineGraph){
-			g = (LineGraph)graph; 
+			lg = (LineGraph)graph; 
 		}else{
 			throw new IllegalGraphTypeException("Only LineGraphs allowed");
 		}
 		
-		g.uncolor();
+		lg.uncolor();
 		graph.uncolor();
 		index = 0; 
 		steps.clear();
@@ -101,10 +101,10 @@ public class Greedy implements ColoringAlgorithms {
 	private void tryColorNode(int node) {
 		int color = 1; 
 		do{
-			g.setNodeColor(node, color);
+			lg.setNodeColor(node, color);
 			color++;
-		}while(!g.isNodeColoringValid(node));
-		g.setLastStep(node);
+		}while(!lg.isNodeColoringValid(node));
+		lg.setLastStep(node);
 		steps.push(new ColorNodeStep(node));
 	}
 	

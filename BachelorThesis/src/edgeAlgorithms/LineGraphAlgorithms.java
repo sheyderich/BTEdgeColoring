@@ -101,7 +101,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 		graph.uncolor();
 		lg.uncolor();
 		resetAlgorithm(); 
-		finished = true; 
+		finished = false; 
 		init = true; 
 	}
 	

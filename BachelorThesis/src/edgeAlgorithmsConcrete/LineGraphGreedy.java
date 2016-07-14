@@ -18,7 +18,23 @@ import helper.AlgorithmStep;
  */
 public class LineGraphGreedy extends LineGraphAlgorithms {
 
-	private nodeAlgorithms.Greedy greedy; 
+	protected nodeAlgorithms.Greedy greedy; 
+	
+	/**
+	 * Sets up a LlineGraphAlgorithm and determines the order of the 
+	 * greedy algorithm by just taking the lexical order of the nodes
+	 * for the case when visual representation is not necessary
+	 * @param g
+	 */
+	public LineGraphGreedy(Graph g) {
+		super(g);
+		List<Integer> nodes = new ArrayList<Integer>();
+		for(int i = 0; i < lg.getVertexNumber(); i++){
+			nodes.add(new Integer(i));
+		}
+		greedy = new nodeAlgorithms.Greedy(nodes);
+	}
+	
 	
 	/**
 	 * Sets up a LlineGraphAlgorithm and determines the order of the 

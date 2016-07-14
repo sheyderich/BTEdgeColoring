@@ -401,7 +401,7 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 	 */
 	public void setLastStep(int u, int v){
 		int color = graph[u][v];
-		if(colors.length < color-1){
+		if(colors.length <= color-1){
 			colors = Arrays.copyOf(colors, colors.length*2);
 		}
 		colors[color-1]++;
