@@ -468,4 +468,14 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		}
 		return colors; 
 	}
+
+	@Override
+	public void colorGraph(int[] edgeColors) {
+		Arrays.fill(colors, 0);
+		for(int i = 0; i < edges.size(); i++){
+			Point edge = edges.get(i);
+			setEdgeColor(edge.x, edge.y, edgeColors[i]);
+			setLastStep(edge.x, edge.y);
+		}
+	}
 }

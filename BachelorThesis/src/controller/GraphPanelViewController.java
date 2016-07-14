@@ -96,14 +96,14 @@ public class GraphPanelViewController {
 	 */
 	private void setUpAlgorithms(){
 		algorithms.add("Greedy Algorithm");
-		algorithms.add("Randomized Search Algorithm Greedy");
-		algorithms.add("Local Search Algorithm SWAP");
-		algorithms.add("Local Search Algorithm API");
-		algorithms.add("Tabu Search Algorithm Random Start");
-		algorithms.add("Tabu Search Algorithm Unicolor Start");
-		algorithms.add("Line Graph Greedy");
-		algorithms.add("Line Graph Degrees Down");
-		algorithms.add("Line Graph Degrees Up");
+		algorithms.add("Randomized Greedy");
+		algorithms.add("LSA SWAP");
+		algorithms.add("LSA API");
+		algorithms.add("TSA Random Start");
+		algorithms.add("TSA Unicolor Start");
+		algorithms.add("LG Greedy");
+		algorithms.add("LG Degrees Down");
+		algorithms.add("LG Degrees Up");
 	}
 	
 	/**
@@ -117,14 +117,14 @@ public class GraphPanelViewController {
 		switch(algorithmName){
 		case "König's Algorithm": return new Koenig();
 		case "Greedy Algorithm": return new Greedy(model.getEdges());
-		case "Randomized Search Algorithm Greedy": return new OrderRANDOMSearch();
-		case "Local Search Algorithm SWAP": return new OrderSWAPSearch();
-		case "Local Search Algorithm API": return new OrderAPISearch(); 
-		case "Tabu Search Algorithm Random Start": return new TabuSearchRandomStart();
-		case "Tabu Search Algorithm Unicolor Start": return new TabuSearchUnicolorStart();
-		case "Line Graph Greedy": return new LineGraphGreedy(this, (Graph)model);
-		case "Line Graph Degrees Down": return new LineGraphDegreeDown(this, (Graph)model);
-		case "Line Graph Degrees Up": return new LineGraphDegreeUp(this, (Graph)model);
+		case "Randomized Greedy": return new OrderRANDOMSearch();
+		case "LSA SWAP": return new OrderSWAPSearch();
+		case "LSA API": return new OrderAPISearch(); 
+		case "TSA Random Start": return new TabuSearchRandomStart();
+		case "TSA Unicolor Start": return new TabuSearchUnicolorStart();
+		case "LG Greedy": return new LineGraphGreedy(this, (Graph)model);
+		case "LG Degrees Down": return new LineGraphDegreeDown(this, (Graph)model);
+		case "LG Degrees Up": return new LineGraphDegreeUp(this, (Graph)model);
 		default: System.out.println("Not yet implemented");
 		return new Greedy(model.getEdges());
 		}

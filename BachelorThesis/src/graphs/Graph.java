@@ -198,4 +198,12 @@ public interface Graph {
 	 */
 	public Graph copyWithColors();
 	
+	/**
+	 * Takes an array of colors that are applied to the edges, according
+	 * to the order in which the edges are stored in the List provided by
+	 * getEdges(). So edgeColors[0] colors the first edge in the edge-List.  
+	 * @param edgeColors
+	 */
+	public void colorGraph(int[] edgeColors);
+	
 }

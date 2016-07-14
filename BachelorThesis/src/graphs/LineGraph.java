@@ -225,6 +225,21 @@ public class LineGraph extends SimpleGraph {
 	}
 	
 	/**
+	 * Sets every node color to a given color at once. 
+	 * @param nodeColors
+	 */
+	public void colorLineGraph(int[] nodeColors){
+		this.nodeColors = nodeColors; 
+		Arrays.fill(colors, 0);
+		for(int i = 0; i < nodeColors.length; i++){
+			int color = nodeColors[i];
+			colors[color-1]++;
+		}
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
+	/**
 	 * Paints the given graph on the graphics context g. 
 	 * Nodes instead of edges are colored based on the 
 	 * colors that are assigned to the graph
