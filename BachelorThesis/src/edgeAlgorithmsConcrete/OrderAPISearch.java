@@ -10,7 +10,7 @@ import edgeAlgorithms.OrderBasedAlgorithms;
 /**
  * Creates all neighbors of one list by taking the API-Neighborhood 
  * (every order that can be reached by switching the position of 
- * two elements in the first order). 
+ * two neighboring elements in the first order). 
  * @author Stephanie Heyderich
  */
 public class OrderAPISearch extends OrderBasedAlgorithms {
@@ -30,12 +30,14 @@ public class OrderAPISearch extends OrderBasedAlgorithms {
 	private List<List<Point>> getNeighbors(List<Point> old) {
 		List<List<Point>> neighbors = new ArrayList<List<Point>>(); 
 		for(int i = 0; i < old.size()-1; i++){
-			for(int j = i+1; j < old.size(); j++){
-				List<Point> neighbor = new ArrayList<Point>(old);
-				Collections.swap(neighbor, i, j);
-				neighbors.add(neighbor);
-			}
+			int j = i+1; 
+			List<Point> neighbor = new ArrayList<Point>(old);
+			Collections.swap(neighbor, i, j);
+			neighbors.add(neighbor);
 		}
+		List<Point> neighbor = new ArrayList<Point>(old);
+		Collections.swap(neighbor, old.size(), 0);
+		neighbors.add(neighbor);
 		return neighbors;
 	}
 	

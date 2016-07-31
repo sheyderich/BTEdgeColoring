@@ -62,7 +62,9 @@ public class SimpleGraph extends DrawableGraph implements Graph{
 		graph = new int[g.getVertexNumber()][g.getVertexNumber()];
 		for(int i = 0; i < graph.length; i++){
 			for(int j = 0; j < graph.length; j++){
-				graph[i][j] = g.isEdgeExistent(i, j)? UNCOLORED: NOTEXISTENT;
+				if(g.isEdgeExistent(i, j)){
+					addEdge(i,j);
+				}
 			}
 		}
 		colors = new int[this.getVertexNumber()];

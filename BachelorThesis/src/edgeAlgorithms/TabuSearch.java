@@ -1,5 +1,6 @@
 package edgeAlgorithms;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,7 +38,7 @@ public abstract class TabuSearch implements ColoringAlgorithms {
 		
 		while(violations != 0){
 			
-			List<TabuSearchStep> candidates = createCandidates(currentColoring); 
+			List<TabuSearchStep> candidates = createCandidates(currentColoring);
 			Random rand = new Random(); 
 			int cand_pos = rand.nextInt(candidates.size());
 			TabuSearchStep next = candidates.get(cand_pos);
@@ -141,16 +142,15 @@ public abstract class TabuSearch implements ColoringAlgorithms {
 	private List<TabuSearchStep> createCandidates(Graph currentColoring) {
 		
 		List<TabuSearchStep> candidates = new ArrayList<TabuSearchStep>(); 
+		List<Point> edges = currentColoring.getEdges();
 		
-		for(int u = 0; u < currentColoring.getVertexNumber(); u++){
-			for(int v = u+1; v < currentColoring.getVertexNumber(); v++){
-				if(currentColoring.isEdgeExistent(u, v)){
-					if(!currentColoring.isEdgeColoringValid(u, v)){
-						int color = getFirstValidColor(currentColoring,u,v);
-						int colorBefore = currentColoring.getEdgeColor(u, v);
-						candidates.add(new TabuSearchStep(u,v,color, colorBefore));
-					}
-				}
+		for(Point p: edges){	
+			int u = p.x;
+			int v = p.y;
+			if(!currentColoring.isEdgeColoringValid(u, v)){
+				int color = getFirstValidColor(currentColoring,u,v);
+				int colorBefore = currentColoring.getEdgeColor(u, v);
+				candidates.add(new TabuSearchStep(u,v,color, colorBefore));
 			}
 		}
 		return candidates;

@@ -129,6 +129,7 @@ public class Koenig implements ColoringAlgorithms{
 			int cv = getFreeColor(graph,u);
 			int cu = getFreeColor(graph,v);
 			switchColorOnPath(graph, graph.getAugmentedPath(), cv, cu);
+			graph.removeLastStep();
 			steps.push(new PathSwitchingStep(cv, cu, graph.getAugmentedPath()));
 			break;
 		case 2: 

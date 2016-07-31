@@ -30,12 +30,11 @@ public abstract class OrderBasedAlgorithms implements ColoringAlgorithms {
 
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
-		
 		this.graph = graph; 
 
 		createStartSolution(graph);		
 		int numberOfIterationsWithoutImprovement = 0;
-		while (numberOfIterationsWithoutImprovement < 10 && minimalAmountOfColors > graph.calculateLBChromaticIndex()) {
+		while (numberOfIterationsWithoutImprovement < 50 && minimalAmountOfColors > graph.calculateLBChromaticIndex()) {
 			
 			List<Point> neighbor = createNewOrder(solutionOrder);
 			if (isNewOrderBetter(neighbor, graph)) {
