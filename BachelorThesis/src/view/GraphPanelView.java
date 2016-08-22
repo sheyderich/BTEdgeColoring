@@ -16,7 +16,7 @@ import graphs.DrawableGraph;
  * @author Stephanie Heyderich
  */
 @SuppressWarnings("serial")
-public class GraphPanelView extends JPanel implements Observer{
+public class GraphPanelView extends View implements Observer{
 	
 	private GraphPanel graphPanel;
 	private GraphInfoPanel graphInfoPanel;

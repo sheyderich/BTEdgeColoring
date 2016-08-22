@@ -1,12 +1,17 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edgeAlgorithms.ColoringAlgorithms;
 import edgeAlgorithmsConcrete.Greedy;
+import edgeAlgorithmsConcrete.LineGraphDegreeDown;
+import edgeAlgorithmsConcrete.LineGraphDegreeUp;
 import edgeAlgorithmsConcrete.OrderAPISearch;
 import edgeAlgorithmsConcrete.OrderRANDOMSearch;
 import edgeAlgorithmsConcrete.OrderSWAPSearch;
-import graphReader.GraphReader;
-import graphs.Graph;
-import graphs.SimpleGraph;
+import edgeAlgorithmsConcrete.TabuSearchRandomStart;
+import edgeAlgorithmsConcrete.TabuSearchUnicolorStart;
 
 /**
  * The main programm when the comparison between the
@@ -16,10 +21,29 @@ import graphs.SimpleGraph;
 public class Haupt {
 	public static void main(String[] args){
 		
-		GraphReader gr = new GraphReader("r250.5.col.txt");
-		Graph g = gr.buildGraphFromFile();
-		OrderAPISearch gre = new OrderAPISearch();
-		gre.applyAlgorithmComplete(g);
-		System.out.println(g.getQuantityColors());
+		List<String> graphs = getGraphs(); 
+		
+		List<ColoringAlgorithms> algs = getAlgorithms(); 
+		
+		
+	}
+
+	private static List<String> getGraphs() {
+		List<String> fin = new ArrayList<String>(); 
+		// File Namen
+		return fin;
+	}
+
+	private static List<ColoringAlgorithms> getAlgorithms() {
+		List<ColoringAlgorithms> fin = new ArrayList<ColoringAlgorithms>(); 
+//		fin.add(new Greedy());
+//		fin.add(new LineGraphDegreeDown()); 
+//		fin.add(new LineGraphDegreeUp());
+		fin.add(new OrderAPISearch());
+		fin.add(new OrderRANDOMSearch());
+		fin.add(new OrderSWAPSearch());
+		fin.add(new TabuSearchUnicolorStart());
+		fin.add(new TabuSearchRandomStart());
+		return fin;
 	}
 }

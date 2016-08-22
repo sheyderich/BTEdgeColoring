@@ -34,7 +34,7 @@ import view.GraphPanelView;
  * the button is pressed.  
  * @author Stephanie Heyderich
  */
-public class GraphPanelViewController {
+public class GraphPanelViewController implements Controller{
 	
 	private GraphPanelView graphPanelView;
 	private DrawableGraph model;
@@ -70,12 +70,12 @@ public class GraphPanelViewController {
 	 * are determined and set to the Combo-Box.
 	 * @param model
 	 */
-	public void setModel(DrawableGraph newModel){
-		this.model = newModel;
+	public void setModel(Graph newModel){
+		this.model = (DrawableGraph)newModel;
 		model.addObserver(graphPanelView);
-		graphPanelView.setModel(newModel);
+		graphPanelView.setModel((DrawableGraph)newModel);
 		graphPanelView.repaint();
-		setAlgorithmsToUse(newModel);
+		setAlgorithmsToUse((DrawableGraph)newModel);
 	}
 	
 	/**
@@ -229,7 +229,7 @@ public class GraphPanelViewController {
 						try{
 							GraphReader gr = new GraphReader(file.getName());
 							Graph g = gr.buildGraphFromFile();
-							setModel((DrawableGraph)g);
+							setModel(g);
 						}catch(Exception ex){
 							ex.printStackTrace();
 							JOptionPane.showMessageDialog(graphPanelView,WRONG_FILE, "Error",  JOptionPane.ERROR_MESSAGE);
