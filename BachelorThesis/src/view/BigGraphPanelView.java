@@ -10,15 +10,21 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import graphs.Graph;
-
+/**
+ * View of the display that is shown when no visualization is 
+ * needed for the graph because it is too big. 
+ * @author Stephanie Heyderich
+ */
 @SuppressWarnings("serial")
 public class BigGraphPanelView extends View implements Observer {
 	
-	private Graph model; 
+	
 	private InfoPanel info; 
-	private JButton importButton; 
-	private JComboBox<Object> chooseAlgorithm;
 	private JPanel buttons = new JPanel(); 
+	private JButton importButton; 
+	private JButton startButton; 
+	private JComboBox<Object> chooseAlgorithm;
+	private Graph model; 
 	
 	public BigGraphPanelView(int width, int height, Graph model){
 		if(height < 1 || width < 1){
@@ -28,21 +34,28 @@ public class BigGraphPanelView extends View implements Observer {
 		this.setLayout(new BorderLayout());
 		info = new InfoPanel(model); 
 		this.add(info, BorderLayout.CENTER);
-		buttons.setLayout(new GridLayout(0,2));
+		buttons.setLayout(new GridLayout(0,3));
 		this.add(buttons, BorderLayout.SOUTH);
 		importButton = new JButton("Import Graph");
 		buttons.add(importButton);
 		chooseAlgorithm = new JComboBox<Object>(); 
-		buttons.add(chooseAlgorithm); 
+		buttons.add(chooseAlgorithm);
+		startButton = new JButton("Start Algorithm");
+		buttons.add(startButton);
 	}
 	
 	public JButton getImportButton(){
 		return importButton;
 	}
 	
+	public JButton getStartButton(){
+		return startButton; 
+	}
+	
 	public void setModel(Graph model){
 		info.setModel(model); 
-		
+		this.model = model; 
+		this.repaint();
 	}
 	
 	@Override
@@ -73,7 +86,7 @@ public class BigGraphPanelView extends View implements Observer {
 	}
 	
 	public void setAlgorithm(String s){
-		info.setAlgName(s);
+		info.setAlgorithm(s);
 	}
 
 }

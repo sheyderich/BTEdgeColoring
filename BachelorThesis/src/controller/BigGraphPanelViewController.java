@@ -30,6 +30,11 @@ import graphs.Graph;
 import view.BigGraphPanelView;
 import view.View;
 
+/**
+ * Controller for the version of the programm where no visualization is needed
+ * because the graph is too big. 
+ * @author Stephanie Heyderich
+ */
 public class BigGraphPanelViewController implements Controller {
 	
 	private BigGraphPanelView view; 
@@ -47,13 +52,9 @@ public class BigGraphPanelViewController implements Controller {
 		view = new BigGraphPanelView((int)dim.getWidth(), (int)dim.getHeight(),model); 
 		setUpAlgorithms(); 
 		setUpImportFunction();
+		setUpStartButton();
 	}
 	
-	@Override
-	public View getView() {
-		return view;
-	}
-
 	@Override
 	public void setModel(Graph g) {
 		model = g; 
@@ -61,6 +62,62 @@ public class BigGraphPanelViewController implements Controller {
 		view.setModel(g);
 		view.repaint();
 		setAlgorithmsToUse((DrawableGraph)g);
+	}
+	
+	/**
+	 * Needed to set the Line Graph as a new model without
+	 * resetting the algorithm
+	 * @param newModel
+	 */
+	public void setModelLineGraph(Graph newModel){
+		this.model = newModel;
+		((DrawableGraph)model).addObserver(view);
+		view.setModel(newModel);
+		view.repaint();
+	}
+	
+	
+	/**
+	 * Sets the available algorithms into the list of algorithms
+	 * Also determine the names that are displayed in the view 
+	 * where the user can choose one of them 
+	 */
+	private void setUpAlgorithms(){
+		algorithms.add("Greedy Algorithm");
+		algorithms.add("Randomized Greedy");
+		algorithms.add("LSA SWAP");
+		algorithms.add("LSA API");
+		algorithms.add("TSA Random Start");
+		algorithms.add("TSA Unicolor Start");
+		algorithms.add("LG Greedy");
+		algorithms.add("LG Degrees Down");
+		algorithms.add("LG Degrees Up");
+		algorithms.add("TestForThesis");
+	}
+	
+	/**
+	 * Returns a new EdgeColoringAlgorithm based on the given name
+	 * of an algorithm.
+	 * Throws a RuntimeException if the algorithm is unknown
+	 * @param algorithmName
+	 * @return
+	 */
+	private ColoringAlgorithms getAlgorithm(String algorithmName) {
+		switch(algorithmName){
+		case "König's Algorithm": return new Koenig();
+		case "Greedy Algorithm": return new Greedy(model.getEdges());
+		case "Randomized Greedy": return new OrderRANDOMSearch();
+		case "LSA SWAP": return new OrderSWAPSearch();
+		case "LSA API": return new OrderAPISearch(); 
+		case "TSA Random Start": return new TabuSearchRandomStart();
+		case "TSA Unicolor Start": return new TabuSearchUnicolorStart();
+		case "LG Greedy": return new LineGraphGreedy(model);
+		case "LG Degrees Down": return new LineGraphDegreeDown(model);
+		case "LG Degrees Up": return new LineGraphDegreeUp(model);
+		case "TestForThesis": return new TestForThesis((Graph)model); 
+		default: System.out.println("Not yet implemented");
+		return new Greedy(model.getEdges());
+		}
 	}
 	
 	/**
@@ -126,55 +183,17 @@ public class BigGraphPanelViewController implements Controller {
 		cb.addActionListener(chooseAlg);
 	}
 	
+	@Override
+	public View getView() {
+		return view;
+	}
+
 	/**
 	 * Returns the model
 	 * @return
 	 */
 	private Graph getModel(){
 		return model;
-	}
-	
-	/**
-	 * Returns a new EdgeColoringAlgorithm based on the given name
-	 * of an algorithm.
-	 * Throws a RuntimeException if the algorithm is unknown
-	 * @param algorithmName
-	 * @return
-	 */
-	private ColoringAlgorithms getAlgorithm(String algorithmName) {
-		switch(algorithmName){
-		case "König's Algorithm": return new Koenig();
-		case "Greedy Algorithm": return new Greedy(model.getEdges());
-		case "Randomized Greedy": return new OrderRANDOMSearch();
-		case "LSA SWAP": return new OrderSWAPSearch();
-		case "LSA API": return new OrderAPISearch(); 
-		case "TSA Random Start": return new TabuSearchRandomStart();
-		case "TSA Unicolor Start": return new TabuSearchUnicolorStart();
-		case "LG Greedy": return new LineGraphGreedy(model);
-		case "LG Degrees Down": return new LineGraphDegreeDown(model);
-		case "LG Degrees Up": return new LineGraphDegreeUp(model);
-		case "TestForThesis": return new TestForThesis((Graph)model); 
-		default: System.out.println("Not yet implemented");
-		return new Greedy(model.getEdges());
-		}
-	}
-	
-	/**
-	 * Sets the available algorithms into the list of algorithms
-	 * Also determine the names that are displayed in the view 
-	 * where the user can choose one of them 
-	 */
-	private void setUpAlgorithms(){
-		algorithms.add("Greedy Algorithm");
-		algorithms.add("Randomized Greedy");
-		algorithms.add("LSA SWAP");
-		algorithms.add("LSA API");
-		algorithms.add("TSA Random Start");
-		algorithms.add("TSA Unicolor Start");
-		algorithms.add("LG Greedy");
-		algorithms.add("LG Degrees Down");
-		algorithms.add("LG Degrees Up");
-		algorithms.add("TestForThesis");
 	}
 	
 	/**
@@ -210,4 +229,17 @@ public class BigGraphPanelViewController implements Controller {
 		view.getImportButton().addActionListener(importFile);
 	}
 
+	/**
+	 * Sets up the start button and sets the text on it
+	 * to "next step". 
+	 */
+	private void setUpStartButton(){
+		ActionListener startAlgorithm = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				usedAlgorithm.applyAlgorithmComplete((Graph)model);
+			}
+		};
+		
+		view.getStartButton().addActionListener(startAlgorithm);
+	}
 }
