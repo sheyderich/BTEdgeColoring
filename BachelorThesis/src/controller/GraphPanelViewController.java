@@ -1,11 +1,14 @@
 package controller;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -26,7 +29,9 @@ import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
 import graphs.Graph;
+import view.BigGraphPanelView;
 import view.GraphPanelView;
+import view.View;
 
 /**
  * Controlls the Graph Panels by checking for mouse clicks on the import
@@ -34,10 +39,11 @@ import view.GraphPanelView;
  * the button is pressed.  
  * @author Stephanie Heyderich
  */
-public class GraphPanelViewController implements Controller{
+public class GraphPanelViewController extends Controller{
 	
-	private GraphPanelView graphPanelView;
-	private DrawableGraph model;
+//	private View view;
+//	private DrawableGraph model;
+	private Frame frame; 
 	private ColoringAlgorithms usedAlgorithm;
 	private boolean started = false; 
 	private Dimension dim = new Dimension(800,500);
@@ -52,9 +58,10 @@ public class GraphPanelViewController implements Controller{
 	 * Creates a list of algorithms that can be used and sets up the 
 	 * ActionListener
 	 */
-	public GraphPanelViewController(){
+	public GraphPanelViewController(Frame frame){
 		model = null;
-		graphPanelView = new GraphPanelView((int)dim.getWidth(), (int)dim.getHeight(),model);
+		this.frame = frame; 
+		this.view = new GraphPanelView((int)dim.getWidth(), (int)dim.getHeight(), (DrawableGraph)model);
 		setUpAlgorithms(); 
 		setUpImportFunction();
 		setUpStartButton();
@@ -71,11 +78,27 @@ public class GraphPanelViewController implements Controller{
 	 * @param model
 	 */
 	public void setModel(Graph newModel){
-		this.model = (DrawableGraph)newModel;
-		model.addObserver(graphPanelView);
-		graphPanelView.setModel((DrawableGraph)newModel);
-		graphPanelView.repaint();
+		super.setModel(newModel);
+		this.model = newModel;
+		((DrawableGraph)model).addObserver(view);
+		view.setModel(newModel);
+		view.repaint();
 		setAlgorithmsToUse((DrawableGraph)newModel);
+	}
+	
+	/**
+	 * 
+	 */
+	public void setView(View newView){
+		frame.remove(view);
+		this.view = newView;
+		frame.add(view);
+		setUpAlgorithms(); 
+		setUpImportFunction();
+		setUpStartButton();
+		setUpUndoButton();
+		setUpFinalColoringButton();
+		setUpResetButton();
 	}
 	
 	/**
@@ -83,11 +106,11 @@ public class GraphPanelViewController implements Controller{
 	 * resetting the algorithm
 	 * @param newModel
 	 */
-	public void setModelLineGraph(DrawableGraph newModel){
+	public void setModelLineGraph(Graph newModel){
 		this.model = newModel;
-		model.addObserver(graphPanelView);
-		graphPanelView.setModel(newModel);
-		graphPanelView.repaint();
+		((DrawableGraph)model).addObserver(view);
+		view.setModel((Graph)newModel);
+		view.repaint();
 	}
 	
 	/**
@@ -167,10 +190,10 @@ public class GraphPanelViewController implements Controller{
 	 * user does not select one
 	 */
 	private void configureComboBox(){
-		graphPanelView.setChooseAlgorithm(algorithms.toArray());
-		JComboBox<Object> cb = graphPanelView.getChooseAlgorithm();
+		view.setChooseAlgorithm(algorithms.toArray());
+		JComboBox<Object> cb = view.getChooseAlgorithm();
 		usedAlgorithm = getAlgorithm((String)cb.getSelectedItem());
-		graphPanelView.setAlgorithm((String)cb.getSelectedItem());
+		view.setAlgorithm((String)cb.getSelectedItem());
 	}
 	
 	/**
@@ -189,25 +212,25 @@ public class GraphPanelViewController implements Controller{
 		        String algorithmName = (String)cb.getSelectedItem();
 		        usedAlgorithm = getAlgorithm(algorithmName);
 		        ((Graph)getModel()).uncolor();
-		        graphPanelView.setAlgorithm(algorithmName);
+		        view.setAlgorithm(algorithmName);
 			}
 		};
-		JComboBox<Object> cb = graphPanelView.getChooseAlgorithm();
+		JComboBox<Object> cb = view.getChooseAlgorithm();
 		cb.addActionListener(chooseAlg);
 	}
 	
 	/**
 	 * Returns the view
 	 */
-	public GraphPanelView getView(){
-		return graphPanelView;
+	public View getView(){
+		return view;
 	}
 	
 	/**
 	 * Returns the model
 	 * @return
 	 */
-	private DrawableGraph getModel(){
+	private Graph getModel(){
 		return model;
 	}
 	
@@ -222,7 +245,7 @@ public class GraphPanelViewController implements Controller{
 			public void actionPerformed(ActionEvent e){
 				final JFileChooser fc = new JFileChooser("C:\\Users\\Shey\\git\\BTEdgeColoring\\BachelorThesis");
 //				final JFileChooser fc = new JFileChooser();
-				int result = fc.showOpenDialog(graphPanelView);
+				int result = fc.showOpenDialog(view);
 				if(result == JFileChooser.APPROVE_OPTION){
 					File file = fc.getSelectedFile();
 					if(file.getName().matches(".*.txt")){
@@ -232,16 +255,16 @@ public class GraphPanelViewController implements Controller{
 							setModel(g);
 						}catch(Exception ex){
 							ex.printStackTrace();
-							JOptionPane.showMessageDialog(graphPanelView,WRONG_FILE, "Error",  JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(view,WRONG_FILE, "Error",  JOptionPane.ERROR_MESSAGE);
 						}
 					}else{
-						JOptionPane.showMessageDialog(graphPanelView,WRONG_FILE,  "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(view,WRONG_FILE,  "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 			
 		};
-		graphPanelView.getImportButton().addActionListener(importFile);
+		view.getImportButton().addActionListener(importFile);
 	}
 	
 	/**
@@ -251,15 +274,22 @@ public class GraphPanelViewController implements Controller{
 	private void setUpStartButton(){
 		ActionListener startAlgorithm = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(!started){
-					started = true; 
-					graphPanelView.getStartButton().setText("Next Step");
+				
+				if(view instanceof GraphPanelView){
+					if(!started){
+						started = true; 
+						view.getStartButton().setText("Next Step");
+					}
+					usedAlgorithm.applyAlgorithmStepwise((Graph)model);
 				}
-				usedAlgorithm.applyAlgorithmStepwise((Graph)model);
+				
+				if(view instanceof BigGraphPanelView){
+					usedAlgorithm.applyAlgorithmComplete((Graph)model);
+				}
 			}
 		};
 		
-		graphPanelView.getStartButton().addActionListener(startAlgorithm);
+		view.getStartButton().addActionListener(startAlgorithm);
 	}
 	
 	/**
@@ -271,8 +301,9 @@ public class GraphPanelViewController implements Controller{
 				usedAlgorithm.undoLastColoring((Graph)model);
 			}
 		};
-		
-		graphPanelView.getLastButton().addActionListener(lastStep);
+		JButton last = view.getLastButton(); 
+		if(last != null)
+			view.getLastButton().addActionListener(lastStep);
 	}
 	
 	/**
@@ -286,7 +317,9 @@ public class GraphPanelViewController implements Controller{
 			}
 		};
 		
-		graphPanelView.getCompleteButton().addActionListener(completeAlg);
+		JButton complete = view.getCompleteButton(); 
+		if(complete != null)
+			view.getCompleteButton().addActionListener(completeAlg);
 	}
 	
 	/**
@@ -299,8 +332,9 @@ public class GraphPanelViewController implements Controller{
 				usedAlgorithm.resetColoring((Graph)model);
 			}
 		};
-		
-		graphPanelView.getResetButton().addActionListener(resetAlg);
+		JButton reset = view.getResetButton(); 
+		if(reset != null)
+			view.getResetButton().addActionListener(resetAlg);
 	}
 
 }	

@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import graphs.DrawableGraph;
+import graphs.Graph;
 
 /**
  * Contains a Graph panel and a graph info panel as well as a small menu for
@@ -114,10 +115,10 @@ public class GraphPanelView extends View implements Observer{
 	 * well as the graphPanel to draw the model.
 	 * @param model
 	 */
-	public void setModel(DrawableGraph newModel) {
-		graphPanel.setModel(newModel);
-		graphInfoPanel.setModel(newModel);
-		this.model = newModel;
+	public void setModel(Graph newModel) {
+		graphPanel.setModel((DrawableGraph)newModel);
+		graphInfoPanel.setModel((DrawableGraph)newModel);
+		this.model = (DrawableGraph)newModel;
 		this.repaint();
 	}
 	

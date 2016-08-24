@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.text.DecimalFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -88,12 +89,14 @@ public class InfoPanel extends JPanel {
 	 */
 	private void setUpInfoLabels() {
 		if (model != null) {
+			DecimalFormat f = new DecimalFormat("#0.00");
 			vertices.setText(String.valueOf(model.getVertexNumber()));
 			edges.setText(String.valueOf(model.getEdgeNumber()));
 			vertexDegree.setText(String.valueOf(((SimpleGraph) model).calculateMaxVertexDegree()));
-			density.setText(String.valueOf(getDensity()));
+			density.setText(String.valueOf(f.format(getDensity())));
 			numberColors.setText(String.valueOf(((SimpleGraph) model).getQuantityColors()));
-			deviation.setText(String.valueOf(getDeviation()));
+			f = new DecimalFormat("#0");
+			deviation.setText(String.valueOf(f.format(getDeviation()))+"%");
 		}
 	}
 

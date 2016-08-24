@@ -56,7 +56,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 			}
 			colorOriginal();
 			if(controller!=null){
-				controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
+				controller.setModelLineGraph((lg.getOriginal()));
 			}
 			finished = true;
 		}
@@ -67,11 +67,11 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 	public void applyAlgorithmStepwise(Graph graph) {
 		if(!finished){
 			if(init){
-				controller.setModelLineGraph((graphs.DrawableGraph)lg);
+				controller.setModelLineGraph(lg);
 				init = false; 
 			} else if (lg.isColored()){
 				colorOriginal();
-				controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
+				controller.setModelLineGraph((lg.getOriginal()));
 				finished = true; 
 			} else {
 				applyAlgorithm();
@@ -82,11 +82,11 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 	@Override
 	public void undoLastColoring(Graph graph) {
 		if(finished){
-			controller.setModelLineGraph((graphs.DrawableGraph)lg);
+			controller.setModelLineGraph(lg);
 			finished = false; 
 		}else if(getSteps().isEmpty() && !init){
 			lg.getOriginal().uncolor();
-			controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
+			controller.setModelLineGraph((lg.getOriginal()));
 			init = true; 
 		}else{
 			undoAlgorithm();
@@ -96,7 +96,7 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 	@Override
 	public void resetColoring(Graph graph) {
 		if(controller!=null){
-			controller.setModelLineGraph(((graphs.DrawableGraph)lg.getOriginal()));
+			controller.setModelLineGraph((lg.getOriginal()));
 		}
 		graph.uncolor();
 		lg.uncolor();

@@ -89,4 +89,22 @@ public class BigGraphPanelView extends View implements Observer {
 		info.setAlgorithm(s);
 	}
 
+	@Override
+	public JButton getLastButton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JButton getCompleteButton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JButton getResetButton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
