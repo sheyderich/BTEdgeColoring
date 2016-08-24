@@ -12,6 +12,7 @@ import edgeAlgorithmsConcrete.OrderRANDOMSearch;
 import edgeAlgorithmsConcrete.OrderSWAPSearch;
 import edgeAlgorithmsConcrete.TabuSearchRandomStart;
 import edgeAlgorithmsConcrete.TabuSearchUnicolorStart;
+import graphs.Graph;
 
 /**
  * The main programm when the comparison between the
@@ -24,8 +25,7 @@ public class Haupt {
 		List<String> graphs = getGraphs(); 
 		
 		List<ColoringAlgorithms> algs = getAlgorithms(); 
-		
-		
+
 	}
 
 	private static List<String> getGraphs() {
