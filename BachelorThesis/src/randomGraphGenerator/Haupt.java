@@ -2,10 +2,14 @@ package randomGraphGenerator;
 
 public class Haupt {
 	public static void main(String[] args){
-		RandomGraphGenerator r = new RandomGraphGenerator(500, 0.6);
-		r.createGraph();
-		System.out.println(r.testCohesion());
-//		r.print();
-		r.writeInFile();
+		
+		for(int i = 0; i < 10; i++){
+			RandomGraphGenerator r = new RandomGraphGenerator(250, 0.8);
+			r.createGraph();
+			if(r.testCohesion()){
+				r.writeInFile();
+			}
+			r.raiseK();
+		}
 	}
 }

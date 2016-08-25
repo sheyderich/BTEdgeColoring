@@ -12,6 +12,7 @@ public class RandomGraphGenerator {
 	int[][] graph; 
 	double p;
 	Random rand; 
+	private static int k; 
 	
 	public RandomGraphGenerator(int vertices, double probability){
 		if(probability > 1 || probability < 0){
@@ -53,8 +54,13 @@ public class RandomGraphGenerator {
 		}
 	}
 	
+	public void raiseK(){
+		k = k+ 1;
+		System.out.println(k);
+	}
+	
 	public void writeInFile(){
-		String name = graph.length + "_" + p + ".txt";
+		String name = graph.length + "_" + p + "_" + k + ".txt";
 		File f = new File(name);
 		try (Writer writer = new BufferedWriter(new FileWriter(f))) {
 			writer.write(graph.length + "\n");
