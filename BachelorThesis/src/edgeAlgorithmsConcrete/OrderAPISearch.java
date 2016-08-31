@@ -36,7 +36,7 @@ public class OrderAPISearch extends OrderBasedAlgorithms {
 			neighbors.add(neighbor);
 		}
 		List<Point> neighbor = new ArrayList<Point>(old);
-		Collections.swap(neighbor, old.size(), 0);
+		Collections.swap(neighbor, old.size()-1, 0);
 		neighbors.add(neighbor);
 		return neighbors;
 	}

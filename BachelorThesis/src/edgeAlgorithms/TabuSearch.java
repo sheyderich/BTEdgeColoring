@@ -37,7 +37,6 @@ public abstract class TabuSearch implements ColoringAlgorithms {
 		}
 		
 		while(violations != 0){
-			
 			List<TabuSearchStep> candidates = createCandidates(currentColoring);
 			Random rand = new Random(); 
 			int cand_pos = rand.nextInt(candidates.size());

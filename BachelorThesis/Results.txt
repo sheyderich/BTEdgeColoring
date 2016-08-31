@@ -1,3 +1,340 @@
-14849_250
-class edgeAlgorithmsConcrete.Greedy time: 76032 colors: 205 diff: 0.07329842931937172
-14849_250class edgeAlgorithmsConcrete.Greedy time: 43065 colors: 205 diff: 0.0732984293193717214849_250class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 124065 colors: 227 diff: 0.18848167539267016
+99890_500
+class edgeAlgorithmsConcrete.Greedy time: 426772 colors: 562 diff: 0.32547169811320753
+100001_500
+class edgeAlgorithmsConcrete.Greedy time: 456901 colors: 564 diff: 0.308584686774942
+99736_500
+class edgeAlgorithmsConcrete.Greedy time: 421091 colors: 561 diff: 0.3293838862559242
+99903_500
+class edgeAlgorithmsConcrete.Greedy time: 431348 colors: 566 diff: 0.33490566037735847
+99796_500
+class edgeAlgorithmsConcrete.Greedy time: 2771703 colors: 578 diff: 0.35362997658079626
+99732_500
+class edgeAlgorithmsConcrete.Greedy time: 398117 colors: 575 diff: 0.3218390804597701
+100048_500
+class edgeAlgorithmsConcrete.Greedy time: 396835 colors: 574 diff: 0.3442622950819672
+99578_500
+class edgeAlgorithmsConcrete.Greedy time: 399521 colors: 576 diff: 0.34265734265734266
+99502_500
+class edgeAlgorithmsConcrete.Greedy time: 425892 colors: 571 diff: 0.3595238095238095
+99954_500
+class edgeAlgorithmsConcrete.Greedy time: 407795 colors: 585 diff: 0.3732394366197183
+74713_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 472572 colors: 342 diff: 0.0
+74666_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 474196 colors: 335 diff: 0.0
+74869_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 472930 colors: 327 diff: 0.0
+74496_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 468967 colors: 335 diff: 0.0
+74863_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 473664 colors: 335 diff: 0.0
+74828_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 522157 colors: 331 diff: 0.0
+74961_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 537175 colors: 331 diff: 0.0
+74718_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 532862 colors: 341 diff: 0.0
+74790_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 537387 colors: 333 diff: 0.0
+75211_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 548107 colors: 337 diff: 0.0
+74713_500
+class edgeAlgorithmsConcrete.Greedy time: 205941 colors: 433 diff: 0.26608187134502925
+74666_500
+class edgeAlgorithmsConcrete.Greedy time: 192226 colors: 435 diff: 0.29850746268656714
+74869_500
+class edgeAlgorithmsConcrete.Greedy time: 194126 colors: 441 diff: 0.3486238532110092
+74496_500
+class edgeAlgorithmsConcrete.Greedy time: 201174 colors: 422 diff: 0.25970149253731345
+74863_500
+class edgeAlgorithmsConcrete.Greedy time: 196710 colors: 436 diff: 0.30149253731343284
+74828_500
+class edgeAlgorithmsConcrete.Greedy time: 193055 colors: 438 diff: 0.32326283987915405
+74961_500
+class edgeAlgorithmsConcrete.Greedy time: 196200 colors: 430 diff: 0.2990936555891239
+74718_500
+class edgeAlgorithmsConcrete.Greedy time: 195197 colors: 426 diff: 0.24926686217008798
+74790_500
+class edgeAlgorithmsConcrete.Greedy time: 209996 colors: 428 diff: 0.2852852852852853
+75211_500
+class edgeAlgorithmsConcrete.Greedy time: 223068 colors: 443 diff: 0.314540059347181
+49959_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 200089 colors: 239 diff: 0.0
+49478_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 203494 colors: 230 diff: 0.0
+50120_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 202263 colors: 231 diff: 0.0
+50111_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 202641 colors: 239 diff: 0.0
+49844_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 199842 colors: 227 diff: 0.0
+49847_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 332985 colors: 229 diff: 0.0
+50027_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 201790 colors: 239 diff: 0.0
+50167_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 202942 colors: 241 diff: 0.0
+49724_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 201712 colors: 241 diff: 0.0
+50191_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 206271 colors: 230 diff: 0.0
+49959_500
+class edgeAlgorithmsConcrete.Greedy time: 14913 colors: 294 diff: 0.2301255230125523
+49478_500
+class edgeAlgorithmsConcrete.Greedy time: 14484 colors: 288 diff: 0.25217391304347825
+50120_500
+class edgeAlgorithmsConcrete.Greedy time: 15631 colors: 292 diff: 0.26406926406926406
+50111_500
+class edgeAlgorithmsConcrete.Greedy time: 94457 colors: 298 diff: 0.24686192468619247
+49844_500
+class edgeAlgorithmsConcrete.Greedy time: 60658 colors: 295 diff: 0.29955947136563876
+49847_500
+class edgeAlgorithmsConcrete.Greedy time: 60983 colors: 300 diff: 0.31004366812227074
+50027_500
+class edgeAlgorithmsConcrete.Greedy time: 62034 colors: 289 diff: 0.20920502092050208
+50167_500
+class edgeAlgorithmsConcrete.Greedy time: 61779 colors: 293 diff: 0.2157676348547718
+49724_500
+class edgeAlgorithmsConcrete.Greedy time: 61098 colors: 298 diff: 0.23651452282157676
+50191_500
+class edgeAlgorithmsConcrete.Greedy time: 61823 colors: 302 diff: 0.3130434782608696
+24831_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 74208 colors: 215 diff: 0.0
+24913_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 75171 colors: 217 diff: 0.0
+24828_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 70862 colors: 215 diff: 0.0
+24933_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 73079 colors: 213 diff: 0.0
+24937_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 141777 colors: 214 diff: 0.0
+24857_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 70764 colors: 222 diff: 0.0
+24952_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 74004 colors: 219 diff: 0.0
+24938_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 120971 colors: 215 diff: 0.0
+24906_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 72475 colors: 216 diff: 0.0
+24943_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 119997 colors: 216 diff: 0.0
+24831_250
+class edgeAlgorithmsConcrete.Greedy time: 28607 colors: 287 diff: 0.33488372093023255
+24913_250
+class edgeAlgorithmsConcrete.Greedy time: 28587 colors: 277 diff: 0.2764976958525346
+24828_250
+class edgeAlgorithmsConcrete.Greedy time: 27303 colors: 288 diff: 0.3395348837209302
+24933_250
+class edgeAlgorithmsConcrete.Greedy time: 26302 colors: 283 diff: 0.3286384976525822
+24937_250
+class edgeAlgorithmsConcrete.Greedy time: 26637 colors: 280 diff: 0.308411214953271
+24857_250
+class edgeAlgorithmsConcrete.Greedy time: 26685 colors: 291 diff: 0.3108108108108108
+24952_250
+class edgeAlgorithmsConcrete.Greedy time: 26911 colors: 292 diff: 0.3333333333333333
+24938_250
+class edgeAlgorithmsConcrete.Greedy time: 26294 colors: 275 diff: 0.27906976744186046
+24906_250
+class edgeAlgorithmsConcrete.Greedy time: 26801 colors: 293 diff: 0.35648148148148145
+24943_250
+class edgeAlgorithmsConcrete.Greedy time: 28430 colors: 293 diff: 0.35648148148148145
+12366_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 377111 colors: 148 diff: 0.16535433070866143
+12316_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 171621 colors: 143 diff: 0.18181818181818182
+12573_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 2988939 colors: 154 diff: 0.26229508196721313
+12542_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 385939 colors: 144 diff: 0.19008264462809918
+12276_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 367695 colors: 150 diff: 0.2396694214876033
+12408_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 388695 colors: 146 diff: 0.226890756302521
+12233_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 363614 colors: 143 diff: 0.16260162601626016
+12341_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 372243 colors: 146 diff: 0.23728813559322035
+12256_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 372523 colors: 148 diff: 0.24369747899159663
+12418_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 384155 colors: 146 diff: 0.2066115702479339
+18879_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 32462 colors: 178 diff: 0.0
+18650_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 33039 colors: 167 diff: 0.0
+18584_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 32568 colors: 169 diff: 0.0
+18743_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 33986 colors: 172 diff: 0.0
+18551_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 32320 colors: 172 diff: 0.0
+18718_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 32641 colors: 172 diff: 0.0
+18708_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 32940 colors: 175 diff: 0.0
+18776_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 33603 colors: 170 diff: 0.0
+18626_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 31314 colors: 170 diff: 0.0
+18632_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 33292 colors: 172 diff: 0.0
+18879_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1419933 colors: 217 diff: 0.21910112359550563
+18650_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1194282 colors: 215 diff: 0.2874251497005988
+18584_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1188660 colors: 215 diff: 0.27218934911242604
+18743_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1215593 colors: 220 diff: 0.27906976744186046
+18551_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1144401 colors: 227 diff: 0.31976744186046513
+18718_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1219936 colors: 221 diff: 0.28488372093023256
+18708_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1040941 colors: 224 diff: 0.28
+18776_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 2800831 colors: 219 diff: 0.28823529411764703
+18626_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1357402 colors: 215 diff: 0.2647058823529412
+18632_250
+class edgeAlgorithmsConcrete.OrderAPISearch time: 1359423 colors: 218 diff: 0.26744186046511625
+18879_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 352457 colors: 235 diff: 0.3202247191011236
+18650_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 321767 colors: 220 diff: 0.31736526946107785
+18584_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 320026 colors: 223 diff: 0.31952662721893493
+18743_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 341558 colors: 228 diff: 0.32558139534883723
+18551_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 307071 colors: 233 diff: 0.3546511627906977
+18718_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 311702 colors: 229 diff: 0.3313953488372093
+18708_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 316974 colors: 235 diff: 0.34285714285714286
+18776_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 324528 colors: 229 diff: 0.34705882352941175
+18626_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 312388 colors: 220 diff: 0.29411764705882354
+18632_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 261877 colors: 228 diff: 0.32558139534883723
+18879_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 269596 colors: 212 diff: 0.19101123595505617
+18650_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 252254 colors: 207 diff: 0.23952095808383234
+18584_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 245835 colors: 202 diff: 0.1952662721893491
+18743_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 255373 colors: 204 diff: 0.18604651162790697
+18551_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 247843 colors: 210 diff: 0.22093023255813954
+18718_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 258802 colors: 205 diff: 0.19186046511627908
+18708_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 253858 colors: 210 diff: 0.2
+18776_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 249066 colors: 206 diff: 0.21176470588235294
+18626_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 251236 colors: 203 diff: 0.19411764705882353
+18632_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 246334 colors: 204 diff: 0.18604651162790697
+18879_250
+class edgeAlgorithmsConcrete.Greedy time: 11986 colors: 217 diff: 0.21910112359550563
+18650_250
+class edgeAlgorithmsConcrete.Greedy time: 11791 colors: 215 diff: 0.2874251497005988
+18584_250
+class edgeAlgorithmsConcrete.Greedy time: 11417 colors: 215 diff: 0.27218934911242604
+18743_250
+class edgeAlgorithmsConcrete.Greedy time: 12199 colors: 220 diff: 0.27906976744186046
+18551_250
+class edgeAlgorithmsConcrete.Greedy time: 11526 colors: 227 diff: 0.31976744186046513
+18718_250
+class edgeAlgorithmsConcrete.Greedy time: 11695 colors: 221 diff: 0.28488372093023256
+18708_250
+class edgeAlgorithmsConcrete.Greedy time: 11791 colors: 224 diff: 0.28
+18776_250
+class edgeAlgorithmsConcrete.Greedy time: 12035 colors: 219 diff: 0.28823529411764703
+18626_250
+class edgeAlgorithmsConcrete.Greedy time: 11402 colors: 215 diff: 0.2647058823529412
+18632_250
+class edgeAlgorithmsConcrete.Greedy time: 11749 colors: 218 diff: 0.26744186046511625
+12366_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 29779 colors: 127 diff: 0.0
+12316_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 28671 colors: 121 diff: 0.0
+12573_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 31625 colors: 122 diff: 0.0
+12542_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 28912 colors: 121 diff: 0.0
+12276_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 26662 colors: 121 diff: 0.0
+12408_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 27664 colors: 119 diff: 0.0
+12233_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 28078 colors: 123 diff: 0.0
+12341_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 29363 colors: 118 diff: 0.0
+12256_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 26970 colors: 119 diff: 0.0
+12418_250
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 29368 colors: 121 diff: 0.0
+12366_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 76116 colors: 152 diff: 0.1968503937007874
+12316_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 73641 colors: 163 diff: 0.34710743801652894
+12573_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 81083 colors: 156 diff: 0.2786885245901639
+12542_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 77927 colors: 157 diff: 0.2975206611570248
+12276_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 73669 colors: 152 diff: 0.256198347107438
+12408_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 74964 colors: 156 diff: 0.31092436974789917
+12233_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 71271 colors: 147 diff: 0.1951219512195122
+12341_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 72883 colors: 152 diff: 0.288135593220339
+12256_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 73016 colors: 145 diff: 0.2184873949579832
+12418_250
+class edgeAlgorithmsConcrete.LineGraphDegreeUp time: 77325 colors: 151 diff: 0.24793388429752067
+12366_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 74712 colors: 135 diff: 0.06299212598425197
+12316_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 75394 colors: 136 diff: 0.12396694214876033
+12573_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 81469 colors: 138 diff: 0.13114754098360656
+12542_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 78901 colors: 140 diff: 0.15702479338842976
+12276_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 76637 colors: 137 diff: 0.1322314049586777
+12408_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 77361 colors: 139 diff: 0.16806722689075632
+12233_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 72367 colors: 135 diff: 0.0975609756097561
+12341_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 75992 colors: 137 diff: 0.16101694915254236
+12256_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 74399 colors: 139 diff: 0.16806722689075632
+12418_250
+class edgeAlgorithmsConcrete.LineGraphDegreeDown time: 71737 colors: 143 diff: 0.18181818181818182
+12366_250
+class edgeAlgorithmsConcrete.Greedy time: 10338 colors: 148 diff: 0.16535433070866143
+12316_250
+class edgeAlgorithmsConcrete.Greedy time: 9895 colors: 143 diff: 0.18181818181818182
+12573_250
+class edgeAlgorithmsConcrete.Greedy time: 10456 colors: 154 diff: 0.26229508196721313
+12542_250
+class edgeAlgorithmsConcrete.Greedy time: 10998 colors: 144 diff: 0.19008264462809918
+12276_250
+class edgeAlgorithmsConcrete.Greedy time: 10418 colors: 150 diff: 0.2396694214876033
+12408_250
+class edgeAlgorithmsConcrete.Greedy time: 11096 colors: 146 diff: 0.226890756302521
+12233_250
+class edgeAlgorithmsConcrete.Greedy time: 10859 colors: 143 diff: 0.16260162601626016
+12341_250
+class edgeAlgorithmsConcrete.Greedy time: 10247 colors: 146 diff: 0.23728813559322035
+12256_250
+class edgeAlgorithmsConcrete.Greedy time: 9969 colors: 148 diff: 0.24369747899159663
+12418_250
+class edgeAlgorithmsConcrete.Greedy time: 11655 colors: 146 diff: 0.2066115702479339

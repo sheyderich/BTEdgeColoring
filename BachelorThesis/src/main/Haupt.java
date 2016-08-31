@@ -65,6 +65,7 @@ public class Haupt {
 						/ (double) g.calculateMaxVertexDegree()
 				+ "\n");
 		writeInFile(s);
+		System.out.println("wrote " +s);
 	}
 
 	/**
@@ -116,13 +117,13 @@ public class Haupt {
 	private static List<ColoringAlgorithms> getAlgorithms(Graph g) {
 		List<ColoringAlgorithms> fin = new ArrayList<ColoringAlgorithms>(); 
 		fin.add(new Greedy(g.getEdges()));
-		fin.add(new LineGraphDegreeDown(g)); 
-		fin.add(new LineGraphDegreeUp(g));
-		fin.add(new OrderAPISearch());
-		fin.add(new OrderRANDOMSearch());
-		fin.add(new OrderSWAPSearch());
-		fin.add(new TabuSearchUnicolorStart());
-		fin.add(new TabuSearchRandomStart());
+//		fin.add(new LineGraphDegreeDown(g)); 
+//		fin.add(new LineGraphDegreeUp(g));
+//		fin.add(new OrderAPISearch());
+//		fin.add(new OrderRANDOMSearch());
+//		fin.add(new OrderSWAPSearch());
+//		fin.add(new TabuSearchUnicolorStart());
+//		fin.add(new TabuSearchRandomStart());
 		return fin;
 	}
 }
