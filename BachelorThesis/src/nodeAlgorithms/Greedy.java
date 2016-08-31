@@ -1,5 +1,6 @@
 package nodeAlgorithms;
 
+import java.awt.Point;
 import java.util.List;
 import java.util.Stack;
 
@@ -8,6 +9,7 @@ import exceptions.IllegalGraphTypeException;
 import graphs.Graph;
 import graphs.LineGraph;
 import helper.AlgorithmStep;
+import helper.ColorEdgeStep;
 import helper.ColorNodeStep;
 
 /**
@@ -20,6 +22,7 @@ public class Greedy implements ColoringAlgorithms {
 
 	private List<Integer> nodes; 
 	private Stack<AlgorithmStep> steps = new Stack<AlgorithmStep>(); 
+	private Stack<AlgorithmStep> stepsOr = new Stack<AlgorithmStep>(); 
 	private int index = 0; 
 	private LineGraph lg; 
 	
@@ -29,7 +32,8 @@ public class Greedy implements ColoringAlgorithms {
 	
 	@Override
 	public void applyAlgorithmComplete(Graph graph) {
-		
+		Graph og = ((LineGraph)graph).getOriginal();
+		List<Point> edges = og.getEdges();
 		if(graph instanceof LineGraph){
 			lg = (LineGraph)graph; 
 		}else{
@@ -41,12 +45,16 @@ public class Greedy implements ColoringAlgorithms {
 			if(!lg.isNodeColored(currentNode)){
 				tryColorNode(currentNode);
 			}
+			Point edge = edges.get(currentNode);
+			og.setEdgeColor(edge.x, edge.y, lg.getNodeColor(currentNode));
+			stepsOr.add(new ColorEdgeStep(edge.x, edge.y));
 		}
 	}
 
 	@Override
 	public void applyAlgorithmStepwise(Graph graph) {
-		
+		Graph og = ((LineGraph)graph).getOriginal();
+		List<Point> edges = og.getEdges();
 		if(graph instanceof LineGraph){
 			lg = (LineGraph)graph; 
 		}else{
@@ -57,13 +65,16 @@ public class Greedy implements ColoringAlgorithms {
 			if(!lg.isNodeColored(currentNode)){
 				tryColorNode(currentNode);
 			}
+			Point edge = edges.get(currentNode);
+			og.setEdgeColor(edge.x, edge.y, lg.getNodeColor(currentNode));
+			stepsOr.add(new ColorEdgeStep(edge.x, edge.y));
 			index++;
 		}
 	}
 
 	@Override
 	public void undoLastColoring(Graph graph) {
-
+		Graph og = ((LineGraph)graph).getOriginal();
 		if(graph instanceof LineGraph){
 			lg = (LineGraph)graph; 
 		}else{
@@ -72,7 +83,10 @@ public class Greedy implements ColoringAlgorithms {
 		
 		if(!steps.isEmpty()){
 			AlgorithmStep last = steps.pop(); 
+			AlgorithmStep lastOr = stepsOr.pop();
+			og.removeLastStep();
 			lg.removeLastStep();
+			lastOr.undo(og);
 			last.undo(graph);
 			index--;
 		}

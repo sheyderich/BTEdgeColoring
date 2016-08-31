@@ -24,7 +24,6 @@ import edgeAlgorithmsConcrete.OrderRANDOMSearch;
 import edgeAlgorithmsConcrete.OrderSWAPSearch;
 import edgeAlgorithmsConcrete.TabuSearchRandomStart;
 import edgeAlgorithmsConcrete.TabuSearchUnicolorStart;
-import edgeAlgorithmsConcrete.TestForThesis;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
@@ -128,7 +127,6 @@ public class GraphPanelViewController extends Controller{
 		algorithms.add("LG Greedy");
 		algorithms.add("LG Degrees Down");
 		algorithms.add("LG Degrees Up");
-		algorithms.add("TestForThesis");
 	}
 	
 	/**
@@ -150,7 +148,6 @@ public class GraphPanelViewController extends Controller{
 		case "LG Greedy": return new LineGraphGreedy(this, (Graph)model);
 		case "LG Degrees Down": return new LineGraphDegreeDown(this, (Graph)model);
 		case "LG Degrees Up": return new LineGraphDegreeUp(this, (Graph)model);
-		case "TestForThesis": return new TestForThesis((Graph)model); 
 		default: System.out.println("Not yet implemented");
 		return new Greedy(model.getEdges());
 		}

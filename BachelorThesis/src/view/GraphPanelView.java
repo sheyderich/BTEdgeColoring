@@ -1,15 +1,18 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import graphs.DrawableGraph;
 import graphs.Graph;
+import graphs.LineGraph;
 
 /**
  * Contains a Graph panel and a graph info panel as well as a small menu for
@@ -19,6 +22,8 @@ import graphs.Graph;
 @SuppressWarnings("serial")
 public class GraphPanelView extends View implements Observer{
 	
+	private JFrame lgFrame; 
+	private GraphPanel lgPanel; 
 	private GraphPanel graphPanel;
 	private GraphInfoPanel graphInfoPanel;
 	private JButton startButton; 
@@ -44,6 +49,13 @@ public class GraphPanelView extends View implements Observer{
 		}
 		this.model = model;
 		this.setLayout(new BorderLayout());
+		this.lgFrame = new JFrame(); 
+		this.lgPanel = new GraphPanel(width,height, model);
+		lgPanel.setPreferredSize(new Dimension(width, height));
+		lgFrame.add(lgPanel);
+		lgFrame.setSize(new Dimension(width, height));
+		lgFrame.setLocationRelativeTo(this);
+		lgFrame.setVisible(false);
 		graphPanel = new GraphPanel(width, height, model);
 		graphInfoPanel = new GraphInfoPanel(width/3, height, model);
 		setUpLayout(); 
@@ -119,6 +131,12 @@ public class GraphPanelView extends View implements Observer{
 		graphPanel.setModel((DrawableGraph)newModel);
 		graphInfoPanel.setModel((DrawableGraph)newModel);
 		this.model = (DrawableGraph)newModel;
+		if(newModel instanceof LineGraph){
+			lgFrame.setVisible(true);
+			lgPanel.setModel((DrawableGraph)((LineGraph)newModel).getOriginal());
+		}else{
+			lgFrame.setVisible(false);
+		}
 		this.repaint();
 	}
 	
@@ -135,6 +153,7 @@ public class GraphPanelView extends View implements Observer{
 		}
 		graphPanel.repaint();
 		graphInfoPanel.repaint();
+		lgPanel.repaint();
 	}
 	
 	/**

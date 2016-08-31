@@ -1,11 +1,8 @@
 package edgeAlgorithms;
 
-import java.awt.Point;
-import java.util.List;
 import java.util.Stack;
 
 import controller.GraphPanelViewController;
-import exceptions.InvalidColorException;
 import graphs.Graph;
 import graphs.LineGraph;
 import helper.AlgorithmStep;
@@ -54,7 +51,6 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 			while(!lg.isColored()){
 				applyAlgorithm();
 			}
-			colorOriginal();
 			if(controller!=null){
 				controller.setModelLineGraph((lg.getOriginal()));
 			}
@@ -70,7 +66,6 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 				controller.setModelLineGraph(lg);
 				init = false; 
 			} else if (lg.isColored()){
-				colorOriginal();
 				controller.setModelLineGraph((lg.getOriginal()));
 				finished = true; 
 			} else {
@@ -103,23 +98,6 @@ public abstract class LineGraphAlgorithms implements ColoringAlgorithms {
 		resetAlgorithm(); 
 		finished = false; 
 		init = true; 
-	}
-	
-	/**
-	 * Applies the coloring determined by the Line Graph to 
-	 * the original graph
-	 */
-	private void colorOriginal() {
-		int[] colors = lg.getNodeColors();
-		Graph original = lg.getOriginal();
-		List<Point> edges = original.getEdges();
-		int i = 0; 
-		for(Point p: edges){
-			original.setEdgeColor(p.x, p.y, colors[i]);
-			original.setLastStep(p.x, p.y);
-			i++;
-		}
-		if(!original.isGraphColoringValid()) throw new InvalidColorException("Conversion from Line Graph to Original graph failed at coloring");
 	}
 	
 	/**

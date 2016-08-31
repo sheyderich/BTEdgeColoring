@@ -1,3 +1,13 @@
+99578_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 1350457 colors: 429 diff: 0.0
+99578_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 1287212 colors: 429 diff: 0.0
+99578_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 1264590 colors: 429 diff: 0.0
+99578_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 889914 colors: 429 diff: 0.0
+99502_500
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 6332507 colors: 420 diff: 0.0
 99890_500
 class edgeAlgorithmsConcrete.Greedy time: 426772 colors: 562 diff: 0.32547169811320753
 100001_500
