@@ -1,8 +1,4 @@
 /main/
-/view/
-/controller/
-/edgeAlgorithms/
 /randomGraphGenerator/
-/graphReader/
+/controller/
 /edgeAlgorithmsConcrete/
-/nodeAlgorithms/

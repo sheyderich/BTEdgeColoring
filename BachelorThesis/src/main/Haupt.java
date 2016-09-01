@@ -29,7 +29,7 @@ import graphs.Graph;
  */
 public class Haupt {
 	
-	private final static int ALGORITHM = 0; 
+	private final static int ALGORITHM = 7; 
 	
 	/**
 	 * Starts the algorithms for every graph
@@ -116,14 +116,14 @@ public class Haupt {
 	 */
 	private static List<ColoringAlgorithms> getAlgorithms(Graph g) {
 		List<ColoringAlgorithms> fin = new ArrayList<ColoringAlgorithms>(); 
-//		fin.add(new Greedy(g.getEdges()));
-//		fin.add(new LineGraphDegreeDown(g)); 
-//		fin.add(new LineGraphDegreeUp(g));
-//		fin.add(new OrderAPISearch());
+		fin.add(new Greedy(g.getEdges()));
+		fin.add(new LineGraphDegreeDown(g)); 
+		fin.add(new LineGraphDegreeUp(g));
+		fin.add(new OrderAPISearch());
 		fin.add(new OrderRANDOMSearch());
-//		fin.add(new OrderSWAPSearch());
-//		fin.add(new TabuSearchUnicolorStart());
-//		fin.add(new TabuSearchRandomStart());
+		fin.add(new OrderSWAPSearch());
+		fin.add(new TabuSearchUnicolorStart());
+		fin.add(new TabuSearchRandomStart());
 		return fin;
 	}
 }

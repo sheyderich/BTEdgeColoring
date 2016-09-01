@@ -4,7 +4,7 @@ public class Haupt {
 	public static void main(String[] args){
 		
 		for(int i = 0; i < 10; i++){
-			RandomGraphGenerator r = new RandomGraphGenerator(250, 0.8);
+			RandomGraphGenerator r = new RandomGraphGenerator(25, 0.8);
 			r.createGraph();
 			if(r.testCohesion()){
 				r.writeInFile();
