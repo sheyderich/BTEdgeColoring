@@ -1,6 +1,6 @@
 package edgeAlgorithmsConcrete;
 
-import edgeAlgorithms.TabuSearch;
+import edgeAlgorithms.Improvement;
 import graphs.Graph;
 
 /**
@@ -8,7 +8,7 @@ import graphs.Graph;
  * every edge is colored in the color 1 (dark red) 
  * @author Stephanie Heyderich
  */
-public class TabuSearchUnicolorStart extends TabuSearch {
+public class ImprovementUnicolorStart extends Improvement {
 
 	@Override
 	public void generateStartingSolution(Graph graph) {

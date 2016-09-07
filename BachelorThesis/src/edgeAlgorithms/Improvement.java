@@ -16,7 +16,7 @@ import helper.TabuSearchStep;
  * with the rules. 
  * @author Stephanie Heyderich
  */
-public abstract class TabuSearch implements ColoringAlgorithms {
+public abstract class Improvement implements ColoringAlgorithms {
 
 	protected int best;
 	private int violations;

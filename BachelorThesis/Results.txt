@@ -1,4 +1,84 @@
 246_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 34 colors: 23 diff: -0.041666666666666664
+237_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 105 colors: 22 diff: -0.043478260869565216
+240_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 269 colors: 23 diff: 0.0
+227_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 255 colors: 22 diff: 0.0
+243_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 38 colors: 23 diff: -0.041666666666666664
+238_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 15 colors: 23 diff: -0.041666666666666664
+249_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 19 colors: 24 diff: -0.04
+248_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 86 colors: 23 diff: -0.041666666666666664
+228_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 31 colors: 22 diff: -0.043478260869565216
+234_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 287 colors: 22 diff: -0.043478260869565216
+246_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 15 colors: 23 diff: 0.0
+237_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 14 colors: 22 diff: 0.0
+240_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 308 colors: 23 diff: 0.045454545454545456
+227_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 252 colors: 22 diff: 0.047619047619047616
+243_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 34 colors: 23 diff: 0.0
+238_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 19 colors: 23 diff: 0.0
+249_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 16 colors: 24 diff: 0.0
+248_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 132 colors: 23 diff: 0.0
+228_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 19 colors: 22 diff: 0.0
+234_25
+class edgeAlgorithmsConcrete.OrderRANDOMSearch time: 157 colors: 22 diff: 0.0
+246_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 303 colors: 27 diff: 0.17391304347826086
+237_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 298 colors: 26 diff: 0.18181818181818182
+240_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 247 colors: 26 diff: 0.18181818181818182
+227_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 229 colors: 24 diff: 0.14285714285714285
+243_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 250 colors: 28 diff: 0.21739130434782608
+238_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 239 colors: 26 diff: 0.13043478260869565
+249_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 402 colors: 27 diff: 0.125
+248_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 295 colors: 26 diff: 0.13043478260869565
+228_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 193 colors: 25 diff: 0.13636363636363635
+234_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 300 colors: 27 diff: 0.22727272727272727
+246_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 272 colors: 27 diff: 0.125
+237_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 275 colors: 26 diff: 0.13043478260869565
+240_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 301 colors: 27 diff: 0.17391304347826086
+227_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 249 colors: 25 diff: 0.13636363636363635
+243_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 353 colors: 27 diff: 0.125
+238_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 223 colors: 27 diff: 0.125
+249_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 423 colors: 28 diff: 0.12
+248_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 288 colors: 26 diff: 0.08333333333333333
+228_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 275 colors: 24 diff: 0.043478260869565216
+234_25
+class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 420 colors: 26 diff: 0.13043478260869565
+246_25
 class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 269 colors: 27 diff: 0.17391304347826086
 237_25
 class edgeAlgorithmsConcrete.TabuSearchRandomStart time: 231 colors: 25 diff: 0.13636363636363635

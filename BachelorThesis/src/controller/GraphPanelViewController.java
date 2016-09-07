@@ -18,12 +18,11 @@ import edgeAlgorithmsConcrete.Greedy;
 import edgeAlgorithmsConcrete.Koenig;
 import edgeAlgorithmsConcrete.LineGraphDegreeDown;
 import edgeAlgorithmsConcrete.LineGraphDegreeUp;
-import edgeAlgorithmsConcrete.LineGraphGreedy;
 import edgeAlgorithmsConcrete.OrderAPISearch;
 import edgeAlgorithmsConcrete.OrderRANDOMSearch;
 import edgeAlgorithmsConcrete.OrderSWAPSearch;
-import edgeAlgorithmsConcrete.TabuSearchRandomStart;
-import edgeAlgorithmsConcrete.TabuSearchUnicolorStart;
+import edgeAlgorithmsConcrete.ImprovementRandomStart;
+import edgeAlgorithmsConcrete.ImprovementUnicolorStart;
 import graphReader.GraphReader;
 import graphs.BipartiteGraph;
 import graphs.DrawableGraph;
@@ -40,8 +39,6 @@ import view.View;
  */
 public class GraphPanelViewController extends Controller{
 	
-//	private View view;
-//	private DrawableGraph model;
 	private Frame frame; 
 	private ColoringAlgorithms usedAlgorithm;
 	private boolean started = false; 
@@ -120,13 +117,12 @@ public class GraphPanelViewController extends Controller{
 	private void setUpAlgorithms(){
 		algorithms.add("Greedy Algorithm");
 		algorithms.add("Randomized Greedy");
-		algorithms.add("LSA SWAP");
-		algorithms.add("LSA API");
-		algorithms.add("TSA Random Start");
-		algorithms.add("TSA Unicolor Start");
-		algorithms.add("LG Greedy");
-		algorithms.add("LG Degrees Down");
-		algorithms.add("LG Degrees Up");
+		algorithms.add("SWAP");
+		algorithms.add("API");
+		algorithms.add("Improvement Random Start");
+		algorithms.add("Improvement Unicolor Start");
+		algorithms.add("Line Graph Degrees Down");
+		algorithms.add("Line Graph Degrees Up");
 	}
 	
 	/**
@@ -141,13 +137,12 @@ public class GraphPanelViewController extends Controller{
 		case "König's Algorithm": return new Koenig();
 		case "Greedy Algorithm": return new Greedy(model.getEdges());
 		case "Randomized Greedy": return new OrderRANDOMSearch();
-		case "LSA SWAP": return new OrderSWAPSearch();
-		case "LSA API": return new OrderAPISearch(); 
-		case "TSA Random Start": return new TabuSearchRandomStart();
-		case "TSA Unicolor Start": return new TabuSearchUnicolorStart();
-		case "LG Greedy": return new LineGraphGreedy(this, (Graph)model);
-		case "LG Degrees Down": return new LineGraphDegreeDown(this, (Graph)model);
-		case "LG Degrees Up": return new LineGraphDegreeUp(this, (Graph)model);
+		case "SWAP": return new OrderSWAPSearch();
+		case "API": return new OrderAPISearch(); 
+		case "Improvement Random Start": return new ImprovementRandomStart();
+		case "Improvement Unicolor Start": return new ImprovementUnicolorStart();
+		case "Line Graph Degrees Down": return new LineGraphDegreeDown(this, (Graph)model);
+		case "Line Graph Degrees Up": return new LineGraphDegreeUp(this, (Graph)model);
 		default: System.out.println("Not yet implemented");
 		return new Greedy(model.getEdges());
 		}
@@ -240,14 +235,13 @@ public class GraphPanelViewController extends Controller{
 		ActionListener importFile = new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e){
-				final JFileChooser fc = new JFileChooser("C:\\Users\\Shey\\git\\BTEdgeColoring\\BachelorThesis");
-//				final JFileChooser fc = new JFileChooser();
+				final JFileChooser fc = new JFileChooser();
 				int result = fc.showOpenDialog(view);
 				if(result == JFileChooser.APPROVE_OPTION){
 					File file = fc.getSelectedFile();
 					if(file.getName().matches(".*.txt")){
 						try{
-							GraphReader gr = new GraphReader(file.getName());
+							GraphReader gr = new GraphReader(file.getPath());
 							Graph g = gr.buildGraphFromFile();
 							setModel(g);
 						}catch(Exception ex){

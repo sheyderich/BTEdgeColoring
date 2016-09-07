@@ -2,7 +2,7 @@ package edgeAlgorithmsConcrete;
 
 import java.util.Random;
 
-import edgeAlgorithms.TabuSearch;
+import edgeAlgorithms.Improvement;
 import graphs.Graph;
 
 /**
@@ -11,7 +11,7 @@ import graphs.Graph;
  * according to a Random generator. 
  * @author Stephanie Heyderich
  */
-public class TabuSearchRandomStart extends TabuSearch {
+public class ImprovementRandomStart extends Improvement {
 
 	@Override
 	public void generateStartingSolution(Graph graph) {

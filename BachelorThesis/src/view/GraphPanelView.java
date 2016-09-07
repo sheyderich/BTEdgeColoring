@@ -181,7 +181,7 @@ public class GraphPanelView extends View implements Observer{
 	private void setUpButton(){
 		startButton = new JButton("Start Algorithm");
 		importButton = new JButton("Import Graph");
-		lastButton = new JButton("Undo Last Coloring");
+		lastButton = new JButton("Undo Last Step");
 		completeButton = new JButton("Final Coloring");
 		resetButton = new JButton ("Reset Graph");
 		chooseAlgorithm = new JComboBox<Object>();

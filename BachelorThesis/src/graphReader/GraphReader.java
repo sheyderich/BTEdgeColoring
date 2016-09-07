@@ -111,7 +111,7 @@ public class GraphReader {
 	 * @throws IllegalGraphTypeException
 	 */
 	private Graph getNewGraph(int type){
-		switch(graphType){
+		switch(type){
 			case 1: return new BipartiteGraph(vertexCount1, vertexCount2);
 			case 2: return new SimpleGraph(vertexCount1);
 			default:

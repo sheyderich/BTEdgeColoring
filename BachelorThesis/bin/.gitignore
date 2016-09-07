@@ -1,4 +1,6 @@
 /main/
-/randomGraphGenerator/
 /controller/
+/graphReader/
+/view/
+/edgeAlgorithms/
 /edgeAlgorithmsConcrete/

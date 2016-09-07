@@ -17,8 +17,8 @@ import edgeAlgorithmsConcrete.LineGraphDegreeUp;
 import edgeAlgorithmsConcrete.OrderAPISearch;
 import edgeAlgorithmsConcrete.OrderRANDOMSearch;
 import edgeAlgorithmsConcrete.OrderSWAPSearch;
-import edgeAlgorithmsConcrete.TabuSearchRandomStart;
-import edgeAlgorithmsConcrete.TabuSearchUnicolorStart;
+import edgeAlgorithmsConcrete.ImprovementRandomStart;
+import edgeAlgorithmsConcrete.ImprovementUnicolorStart;
 import graphReader.GraphReader;
 import graphs.Graph;
 
@@ -29,7 +29,7 @@ import graphs.Graph;
  */
 public class Haupt {
 	
-	private final static int ALGORITHM = 7; 
+	private final static int ALGORITHM = 0; 
 	
 	/**
 	 * Starts the algorithms for every graph
@@ -61,8 +61,8 @@ public class Haupt {
 		final long timeEnd = System.currentTimeMillis();
 		long diff = timeEnd - timeStart;
 		s += ("time: " + diff + " colors: " + g.getQuantityColors() + " diff: "
-				+ (double) ((double) g.getQuantityColors() - (double) g.calculateMaxVertexDegree())
-						/ (double) g.calculateMaxVertexDegree()
+				+ (double) ((double) g.getQuantityColors() - (double) (g.calculateMaxVertexDegree()+1))
+						/ (double) (g.calculateMaxVertexDegree()+1)
 				+ "\n");
 		writeInFile(s);
 		System.out.println("wrote " +s);
@@ -122,8 +122,8 @@ public class Haupt {
 		fin.add(new OrderAPISearch());
 		fin.add(new OrderRANDOMSearch());
 		fin.add(new OrderSWAPSearch());
-		fin.add(new TabuSearchUnicolorStart());
-		fin.add(new TabuSearchRandomStart());
+		fin.add(new ImprovementUnicolorStart());
+		fin.add(new ImprovementRandomStart());
 		return fin;
 	}
 }

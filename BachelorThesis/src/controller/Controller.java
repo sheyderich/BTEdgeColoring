@@ -31,7 +31,7 @@ public abstract class Controller {
 		if(view instanceof GraphPanelView && g.calculateMaxVertexDegree() > 20){
 			Object[] options = {"YES", "NO", "CANCEL"};
 			int n = JOptionPane.showOptionDialog(null, "You chose a graph that has a maximal vertex degree of > 20. A visualization is not possible. \nDo you want to switch "
-					+ "to the text-based view?", "", 
+					+ "to the text-based view? If you do not, errors may occur.", "", 
 					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
 			if(n == 0){
 				setView(new BigGraphPanelView(5,5, model)); 
